@@ -1,4 +1,4 @@
-# TravelAgency
+# Group: Kelde - TravelAgency
 Course DIT126 web project
 
 ####Group members
