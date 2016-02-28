@@ -30,24 +30,21 @@ public class Person implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID")
     private Long id;
     
     @Getter
     @Setter
     @Size(max = 255)
-    @Column(nullable = false, name = "FIRST_NAME")
+    @Column(nullable = false)
     private String firstName;
     
     @Getter
     @Setter
     @Size(max = 255)
-    @Column(nullable = false, name = "LST_NAME")
+    @Column(nullable = false)
     private String lastName;
    
-    @OneToMany(mappedBy = "Booking")
+    @OneToMany(mappedBy = "person")
     private List<Booking> bookingList;
     
 }

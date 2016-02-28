@@ -25,23 +25,20 @@ public class Plane implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID")
     private Long id;
     
     @Getter
     @Setter
     @Size(max = 255)
-    @Column(nullable = false, name = "TYPE")
+    @Column(nullable = false)
     private String type;
     
     @Getter
     @Setter
-    @Column(nullable = false, name = "CAPACITY")
+    @Column(nullable = false)
     private Integer capacity;
     
-    @OneToMany(mappedBy = "Flight")
+    @OneToMany(mappedBy = "plane")
     private List<Flight> flightList;
     
 }

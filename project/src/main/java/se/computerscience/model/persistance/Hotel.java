@@ -31,25 +31,23 @@ public class Hotel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID")
+
     private Long id;
     
     @Getter
     @Setter
     @Size(max = 255)
-    @Column(nullable = false, name = "NAME")
+    @Column(nullable = false)
     private String name;
     
     @Getter
     @Setter
-    @Column(nullable = false, name = "PRICE")
+    @Column(nullable = false)
     private Double price;
     
     @ManyToOne
     private City city;
     
-    @OneToMany(mappedBy = "Booking")
+    @OneToMany(mappedBy = "hotel")
     private List<Booking> bookingList;
 }

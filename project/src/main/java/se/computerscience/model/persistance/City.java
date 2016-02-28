@@ -28,32 +28,26 @@ public class City implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID")
     private Long id;
     
     @Getter
     @Setter
     @Size(max = 255)
-    @Column(nullable = false, name = "NAME")
+    @Column(nullable = false)
     private String name;
     
-    @OneToMany(mappedBy = "Hotel")
+    @OneToMany(mappedBy = "hotel")
     private List<Hotel> hotelList;
     
-    @OneToMany(mappedBy = "Flight")
+    @OneToMany(mappedBy = "depCity")
     private List<Flight> flightDepList;
     
-    @OneToMany(mappedBy = "Flight")
+    @OneToMany(mappedBy = "desCity")
     private List<Flight> flightDesList;
     
-    @OneToMany(mappedBy = "Booking")
+    @OneToMany(mappedBy = "depCity")
     private List<Booking> bookingDepList;
     
-    @OneToMany(mappedBy = "Booking")
+    @OneToMany(mappedBy = "desCity")
     private List<Booking> bookingDesList;
-    
-    
-    
 }

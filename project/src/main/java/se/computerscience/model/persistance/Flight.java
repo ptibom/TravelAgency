@@ -33,28 +33,25 @@ public class Flight implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID")
     private Long id;
     
     @Getter
     @Setter
     @Size(max = 255)
-    @Column(nullable = false, name = "DEPATURE")
+    @Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date depature; // sql or util ?
+    private Date depature; 
     
     @Getter
     @Setter
     @Size(max = 255)
-    @Column(nullable = false, name = "ARRIVAL")
+    @Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date arrival; // sql or util ?
+    private Date arrival;
     
     @Getter
     @Setter
-    @Column(nullable = false, name = "PRICE")
+    @Column(nullable = false)
     private Double price;
     
     @ManyToOne
@@ -66,10 +63,10 @@ public class Flight implements Serializable {
     @ManyToOne
     private City desCity;
     
-    @OneToMany(mappedBy = "Booking")
+    @OneToMany(mappedBy = "flyTo")
     private List<Booking> bookingFlyToList;
     
-    @OneToMany(mappedBy = "Booking")
+    @OneToMany(mappedBy = "flyBack")
     private List<Booking> bookingFlyBackList;
     
 }

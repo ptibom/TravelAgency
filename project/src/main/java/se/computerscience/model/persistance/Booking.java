@@ -30,14 +30,11 @@ public class Booking implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID")
     private Long id;
     
     @Getter
     @Setter
-    @Column(nullable = false, name = "PRICE")
+    @Column(nullable = false)
     private Double price;
    
     @ManyToOne
