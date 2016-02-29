@@ -1,13 +1,13 @@
 package se.computerscience.travelagency.view;
 
 
-import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import org.primefaces.component.steps.Steps;
  
-@ManagedBean
 @SessionScoped
+@Named("testBean")
 public class TestBean implements Serializable {
  
 	private String userName;
@@ -27,5 +27,4 @@ public class TestBean implements Serializable {
         //Steps tabView = (Steps) event.getComponent();
        // tabView.setActiveIndex(3);
     }
-
 }

@@ -20,6 +20,7 @@
             <ui:insert name="top">   
                     <p:steps activeIndex="1" styleClass="custom" readonly="false">                    
                         <p:menuitem value="#{testBean.userName}" outcome="products" onclick="checkPasswords()" action="#{testBean.changeTab}" actionListener="#{testBean.changeTab}" />
+
     <p:menuitem value="Seat Selection" outcome="products"/>
     <p:menuitem value="Payment" outcome="customers"/>
     <p:menuitem value="Confirmation" outcome="products"/>
@@ -36,6 +37,7 @@
         </div>
     </h:body>
     
+
     
     <script type="text/javascript">
     function checkPasswords() {
