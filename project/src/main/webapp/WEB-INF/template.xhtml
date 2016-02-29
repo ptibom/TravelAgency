@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+
+       <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+         <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>    
+
+    </h:head>
+    <h:body class="container" >
+
+        <div id="center" class="top">
+            
+            <ui:insert name="top">   
+                    <p:steps activeIndex="1" styleClass="custom" readonly="false">                    
+    <p:menuitem value="Personal" outcome="products"/>
+    <p:menuitem value="Seat Selection" outcome="products"/>
+    <p:menuitem value="Payment" outcome="customers"/>
+    <p:menuitem value="Confirmation" outcome="products"/>
+                    </p:steps>
+            <style type="text/css">
+.ui-steps.custom {
+    margin-left:  630px;
+}
+ </style>    
+            </ui:insert>      
+        </div>
+        <div id="content" class="center_content">
+            <ui:insert name="content"></ui:insert>
+        </div>
+    </h:body>
+
+</html>
