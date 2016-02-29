@@ -5,3 +5,8 @@ Course DIT126 web project
 Philip Tibom  
 Hossein Hussain  
 Daniel Olsson
+
+##### DB config for testing
+Name: TravelDB  
+User: root  
+Pass: pass
