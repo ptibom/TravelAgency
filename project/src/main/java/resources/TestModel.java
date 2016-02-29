@@ -5,30 +5,56 @@
  */
 package resources;
 
+import java.util.Date;
+
 /**
  *
  * @author Daniel
  */
 public class TestModel {
     
-    
-    private String textView = "initial";
-    
-    private int pageViews = 0;
-    
-    
-    
-    public String getTextView(){
+    public long customerID;
+	public String name;
+	public String address;
+	public Date created_date;
         
-        return textView;
-    }
-    
-    
-    private int getPageViews(){
         
-        return pageViews;
-        
-    }
-    
-    
+     public long getCustomerID(){
+         return customerID;
+     }
+     
+     public String getName(){
+         
+         return name;
+     }
+      
+     public String getAdress(){
+         
+         return address;
+     }
+     
+     public Date getCreated_date(){
+         
+         return created_date;
+     }
+     
+ 
+      public void setCustomerID(long customerID){
+         this.customerID = customerID;
+     }
+     
+     public void setName( String name ){
+         
+         this.name = name;
+     }
+      
+     public void setAddress(String adress){
+         
+         this.address = adress;
+     }
+     
+     public void setCreated_date(Date created_date){
+         
+         this.created_date = created_date;
+     }
 }
