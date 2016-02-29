@@ -18,6 +18,7 @@ and open the template in the editor.
 
     <body>
          <ui:composition template="/WEB-INF/template.xhtml">
+              <ui:define name="content">
             <div class="ui-grid ui-grid-fixed">
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-1"></div>
@@ -36,6 +37,7 @@ and open the template in the editor.
                     Submitted value : <h:outputText value="#{testBean.userName}" />
                 </div>
             </div>
+             </ui:define>
 
         </ui:composition>
     </body>
