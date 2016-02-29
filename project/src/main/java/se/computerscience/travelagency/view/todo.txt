@@ -1,1 +1,2 @@
-put files here
+@Named("addProduct")
+@RequestScoped 
