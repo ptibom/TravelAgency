@@ -10,5 +10,5 @@
         <property name="URL" value="jdbc:derby://localhost:1527/TravelDB"/>
         <property name="driverClass" value="org.apache.derby.jdbc.ClientDriver"/>
     </jdbc-connection-pool>
-    <jdbc-resource enabled="true" jndi-name="java:app/TravelDB" object-type="user" pool-name="derby_net_TravelDB_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="traveldb" object-type="user" pool-name="derby_net_TravelDB_rootPool"/>
 </resources>
