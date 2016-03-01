@@ -47,7 +47,10 @@ public class PlaneTest {
 
     @Test
     public void testPersistPlane() throws Exception {
-        assertTrue(true);
+        Plane p = new Plane("Boeing", 200, null);
+        em.persist(p);
+        Plane p2 = em.find(Plane.class, p);
+        assertTrue(p.getType().equals(p2.getType()));
     }
     
     @PersistenceContext(unitName = "travel_test_pu")
