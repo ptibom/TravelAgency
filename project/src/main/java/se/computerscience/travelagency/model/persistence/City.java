@@ -1,4 +1,4 @@
-package se.computerscience.model.persistance;
+package se.computerscience.travelagency.model.persistence;
 
 import java.io.Serializable;
 import java.util.List;
@@ -17,7 +17,8 @@ import lombok.Setter;
  * @author Hossein
  */
 @Entity
-public class Person implements Serializable {
+public class City implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,15 +29,20 @@ public class Person implements Serializable {
     @Setter
     @Size(max = 255)
     @Column(nullable = false)
-    private String firstName;
+    private String name;
     
-    @Getter
-    @Setter
-    @Size(max = 255)
-    @Column(nullable = false)
-    private String lastName;
-   
-    @OneToMany(mappedBy = "person")
-    private List<Booking> bookingList;
+    @OneToMany(mappedBy = "city")
+    private List<Hotel> hotelList;
     
+    @OneToMany(mappedBy = "depCity")
+    private List<Flight> flightDepList;
+    
+    @OneToMany(mappedBy = "desCity")
+    private List<Flight> flightDesList;
+    
+    @OneToMany(mappedBy = "depCity")
+    private List<Booking> bookingDepList;
+    
+    @OneToMany(mappedBy = "desCity")
+    private List<Booking> bookingDesList;
 }
