@@ -48,8 +48,10 @@ public class PlaneTest {
     @Test
     public void testPersistPlane() throws Exception {
         Plane p = new Plane("Boeing", 200, null);
+        utx.begin();
         em.persist(p);
-        Plane p2 = em.find(Plane.class, p);
+        Plane p2 = em.find(Plane.class, p.getId());
+        utx.commit();
         assertTrue(p.getType().equals(p2.getType()));
     }
     

@@ -39,12 +39,13 @@ public class Plane implements Serializable {
     @OneToMany(mappedBy = "plane")
     private List<Flight> flightList;
 
+   
     public Plane(String type, Integer capacity, List<Flight> flightList) {
         this.type = type;
         this.capacity = capacity;
         this.flightList = flightList;
     }
-    
-    
-    
+
+    public Plane() {
+    }
 }
