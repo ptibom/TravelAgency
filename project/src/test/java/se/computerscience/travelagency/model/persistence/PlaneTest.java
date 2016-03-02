@@ -1,4 +1,4 @@
-package se.computerscience.model.persistance;
+package se.computerscience.travelagency.model.persistence;
 
 import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Produces;
