@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.computerscience.model.persistance;
+package se.computerscience.travelagency.model.persistence;
 
 import java.io.Serializable;
 import javax.persistence.Entity;

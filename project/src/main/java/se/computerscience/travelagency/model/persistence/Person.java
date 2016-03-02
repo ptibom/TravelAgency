@@ -1,4 +1,4 @@
-package se.computerscience.model.persistance;
+package se.computerscience.travelagency.model.persistence;
 
 import java.io.Serializable;
 import java.util.List;
@@ -17,8 +17,7 @@ import lombok.Setter;
  * @author Hossein
  */
 @Entity
-public class Plane implements Serializable {
-
+public class Person implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,23 +28,15 @@ public class Plane implements Serializable {
     @Setter
     @Size(max = 255)
     @Column(nullable = false)
-    private String type;
+    private String firstName;
     
     @Getter
     @Setter
+    @Size(max = 255)
     @Column(nullable = false)
-    private Integer capacity;
-    
-    @OneToMany(mappedBy = "plane")
-    private List<Flight> flightList;
-
+    private String lastName;
    
-    public Plane(String type, Integer capacity, List<Flight> flightList) {
-        this.type = type;
-        this.capacity = capacity;
-        this.flightList = flightList;
-    }
-
-    public Plane() {
-    }
+    @OneToMany(mappedBy = "person")
+    private List<Booking> bookingList;
+    
 }

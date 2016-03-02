@@ -1,4 +1,4 @@
-package se.computerscience.model.persistance;
+package se.computerscience.travelagency.model.persistence;
 
 import java.io.Serializable;
 import java.util.List;
