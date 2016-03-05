@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +18,7 @@ import lombok.Setter;
  * @author Hossein
  */
 @Entity
-public class Person implements Serializable {
+public class Person implements Serializable {   
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,5 +39,8 @@ public class Person implements Serializable {
    
     @OneToMany(mappedBy = "person")
     private List<Booking> bookingList;
+    
+    public Person() {
+    }
     
 }

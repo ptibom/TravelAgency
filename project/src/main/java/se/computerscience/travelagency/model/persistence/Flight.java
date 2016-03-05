@@ -22,6 +22,9 @@ import lombok.Setter;
 @Entity
 public class Flight implements Serializable {
 
+    public Flight() {
+    }
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
