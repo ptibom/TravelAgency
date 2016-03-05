@@ -18,7 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import se.computerscience.travelagency.model.persistence.City;
 import se.computerscience.travelagency.model.persistence.Flight;
+import se.computerscience.travelagency.model.persistence.ICityDAO;
 import se.computerscience.travelagency.model.persistence.IDAO;
+import se.computerscience.travelagency.model.persistence.IFlightDAO;
 import se.computerscience.travelagency.model.persistence.Person;
 import se.computerscience.travelagency.model.persistence.Plane;
 import utilities.Entities;
@@ -27,16 +29,41 @@ import utilities.Entities;
  *
  * @author Hossein
  */
-@WebServlet(name = "PersonServlet", urlPatterns = {"/PersonServlet/"})
+@WebServlet(name = "TestServlet", urlPatterns = {"/TestServlet/"})
 public class TestServlet extends HttpServlet {
 
-    @EJB
+    /*@EJB
     private IDAO<Object> testDAO;
+    */
+    @EJB
+    private IFlightDAO flightDAO;
+    
+    @EJB
+    private ICityDAO cityDAO;
     
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Person person = new Person();
+        
+        searchFlight("gbg");
+        //searchFlight("najaf");
+        
+        /*int i = 0;
+        City cityById  = (City) flightDAO.findById(1L, Entities.city);
+        if(cityById != null) {
+            
+            System.out.println("Find flight for city test");
+            System.out.println("This is found by id "+ cityById.getName() + "\n");
+            System.out.println("The value of city-: "+cityById.toString() + " " +cityById.getFlightDepList());
+            for(Flight fly : cityById.getFlightDepList()) {
+                System.out.println("Loop #"+i + " id for this is: "+fly.getId());
+                i++;
+            }
+        }*/
+        
+        
+        //for(Flight fly : flightDAO.getByName(name))       
+        /*Person person = new Person();
         person.setFirstName("TEST Abdi");
         person.setLastName("ololololo");
         Long id = 1L;
@@ -52,7 +79,7 @@ public class TestServlet extends HttpServlet {
         
         City cityById  = (City) testDAO.findById(1L, Entities.city);
         if(cityById != null) {
-            System.out.println("This is found by id"+ cityById.getName() + "\n");
+            System.out.println("This is found by id "+ cityById.getName() + "\n");
         }
         
         List<Person> pl = (List<Person>)(List<?>)testDAO.findAll(Entities.person);
@@ -64,14 +91,32 @@ public class TestServlet extends HttpServlet {
         List<Flight> flights = (List<Flight>)(List<?>) testDAO.findAll(Entities.flight);
         
         for(Flight fly : flights) {
-            System.out.println("The Price of the flight" + fly.getPrice());
+            System.out.println("The Price of the flight " + fly.getPrice());
         }
         
         List<City> citys = (List<City>)(List<?>) testDAO.findAll(Entities.city);
         for(City city : citys) {
             System.out.println("The name of the citys" + city.getName());
-        }
+        }*/
     }
+    
+    
+    public void searchFlight(String desCity){
+        int i = 0;
+        City testCity = cityDAO.findById(0L, Entities.city);
+        if (testCity != null && desCity != null) {
+            for(Flight fly : testCity.getFlightDepList()) {
+                if (desCity.equals(((City)fly.getDesCity()).getName())) {
+                    System.out.println("Loop #"+i + " FlightId: "+fly.getId());
+                }
+                i++;
+            }
+        }else {
+            System.out.println("FAIL");
+        }
+        i = 0;
+    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -10,11 +10,12 @@ import utilities.Entities;
  *
  * @author Hossein
  */
-@Stateless
-public class GeneralDAO<T> implements IDAO<T> {
+//@Stateless// to return remove comment and abstract
+public abstract class GeneralDAO<T> implements IDAO<T> {
     
     @PersistenceContext
-    private EntityManager em;
+    
+    protected EntityManager em;
 
     @Override
     public void create(T t) {

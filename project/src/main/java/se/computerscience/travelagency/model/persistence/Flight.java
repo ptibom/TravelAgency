@@ -54,9 +54,11 @@ public class Flight implements Serializable {
     private Plane plane;
     
     @ManyToOne
+    @Getter
     private City depCity;
     
     @ManyToOne
+    @Getter
     private City desCity;
     
     @OneToMany(mappedBy = "flyTo")
