@@ -16,20 +16,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import se.computerscience.travelagency.model.persistence.City;
 import se.computerscience.travelagency.model.persistence.Flight;
 import se.computerscience.travelagency.model.persistence.IDAO;
 import se.computerscience.travelagency.model.persistence.Person;
 import se.computerscience.travelagency.model.persistence.Plane;
+import utilities.Entities;
 
 /**
  *
  * @author Hossein
  */
 @WebServlet(name = "PersonServlet", urlPatterns = {"/PersonServlet/"})
-public class PersonServlet extends HttpServlet {
+public class TestServlet extends HttpServlet {
 
     @EJB
-    private IDAO<Object> personDAO;
+    private IDAO<Object> testDAO;
+    
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,15 +45,32 @@ public class PersonServlet extends HttpServlet {
         plane.setCapacity(10);
         plane.setType("TheGoodType");
         
-        personDAO.create(person);
-        personDAO.create(plane);
-        Class cls = Person.class;
-        List<Person> pl = personDAO.findAll();
+        testDAO.create(person);
+        testDAO.create(plane);
+        
+        testDAO.delete(0L, Entities.person);
+        
+        City cityById  = (City) testDAO.findById(1L, Entities.city);
+        if(cityById != null) {
+            System.out.println("This is found by id"+ cityById.getName() + "\n");
+        }
+        
+        List<Person> pl = (List<Person>)(List<?>)testDAO.findAll(Entities.person);
         
         for(Person pers : pl){
             System.out.println(pers.getFirstName()+" "+ pers.getLastName());
         }
         
+        List<Flight> flights = (List<Flight>)(List<?>) testDAO.findAll(Entities.flight);
+        
+        for(Flight fly : flights) {
+            System.out.println("The Price of the flight" + fly.getPrice());
+        }
+        
+        List<City> citys = (List<City>)(List<?>) testDAO.findAll(Entities.city);
+        for(City city : citys) {
+            System.out.println("The name of the citys" + city.getName());
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
