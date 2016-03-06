@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <h:head>
+        <title>Kelde Travel</title>
+        <style>
+            .ui-calendar input {
+                border-radius: 0px 4px 4px 0px;
+                font-size: 14px;
+                height: 34px;
+                line-height: 1.42857;
+                padding: 6px 12px;
+            }
+            .ui-widget {
+                font-size: 14px;
+            }
+            .ui-selectonemenu-trigger {
+                margin-right: 4px;
+                outline: 0;
+            }
+            .ui-selectonemenu {
+                outline: 0;
+            }
+        </style>
+    </h:head>
+    <h:body style="background-color: #f5f5f5; background: url('#{request.contextPath}/resources/img/bg3.jpg') no-repeat center center fixed; background-size: cover">
+        <b:navBar brand="Kelde Travel" brandHref="#" static="true" style="background-color: #fff; border: 0px">
+            <b:navbarLinks>
+                <b:navLink value="Home" href="#"></b:navLink>
+                <b:navLink value="About us" href="#"></b:navLink>
+            </b:navbarLinks>
+        </b:navBar>
+        <img src="#{request.contextPath}/resources/img/KeldeLogo2.png" alt="Kelde logo" height="100px" style="display: block; height: 100px; margin: 80px auto 40px auto" />
+        <b:container>
+            <b:row>
+                <b:column span="2"></b:column>
+                <b:column span="8">
+                    <b:panel collapsible="false" >
+                        <ui:insert name="content">Content</ui:insert>
+                    </b:panel>
+                </b:column>
+                <b:column span="2"></b:column>
+            </b:row>
+        </b:container>
+        <b:navBar brandHref="#" static="true" fixed="bottom" style="background-color: #fff; border: 0px">
+            <b:navbarLinks>
+                <b:navLink value="Copyright © 2016 Team Kelde" href="#"></b:navLink>
+            </b:navbarLinks>
+        </b:navBar>
+    </h:body>
+</html>
+
