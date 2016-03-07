@@ -18,20 +18,36 @@ and open the template in the editor.
                 
     <p:panel id="panel" header="Passenger 1" style="margin-bottom:10px;">
         <p:messages id="messages" />
-        <h:panelGrid columns="2" cellpadding="5">
+       
             
              <h:outputText value="Gender: " />
            <p:selectBooleanButton id="value1" value="#{selectBooleanView.value1}" onLabel="Male" offLabel="Female" style="width:100px" />
-        
-            <h:outputLabel for="Fname" value="First Name" />
-            <p:inputText id="Fname" required="true" />
+         
+              <b:row>
+                 <b:column span = "3">
+                    <h:outputText value="First name:"/>
+                </b:column>
+                <b:column span = "2">
+                </b:column>
+                <b:column span = "2">  
+                    <h:inputText value=""/>
+                </b:column>
+            </b:row>
             
-            <h:outputLabel for="Lname" value="Last Name" />
-            <p:inputText id="Lname" required="true" />
+              <b:row>
+                 <b:column span = "3">
+                    <h:outputText value="Last name:"/>
+                </b:column>
+                <b:column span = "2">
+                </b:column>
+                <b:column span = "2">  
+                    <h:inputText value=""/>
+                </b:column>
+            </b:row>
             
           
             
-        </h:panelGrid>
+        
     </p:panel>
  
     <b:button outcome="formContact" value="Next" />

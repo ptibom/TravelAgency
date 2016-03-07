@@ -18,20 +18,44 @@ and open the template in the editor.
                 
     <p:panel id="panel" header="Contact Information" style="margin-bottom:10px;">
         <p:messages id="messages" />
-        <h:panelGrid columns="2" cellpadding="5">
+       
              
-              <p:outputLabel for="adress" value="Adress:" />
-            <p:inputText id="adress" required="true" />
-            
-            <p:outputLabel for="postalNumber" value="Postal Number:" />
-            <p:inputText id="postalNumber" required="true" />
+                <b:row>
+                 <b:column span = "2">
+                    <h:outputText value="Address:"/>
+                </b:column>
+       
+                <b:column span = "4">  
+                    <h:inputText value=""/>
+                </b:column>
+
+                 <b:column span = "2">
+                    <h:outputText value="Postal number:"/>
+                </b:column>
+     
+                <b:column span = "2">  
+                    <h:inputText value=""/>
+                </b:column>
+            </b:row>
  
-            <p:outputLabel for="phonenumber" value="Number:" />
-            <p:inputText id="phonenumber" required="true" />
-            
-            <p:outputLabel for="emailAdress" value="Email Adress" />
-            <p:inputText id="emailAdress" required="true" />
-        </h:panelGrid>
+              <b:row>
+                 <b:column span = "2">
+                    <h:outputText value="Phone number"/>
+                </b:column>
+             
+                <b:column span = "4">  
+                    <h:inputText value=""/>
+                </b:column>
+
+                 <b:column span = "2">
+                    <h:outputText value="Email Adress"/>
+                </b:column>
+             
+                <b:column span = "2">  
+                    <h:inputText value=""/>
+                </b:column>
+            </b:row>
+       
     </p:panel>
  
     <b:button outcome="formPayment" value="Next" />

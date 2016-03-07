@@ -11,29 +11,59 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui">
-    
+
     <ui:composition template="/WEB-INF/template.xhtml">
         <ui:define name="content">
-            <b:container>
-                 <row>
-                     <column span="2">
-                <h:outputText value ="Choose a payment method:"  />
-                 </column>
-                      <column span="2">
-                           </column>
-                     
-                      <column span="4">
-   <p:selectOneRadio id="console" value="#{radioView.console}">
-            <f:selectItem itemLabel="Master Card" itemValue="0" />
-            <f:selectItem itemLabel="Visa" itemValue="1" />
-            <f:selectItem itemLabel="American Express" itemValue="2" />
-        </p:selectOneRadio>
-                          ¨   </column>
-             </row>
+            <row>
+                <column span="2">
+                    <h:outputText value ="Choose a payment method:" />
+                </column>
+                <column span="2">
+                </column>
+                <column span="4">
+                    <p:selectOneRadio id="console" value="#{radioView.console}">
+                        <f:selectItem itemLabel="Master Card" itemValue="0" />
+                        <f:selectItem itemLabel="Visa" itemValue="1" />
+                        <f:selectItem itemLabel="American Express" itemValue="2" />
+                    </p:selectOneRadio>
+                </column>
+            </row>
+            
+            <b:row>
+                <b:column span = "3">
+                    <h:outputText value="Cardholders name:"/>
+                </b:column>
+                <b:column span = "2">
+                </b:column>
+                <b:column span = "2">  
+                    <h:inputText value=""/>
+                </b:column>
+            </b:row>
+            
+            
+            <b:row>
+                 <b:column span = "3">
+                    <h:outputText value="Card number:"/>
+                </b:column>
+                <b:column span = "2">
+                </b:column>
+                <b:column span = "2">  
+                    <h:inputText value=""/>
+                </b:column>
+            </b:row>
+            <b:row>
+             <b:column span = "3">
+                    <h:outputText value="Cardholders name:"/>
+                </b:column>
+                <b:column span = "2">
+                </b:column>
+                <b:column span = "2">  
+                    <h:inputText value=""/>
+                </b:column>
+            </b:row>
 
-    <b:button outcome="formContact" value="Next" />
-</b:container>
+            <b:button outcome="formContact" value="Next" />
         </ui:define>
     </ui:composition>
-    
+
 </html>
