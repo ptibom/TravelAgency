@@ -8,6 +8,7 @@ package se.computerscience.travelagency.ctrl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -21,6 +22,7 @@ import se.computerscience.travelagency.model.persistence.Flight;
 import se.computerscience.travelagency.model.persistence.ICityDAO;
 import se.computerscience.travelagency.model.persistence.IDAO;
 import se.computerscience.travelagency.model.persistence.IFlightDAO;
+import se.computerscience.travelagency.model.persistence.IHotelDAO;
 import se.computerscience.travelagency.model.persistence.Person;
 import se.computerscience.travelagency.model.persistence.Plane;
 import utilities.Entities;
@@ -41,10 +43,15 @@ public class TestServlet extends HttpServlet {
     @EJB
     private ICityDAO cityDAO;
     
+    @EJB
+    private IHotelDAO hotelDAO;
+    
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        City city = new City();
+        City c = cityDAO.findById(51L);
+        System.out.println("¤#########¤" + hotelDAO.searchByDate("2016-01-01", "2016-01-01", c).size());
+        /*City city = new City();
         city.setName("test");
         cityDAO.create(city);
         
@@ -52,9 +59,9 @@ public class TestServlet extends HttpServlet {
             System.out.println("CityName"+ c.getName());
         }*/
         
-        for(City c: cityDAO.searchCityByName("b")){
-            System.out.println("CityName "+ c.getName());
-        }
+        //for(City c: cityDAO.searchCityByName("b")){
+          //  System.out.println("CityName "+ c.getName());
+        //}
         
         /*for(City c: cityDAO.searchCityByName("%b%")){
             System.out.println("CityName "+ c.getName());

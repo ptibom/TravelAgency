@@ -9,7 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.Getter;
@@ -26,8 +28,11 @@ public class Hotel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
-
     private Long id;
+    
+    @Getter
+    @Setter
+    private int rooms;
     
     @Getter
     @Setter
