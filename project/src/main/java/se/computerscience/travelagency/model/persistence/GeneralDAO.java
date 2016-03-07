@@ -13,10 +13,15 @@ import utilities.Entities;
 //@Stateless// to return remove comment and abstract
 public abstract class GeneralDAO<T> implements IDAO<T> {
     
-    @PersistenceContext
+    private final Class<T> clazz;
     
+    @PersistenceContext
     protected EntityManager em;
 
+    protected GeneralDAO(Class<T> clazz) {
+        this.clazz = clazz;
+    }
+    
     @Override
     public void create(T t) {
         em.persist(t);
@@ -28,22 +33,20 @@ public abstract class GeneralDAO<T> implements IDAO<T> {
     }
 
     @Override
-    public List<T> findAll(Entities entities) {
-        return (List<T>)em.createQuery("SELECT t FROM " + entities.type + " t")
+    public List<T> findAll() {
+        return (List<T>)em.createQuery("SELECT t FROM " + clazz.getSimpleName() + " t")
                 .getResultList();
     }
 
     @Override
-    public void delete(Long id, Entities ent) {
-        Class<T> entClass = ent.cls;
-        T t = em.getReference(entClass, id);
+    public void delete(Long id) {
+        T t = em.getReference(clazz, id);
         em.remove(t);
     }
 
     @Override
-    public T findById(Long id, Entities ent) {
-        Class<T> entClass = ent.cls;
-        T t = em.find(entClass, id);
+    public T findById(Long id) {
+        T t = em.find(clazz, id);
         return t;
     }
 }

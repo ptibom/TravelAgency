@@ -14,6 +14,7 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class FlightDAO extends GeneralDAO<Flight> implements IFlightDAO{
-
-    
+    public FlightDAO() {
+        super(Flight.class);
+    }
 }

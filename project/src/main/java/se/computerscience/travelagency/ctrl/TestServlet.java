@@ -44,8 +44,23 @@ public class TestServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        City city = new City();
+        city.setName("test");
+        cityDAO.create(city);
         
-        searchFlight("gbg");
+        /*for(City c: cityDAO.findAll()){
+            System.out.println("CityName"+ c.getName());
+        }*/
+        
+        for(City c: cityDAO.searchCityByName("b")){
+            System.out.println("CityName "+ c.getName());
+        }
+        
+        /*for(City c: cityDAO.searchCityByName("%b%")){
+            System.out.println("CityName "+ c.getName());
+        }*/
+        
+        //searchFlight("gbg");
         //searchFlight("najaf");
         
         /*int i = 0;
@@ -101,7 +116,7 @@ public class TestServlet extends HttpServlet {
     }
     
     
-    public void searchFlight(String desCity){
+    /*public void searchFlight(String desCity){
         int i = 0;
         City testCity = cityDAO.findById(0L, Entities.city);
         if (testCity != null && desCity != null) {
@@ -115,7 +130,7 @@ public class TestServlet extends HttpServlet {
             System.out.println("FAIL");
         }
         i = 0;
-    }
+    }*/
     
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
