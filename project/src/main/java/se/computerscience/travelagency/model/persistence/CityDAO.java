@@ -13,7 +13,6 @@ public class CityDAO extends GeneralDAO<City> implements ICityDAO {
     public CityDAO() {
         super(City.class);
     }
-
     
     @Override
     public List<City> searchCityByName(String cityName) {
@@ -21,8 +20,4 @@ public class CityDAO extends GeneralDAO<City> implements ICityDAO {
                 .setParameter("cityName", "%"+cityName+"%")
                 .getResultList();
     }
-
-    
-    
-    
 }

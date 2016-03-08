@@ -1,16 +1,13 @@
 package se.computerscience.travelagency.model.persistence;
 
 import java.util.List;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import utilities.Entities;
 
 /**
  *
  * @author Hossein
  */
-//@Stateless// to return remove comment and abstract
 public abstract class GeneralDAO<T> implements IDAO<T> {
     
     private final Class<T> clazz;

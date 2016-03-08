@@ -39,6 +39,7 @@ public class Plane implements Serializable {
     
     @OneToMany(mappedBy = "plane")
     @JoinColumn(name = "id")
+    @Getter
     private List<Flight> flightList;
     
 }

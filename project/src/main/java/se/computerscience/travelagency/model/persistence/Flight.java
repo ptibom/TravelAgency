@@ -52,14 +52,20 @@ public class Flight implements Serializable {
     private Double price;
     
     @ManyToOne
+    @Setter
+    @Column(nullable = false)
     private Plane plane;
     
     @ManyToOne
     @Getter
+    @Setter
+    @Column(nullable = false)
     private City depCity;
     
     @ManyToOne
     @Getter
+    @Setter
+    @Column(nullable = false)
     private City desCity;
     
     @OneToMany(mappedBy = "flyTo")

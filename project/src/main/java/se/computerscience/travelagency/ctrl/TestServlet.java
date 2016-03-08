@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.computerscience.travelagency.ctrl;
 
 import java.io.IOException;
@@ -17,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import se.computerscience.travelagency.model.persistence.Booking;
 import se.computerscience.travelagency.model.persistence.City;
 import se.computerscience.travelagency.model.persistence.Hotel;
 import se.computerscience.travelagency.model.persistence.ICityDAO;
@@ -53,7 +47,7 @@ public class TestServlet extends HttpServlet {
         Date d2 = cal.getTime();
         int counter = 0;
         
-        List<Hotel> avibleHotel = new LinkedList<>();
+        List<Hotel> availableHotel = new LinkedList<>();
         if (city != null) {
             System.out.println("C id "+city.getId());
             List<Hotel> hotelList = city.getHotelList();
@@ -61,11 +55,11 @@ public class TestServlet extends HttpServlet {
             for (Hotel hotel : hotelList) {
                 counter = hotelDAO.searchByDate(d1, d2,hotel).size();
                 if ((hotel.getNumberOfRooms() - counter) >= 1) {
-                    avibleHotel.add(hotel);
+                    availableHotel.add(hotel);
                 }
             }
-            for (Hotel hotel : avibleHotel) {
-                System.out.println("avibHotel "+hotel.getName());
+            for (Hotel hotel : availableHotel) {
+                System.out.println("available hotel "+hotel.getName());
             }
         }
     }

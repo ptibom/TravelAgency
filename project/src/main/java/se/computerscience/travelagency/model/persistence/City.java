@@ -2,14 +2,12 @@ package se.computerscience.travelagency.model.persistence;
 
 import java.io.Serializable;
 import java.util.List;
-import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 import lombok.Getter;
@@ -36,6 +34,7 @@ public class City implements Serializable {
     
     @OneToMany(mappedBy = "city")
     @Getter
+    @JoinColumn(name = "id")
     private List<Hotel> hotelList;
     
     @OneToMany(mappedBy = "depCity")
@@ -50,9 +49,11 @@ public class City implements Serializable {
     
     @OneToMany(mappedBy = "depCity")
     @JoinColumn(name = "id")
+    @Getter
     private List<Booking> bookingDepList;
     
     @OneToMany(mappedBy = "desCity")
     @JoinColumn(name = "id")
+    @Getter
     private List<Booking> bookingDesList;
 }
