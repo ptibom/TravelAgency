@@ -1,12 +1,15 @@
 package se.computerscience.travelagency.model.persistence;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -51,4 +54,12 @@ public class Booking implements Serializable {
     @ManyToOne
     @Getter
     private City depCity;
+    
+    @Getter
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date flyToDate;
+    
+    @Getter
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date flyBackDate;
 }

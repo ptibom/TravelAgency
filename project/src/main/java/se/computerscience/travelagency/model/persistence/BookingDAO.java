@@ -5,14 +5,15 @@
  */
 package se.computerscience.travelagency.model.persistence;
 
-import java.util.Date;
-import java.util.List;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author Hossein
  */
-public interface IHotelDAO extends IDAO<Hotel> {
-    public List<Hotel> searchByDate(Date from, Date to, Hotel hotel);
+@Stateless
+public class BookingDAO extends GeneralDAO<Booking> implements IBookingDAO {
+    public BookingDAO() {
+        super(Booking.class);
+    }
 }
-

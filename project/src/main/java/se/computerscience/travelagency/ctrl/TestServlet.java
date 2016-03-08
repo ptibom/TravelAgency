@@ -8,6 +8,9 @@ package se.computerscience.travelagency.ctrl;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.LinkedList;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,119 +42,33 @@ public class TestServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //City c = cityDAO.findById(51L);
-        //System.out.println("¤#########¤" + hotelDAO.searchByDate("2016-01-01", "2016-04-01", c).size());
-        Calendar cal = Calendar.getInstance();
-        cal.set(2216, 01, 01);
-        Date d = cal.getTime();
         
-        Hotel h = hotelDAO.findById(102L);
-        if (h != null) {
-            System.out.println("H is not null");
-            for (Booking booking : h.getBookingList()) {
-                System.out.println("inside loop ");
-                Date arrival = booking.getFlyTo().getArrival();                
-                if (arrival.after(d)) {
-                    System.out.println("After");
-                    System.out.println("arr:"+arrival.toString() 
-                    + " d1 "+ d.toString()
-                    );
-                }else {
-                    System.out.println("Before");
-                    System.out.println("arr:"+arrival.toString() 
-                    + " d1 "+ d.toString()
-                    );
+        
+        City city = cityDAO.findById(101L);
+        Calendar cal = new GregorianCalendar();
+        cal.set(2016, 02, 01);
+        Date d1 = cal.getTime();
+        
+        cal.set(2016, 05, 01);
+        Date d2 = cal.getTime();
+        int counter = 0;
+        
+        List<Hotel> avibleHotel = new LinkedList<>();
+        if (city != null) {
+            System.out.println("C id "+city.getId());
+            List<Hotel> hotelList = city.getHotelList();
+            System.out.println("Size of hotelList"+hotelList.size());
+            for (Hotel hotel : hotelList) {
+                counter = hotelDAO.searchByDate(d1, d2,hotel).size();
+                if ((hotel.getNumberOfRooms() - counter) >= 1) {
+                    avibleHotel.add(hotel);
                 }
             }
-        }
-        
-        /*City city = new City();
-        city.setName("test");
-        cityDAO.create(city);
-        
-        /*for(City c: cityDAO.findAll()){
-            System.out.println("CityName"+ c.getName());
-        }*/
-        
-        //for(City c: cityDAO.searchCityByName("b")){
-          //  System.out.println("CityName "+ c.getName());
-        //}
-        
-        /*for(City c: cityDAO.searchCityByName("%b%")){
-            System.out.println("CityName "+ c.getName());
-        }*/
-        
-        //searchFlight("gbg");
-        //searchFlight("najaf");
-        
-        /*int i = 0;
-        City cityById  = (City) flightDAO.findById(1L, Entities.city);
-        if(cityById != null) {
-            
-            System.out.println("Find flight for city test");
-            System.out.println("This is found by id "+ cityById.getName() + "\n");
-            System.out.println("The value of city-: "+cityById.toString() + " " +cityById.getFlightDepList());
-            for(Flight fly : cityById.getFlightDepList()) {
-                System.out.println("Loop #"+i + " id for this is: "+fly.getId());
-                i++;
+            for (Hotel hotel : avibleHotel) {
+                System.out.println("avibHotel "+hotel.getName());
             }
-        }*/
-        
-        
-        //for(Flight fly : flightDAO.getByName(name))       
-        /*Person person = new Person();
-        person.setFirstName("TEST Abdi");
-        person.setLastName("ololololo");
-        Long id = 1L;
-        
-        Plane plane = new Plane();
-        plane.setCapacity(10);
-        plane.setType("TheGoodType");
-        
-        testDAO.create(person);
-        testDAO.create(plane);
-        
-        testDAO.delete(0L, Entities.person);
-        
-        City cityById  = (City) testDAO.findById(1L, Entities.city);
-        if(cityById != null) {
-            System.out.println("This is found by id "+ cityById.getName() + "\n");
         }
-        
-        List<Person> pl = (List<Person>)(List<?>)testDAO.findAll(Entities.person);
-        
-        for(Person pers : pl){
-            System.out.println(pers.getFirstName()+" "+ pers.getLastName());
-        }
-        
-        List<Flight> flights = (List<Flight>)(List<?>) testDAO.findAll(Entities.flight);
-        
-        for(Flight fly : flights) {
-            System.out.println("The Price of the flight " + fly.getPrice());
-        }
-        
-        List<City> citys = (List<City>)(List<?>) testDAO.findAll(Entities.city);
-        for(City city : citys) {
-            System.out.println("The name of the citys" + city.getName());
-        }*/
     }
-    
-    
-    /*public void searchFlight(String desCity){
-        int i = 0;
-        City testCity = cityDAO.findById(0L, Entities.city);
-        if (testCity != null && desCity != null) {
-            for(Flight fly : testCity.getFlightDepList()) {
-                if (desCity.equals(((City)fly.getDesCity()).getName())) {
-                    System.out.println("Loop #"+i + " FlightId: "+fly.getId());
-                }
-                i++;
-            }
-        }else {
-            System.out.println("FAIL");
-        }
-        i = 0;
-    }*/
     
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

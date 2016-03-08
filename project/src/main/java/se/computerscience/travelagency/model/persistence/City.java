@@ -35,6 +35,7 @@ public class City implements Serializable {
     private String name;
     
     @OneToMany(mappedBy = "city")
+    @Getter
     private List<Hotel> hotelList;
     
     @OneToMany(mappedBy = "depCity")

@@ -21,12 +21,21 @@ public class HotelDAO extends GeneralDAO<Hotel> implements IHotelDAO {
     }
 
     @Override
-    public List<Hotel> searchByDate(String arrivalDate, String returnDate, City city) {   
+    public List<Hotel> searchByDate(Date arrivalDate, Date returnDate, Hotel hotel) {   
+        /*
         return em.createNativeQuery("SELECT * FROM SearchHotelByDate WHERE city = ? AND arrival >= ? AND depature <= ?")
                 .setParameter(1, city.getId())
                 .setParameter(2, arrivalDate)
                 .setParameter(3, returnDate)
                 .getResultList();
+        */
+        System.out.println("Hotel"+hotel.getId());
+        System.out.println("arrivalDate "+arrivalDate.toString());
+        System.out.println("returnDate "+returnDate.toString());
+        return em.createQuery("SELECT t FROM Booking t WHERE t.hotel = :hotel AND t.flyToDate >= :arrivalDate AND t.flyBackDate <= :returnDate")
+                .setParameter("hotel", hotel)
+                .setParameter("arrivalDate", arrivalDate)
+                .setParameter("returnDate", returnDate)
+                .getResultList();
     }
-    
 }
