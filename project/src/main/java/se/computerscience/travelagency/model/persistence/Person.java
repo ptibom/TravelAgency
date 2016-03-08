@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -38,6 +39,7 @@ public class Person implements Serializable {
     private String lastName;
    
     @OneToMany(mappedBy = "person")
+    @JoinColumn(name = "id")
     private List<Booking> bookingList;
     
     public Person() {

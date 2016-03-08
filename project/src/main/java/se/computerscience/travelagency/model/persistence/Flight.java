@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -62,9 +63,11 @@ public class Flight implements Serializable {
     private City desCity;
     
     @OneToMany(mappedBy = "flyTo")
+    @JoinColumn(name = "id")
     private List<Booking> bookingFlyToList;
     
     @OneToMany(mappedBy = "flyBack")
+    @JoinColumn(name = "id")
     private List<Booking> bookingFlyBackList;
     
 }

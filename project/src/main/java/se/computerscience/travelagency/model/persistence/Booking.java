@@ -29,20 +29,26 @@ public class Booking implements Serializable {
     private Double price;
    
     @ManyToOne
+    @Getter
     private Person person;
     
     @ManyToOne
+    @Getter
     private Flight flyTo;
     
     @ManyToOne
+    @Getter
     private Flight flyBack;
     
     @ManyToOne
+    @Getter
     private Hotel hotel;
     
     @ManyToOne
+    @Getter
     private City desCity;
     
     @ManyToOne
+    @Getter
     private City depCity;
 }

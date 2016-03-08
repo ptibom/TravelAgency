@@ -6,27 +6,20 @@
 package se.computerscience.travelagency.ctrl;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import static java.lang.System.out;
-import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import se.computerscience.travelagency.model.persistence.Booking;
 import se.computerscience.travelagency.model.persistence.City;
-import se.computerscience.travelagency.model.persistence.Flight;
+import se.computerscience.travelagency.model.persistence.Hotel;
 import se.computerscience.travelagency.model.persistence.ICityDAO;
-import se.computerscience.travelagency.model.persistence.IDAO;
 import se.computerscience.travelagency.model.persistence.IFlightDAO;
 import se.computerscience.travelagency.model.persistence.IHotelDAO;
-import se.computerscience.travelagency.model.persistence.Person;
-import se.computerscience.travelagency.model.persistence.Plane;
-import utilities.Entities;
-
 /**
  *
  * @author Hossein
@@ -34,9 +27,6 @@ import utilities.Entities;
 @WebServlet(name = "TestServlet", urlPatterns = {"/TestServlet/"})
 public class TestServlet extends HttpServlet {
 
-    /*@EJB
-    private IDAO<Object> testDAO;
-    */
     @EJB
     private IFlightDAO flightDAO;
     
@@ -49,8 +39,32 @@ public class TestServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        City c = cityDAO.findById(51L);
-        System.out.println("¤#########¤" + hotelDAO.searchByDate("2016-01-01", "2016-01-01", c).size());
+        //City c = cityDAO.findById(51L);
+        //System.out.println("¤#########¤" + hotelDAO.searchByDate("2016-01-01", "2016-04-01", c).size());
+        Calendar cal = Calendar.getInstance();
+        cal.set(2216, 01, 01);
+        Date d = cal.getTime();
+        
+        Hotel h = hotelDAO.findById(102L);
+        if (h != null) {
+            System.out.println("H is not null");
+            for (Booking booking : h.getBookingList()) {
+                System.out.println("inside loop ");
+                Date arrival = booking.getFlyTo().getArrival();                
+                if (arrival.after(d)) {
+                    System.out.println("After");
+                    System.out.println("arr:"+arrival.toString() 
+                    + " d1 "+ d.toString()
+                    );
+                }else {
+                    System.out.println("Before");
+                    System.out.println("arr:"+arrival.toString() 
+                    + " d1 "+ d.toString()
+                    );
+                }
+            }
+        }
+        
         /*City city = new City();
         city.setName("test");
         cityDAO.create(city);

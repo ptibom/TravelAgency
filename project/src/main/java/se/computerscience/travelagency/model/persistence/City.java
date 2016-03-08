@@ -48,8 +48,10 @@ public class City implements Serializable {
     private List<Flight> flightDesList;
     
     @OneToMany(mappedBy = "depCity")
+    @JoinColumn(name = "id")
     private List<Booking> bookingDepList;
     
     @OneToMany(mappedBy = "desCity")
+    @JoinColumn(name = "id")
     private List<Booking> bookingDesList;
 }
