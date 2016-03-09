@@ -23,6 +23,7 @@ public class HotelDAO extends GeneralDAO<Hotel> implements IHotelDAO {
                 .setParameter("returnDate", returnDate)
                 .getResultList();
     }
+    @Override
     public List<Hotel> availableHotel(Date arrivalDate, Date returnDate, City city, int numPassangers){
         int counter = 0;
         List<Hotel> availableHotel = new LinkedList<>();
@@ -35,6 +36,6 @@ public class HotelDAO extends GeneralDAO<Hotel> implements IHotelDAO {
         }
         return availableHotel;
     }
-    
+
     
 }
