@@ -23,13 +23,13 @@ public class HotelDAO extends GeneralDAO<Hotel> implements IHotelDAO {
                 .setParameter("returnDate", returnDate)
                 .getResultList();
     }
-    public List<Hotel> availableHotel(Date arrivalDate, Date returnDate, City city){
+    public List<Hotel> availableHotel(Date arrivalDate, Date returnDate, City city, int numPassangers){
         int counter = 0;
         List<Hotel> availableHotel = new LinkedList<>();
         List<Hotel> hotelList = city.getHotelList();
         for (Hotel hotel : hotelList) {
             counter = searchByDate(arrivalDate, arrivalDate, hotel).size();
-            if ((hotel.getNumberOfRooms() - counter) >= 1) {
+            if ((hotel.getNumberOfRooms() - counter) >= numPassangers) {
                 availableHotel.add(hotel);
             }
         }
