@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 import lombok.Getter;
@@ -37,6 +38,8 @@ public class Plane implements Serializable {
     private Integer capacity;
     
     @OneToMany(mappedBy = "plane")
+    @JoinColumn(name = "id")
+    @Getter
     private List<Flight> flightList;
 
    
