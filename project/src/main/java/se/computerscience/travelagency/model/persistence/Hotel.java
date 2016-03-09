@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,7 +32,20 @@ public class Hotel implements Serializable {
     
     @Getter
     @Setter
+    @Column(nullable = false)
     private int numberOfRooms;
+    
+    @Getter
+    @Setter
+    @Max(value = 10)
+    @Min(value = 0)
+    @Column(nullable = false)
+    private int rating;
+    
+    @Getter
+    @Setter
+    @Size(max = 255)
+    private String decsription;
     
     @Getter
     @Setter
