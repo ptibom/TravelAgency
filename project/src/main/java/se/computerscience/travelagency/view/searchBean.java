@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import javax.inject.Named;
 import javax.faces.bean.ManagedBean;
-import javax.faces.validator.FacesValidator;
+import javax.faces.bean.RequestScoped;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -18,7 +18,7 @@ import lombok.Setter;
  */
 @Named(value = "searchBean")
 @ManagedBean
-@FacesValidator
+@RequestScoped
 public class searchBean {
     
     @Getter

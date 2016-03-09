@@ -58,8 +58,14 @@
                             </p:calendar>
                         </div>
                         <div style="width: 200px"><p:message for="returnDate" id="msgReturnDate" /></div>
-                        <br />
-                        <h:commandButton value="Search" class="btn btn-default" />
+                        <br />  
+                        <h:commandButton action="/partials/example_hotels.xhtml?faces-redirect=true&amp;includeViewParams=true" value="Search" class="btn btn-default">
+                            <f:param name="fromCity" value="#{searchBean.fromCity}" />
+                            <f:param name="toCity" value="#{searchBean.toCity}" />
+                            <f:param name="numPassengers" value="#{searchBean.numPassengers}" />
+                            <f:param name="fromDate" value="#{searchBean.fromDate}" />
+                            <f:param name="toDate" value="#{searchBean.toDate}" />
+                        </h:commandButton>
                     </b:column>
                 </b:row>
             </h:form>

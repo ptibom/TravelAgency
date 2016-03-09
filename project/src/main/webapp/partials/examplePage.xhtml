@@ -6,10 +6,13 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui">
+    <f:metadata>
+        <f:viewParam name="passengers" value="#{searchBean.numPassengers}" />
+    </f:metadata>
     
     <ui:composition template="/WEB-INF/template.xhtml">
         <ui:define name="content">
-            Example page
+            Example page:
         </ui:define>
     </ui:composition>
     
