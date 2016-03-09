@@ -1,6 +1,7 @@
 package se.computerscience.travelagency.model.persistence;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.Stateless;
 
@@ -22,4 +23,18 @@ public class HotelDAO extends GeneralDAO<Hotel> implements IHotelDAO {
                 .setParameter("returnDate", returnDate)
                 .getResultList();
     }
+    public List<Hotel> availableHotel(Date arrivalDate, Date returnDate, City city){
+        int counter = 0;
+        List<Hotel> availableHotel = new LinkedList<>();
+        List<Hotel> hotelList = city.getHotelList();
+        for (Hotel hotel : hotelList) {
+            counter = searchByDate(arrivalDate, arrivalDate, hotel).size();
+            if ((hotel.getNumberOfRooms() - counter) >= 1) {
+                availableHotel.add(hotel);
+            }
+        }
+        return availableHotel;
+    }
+    
+    
 }
