@@ -13,11 +13,17 @@
                     <b:column span="1"></b:column>
                     <b:column span="5">
                         <h4>Travel from?</h4>
-                        <p:autoComplete value="" placeholder="City" inputStyleClass="form-control" inputStyle="margin-bottom: -5px" size="30" />
+                        <p:autoComplete id="fromCity" value="#{searchBean.fromCity}" completeMethod="#{searchBean.search}" placeholder="From City" inputStyleClass="form-control" inputStyle="margin-bottom: -5px" size="30">
+                            <p:ajax update="msgFromCity" event="blur" />
+                        </p:autoComplete>
+                        <div style="width: 200px"><p:message for="fromCity" id="msgFromCity" /></div>
                         <h4>Where do you want to go?</h4>
-                        <p:autoComplete value="" placeholder="City" inputStyleClass="form-control" inputStyle="margin-bottom: -5px" size="30" />
+                        <p:autoComplete id="toCity" value="#{searchBean.toCity}" completeMethod="#{searchBean.search}" placeholder="To City" inputStyleClass="form-control" inputStyle="margin-bottom: -5px" size="30">
+                            <p:ajax update="msgToCity" event="blur" />
+                        </p:autoComplete>
+                        <div style="width: 200px"><p:message for="toCity" id="msgToCity" /></div>
                         <h4>Persons</h4>
-                        <p:selectOneMenu style="width: 150px">
+                        <p:selectOneMenu id="numPersons" style="width: 150px" value="#{searchBean.numPassengers}">
                             <f:selectItem itemLabel="Select persons" itemValue="" noSelectionOption="true" />
                             <f:selectItem itemLabel="1" itemValue="1" />
                             <f:selectItem itemLabel="2" itemValue="2" />
@@ -25,7 +31,9 @@
                             <f:selectItem itemLabel="4" itemValue="4" />
                             <f:selectItem itemLabel="5" itemValue="5" />
                             <f:selectItem itemLabel="6" itemValue="6" />
+                            <p:ajax update="msgNumPersons" event="change" />
                         </p:selectOneMenu>
+                        <div style="width: 200px"><p:message for="numPersons" id="msgNumPersons" /></div>
                     </b:column>
                     <b:column span="5">
                         <h4>Departure</h4> 
@@ -33,15 +41,24 @@
                             <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-calendar" />
                             </span>
-                            <p:calendar pages="2" mindate="#{now}" placeholder="Select date" />
+                            <p:calendar value="#{searchBean.fromDate}" id="depDate" pages="2" mindate="#{now}" placeholder="Select date">
+                                <p:ajax update="msgDepDate" event="dateSelect" />
+                                <p:ajax update="msgDepDate" event="blur" />
+                            </p:calendar>
                         </div>
+                        <div style="width: 200px"><p:message for="depDate" id="msgDepDate" /></div>
                         <h4>Return</h4>
                         <div class="input-group">
                             <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-calendar" />
                             </span>
-                            <p:calendar pages="2" mindate="#{now}" placeholder="Select date" />
-                        </div><br />
+                            <p:calendar value="#{searchBean.toDate}" id="returnDate" pages="2" mindate="#{now}" placeholder="Select date">
+                                <p:ajax update="msgReturnDate" event="dateSelect" />
+                                <p:ajax update="msgReturnDate" event="blur" />
+                            </p:calendar>
+                        </div>
+                        <div style="width: 200px"><p:message for="returnDate" id="msgReturnDate" /></div>
+                        <br />
                         <h:commandButton value="Search" class="btn btn-default" />
                     </b:column>
                 </b:row>
