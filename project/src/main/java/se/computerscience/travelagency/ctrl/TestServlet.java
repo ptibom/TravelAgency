@@ -51,9 +51,9 @@ public class TestServlet extends HttpServlet {
         if (city != null) {
             System.out.println("C id "+city.getId());
             List<Hotel> hotelList = city.getHotelList();
-            System.out.println("Size of hotelList"+hotelList.size());
+            System.out.println("Size of hotelList" + hotelList.size());
             for (Hotel hotel : hotelList) {
-                counter = hotelDAO.searchByDate(d1, d2,hotel).size();
+                counter = hotelDAO.searchByDate(d1, d2, hotel).size();
                 if ((hotel.getNumberOfRooms() - counter) >= 1) {
                     availableHotel.add(hotel);
                 }
