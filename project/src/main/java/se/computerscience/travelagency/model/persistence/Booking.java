@@ -28,48 +28,48 @@ public class Booking implements Serializable {
     
     @Getter
     @Setter
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private Double price;
    
     @ManyToOne
     @Getter
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private Person person;
     
     @ManyToOne
     @Getter
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private Flight flyTo;
     
     @ManyToOne
     @Getter
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private Flight flyBack;
     
     @ManyToOne
     @Getter
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private Hotel hotel;
     
     @ManyToOne
     @Getter
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private City desCity;
     
     @ManyToOne
     @Getter
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private City depCity;
     
     @Getter
     @Setter
-    @Column(nullable = false)
+    //@Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date flyToDate;
     
     @Getter
     @Setter
-    @Column(nullable = false)
+    //@Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date flyBackDate;
 }
