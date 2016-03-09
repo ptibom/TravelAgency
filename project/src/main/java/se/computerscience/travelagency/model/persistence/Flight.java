@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -22,6 +23,9 @@ import lombok.Setter;
 @Entity
 public class Flight implements Serializable {
 
+    public Flight() {
+    }
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,18 +52,28 @@ public class Flight implements Serializable {
     private Double price;
     
     @ManyToOne
+    @Setter
+    //@Column(nullable = false)
     private Plane plane;
     
     @ManyToOne
+    @Getter
+    @Setter
+    //@Column(nullable = false)
     private City depCity;
     
     @ManyToOne
+    @Getter
+    @Setter
+    //@Column(nullable = false)
     private City desCity;
     
     @OneToMany(mappedBy = "flyTo")
+    @JoinColumn(name = "id")
     private List<Booking> bookingFlyToList;
     
     @OneToMany(mappedBy = "flyBack")
+    @JoinColumn(name = "id")
     private List<Booking> bookingFlyBackList;
     
 }
