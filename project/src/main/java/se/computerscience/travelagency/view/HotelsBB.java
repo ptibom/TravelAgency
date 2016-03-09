@@ -13,34 +13,34 @@ import javax.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
 import se.computerscience.travelagency.model.persistence.Hotel;
+import se.computerscience.travelagency.model.persistence.hotelTemporary;
 
 /**
  *
  * @author Daniel
  */
-@Named("hotels")
-@ManagedBean
+@ManagedBean(name= "hotels")
 public class HotelsBB {
     
     @Setter
     @Getter
-    List<Hotel> allHotels = new ArrayList<>();
+    List<hotelTemporary> allHotels = new ArrayList<>();
     
      @PostConstruct
      private void init() {
          
-        Hotel h1 = new Hotel();
+        hotelTemporary h1 = new hotelTemporary();
         h1.setName("Matildas cryhouse hotel");
         h1.setPrice(5000.0);
-        Hotel h2 = new Hotel();
+        hotelTemporary h2 = new hotelTemporary();
         h2.setName("Joachims hönshus hotel");
         h2.setPrice(5000.0);
-        Hotel h3 = new Hotel();
-        h2.setName("Prasads enarmade hotel");
-        h2.setPrice(5000.0);
-        Hotel h4 = new Hotel();
-        h2.setName("Johans fuskcircus hotel");
-        h2.setPrice(5000.0);
+        hotelTemporary h3 = new hotelTemporary();
+        h3.setName("Prasads enarmade hotel");
+        h3.setPrice(5000.0);
+        hotelTemporary h4 = new hotelTemporary();
+        h4.setName("Johans fuskcircus hotel");
+        h4.setPrice(5000.0);
         
         allHotels.add(h1);
         allHotels.add(h2);
@@ -52,6 +52,10 @@ public class HotelsBB {
      public int getCount(){
          return allHotels.size();
      }
+
     
+     
     
 }
+
+

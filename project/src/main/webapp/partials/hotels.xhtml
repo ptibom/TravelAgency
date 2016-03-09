@@ -31,13 +31,16 @@ and open the template in the editor.
             <b:row>
                 <b:jumbotron>
                     <h:form>
-                         <h:outputText value = "FU"/>
-                        <h:outputText value = "#{hotels.count}"/>
+   
                         
-                        <h:dataTable var="hotel" value="#{hotels.allHotels}" 
-                                     class="table table-striped">
+                        <h:dataTable value="#{hotels.allHotels}"  var="hotel" >
+                                     <h:column>
                             
                             <b:panel onclick="PF('dlg1').show();"> <h:outputText value = "#{hotel.name}"/> </b:panel>
+                                                        
+                            
+                            </h:column>
+
                          
                         </h:dataTable>
                     </h:form>         
