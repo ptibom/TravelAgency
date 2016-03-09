@@ -19,6 +19,8 @@ import lombok.Setter;
 @RequestScoped 
 public class SelectOneButtonBB {
 
+    
+    
     @Setter
     @Getter
     private int option = 0;

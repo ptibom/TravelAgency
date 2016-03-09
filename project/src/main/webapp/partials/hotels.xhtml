@@ -30,45 +30,39 @@ and open the template in the editor.
             </b:row>
             <b:row>
                 <b:jumbotron>
-
-<h:form>
-    
-    <b:panel onclick="PF('dlg1').show();"> Hotel1</b:panel>
-    <b:panel onclick="PF('dlg2').show();"> Hotel2</b:panel>
-    <b:panel> Hotel3</b:panel>
-    <b:panel> Hotel4</b:panel>
-    <b:panel> Hotel5</b:panel>
-          </h:form>         
-                    
-                    
-                    
+                    <h:form>
+                         <h:outputText value = "FU"/>
+                        <h:outputText value = "#{hotels.count}"/>
+                        
+                        <h:dataTable var="hotel" value="#{hotels.allHotels}" 
+                                     class="table table-striped">
+                            
+                            <b:panel onclick="PF('dlg1').show();"> <h:outputText value = "#{hotel.name}"/> </b:panel>
+                         
+                        </h:dataTable>
+                    </h:form>         
                     <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40">
-    <h:outputText value="Resistance to PrimeFaces is futile!" />
-</p:dialog>
-                    
-                                     <p:dialog header="Basic Dialog" widgetVar="dlg2" minHeight="40">
-    <h:outputText value="Resistance to PrimeFaces is futile!" />
-</p:dialog>   
+                        <h:outputText value="Resistance to PrimeFaces is futile!" />
+                    </p:dialog>
+                    <p:dialog header="Basic Dialog" widgetVar="dlg2" minHeight="40">
+                        <h:outputText value="Resistance to PrimeFaces is futile!" />
+                    </p:dialog>   
                 </b:jumbotron>
             </b:row>
             <b:row>
-            
                 <b:column span="2">
-                    
                 </b:column>
-           
-                  <b:column span="1">
-                      
+                <b:column span="1">
                     <p:commandButton value="Back" style ="padding: 10px 5px;"  />
                 </b:column>
-                 <b:column span="4">
-                    
+                <b:column span="4">
+
                 </b:column>
 
                 <b:column span="2">
                     <p:commandButton value="Confirm" style ="padding: 10px 5px;"  />
                 </b:column>
-                
+
             </b:row>
         </ui:define>
     </ui:composition>
