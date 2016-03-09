@@ -12,6 +12,14 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui">
 
+    <f:metadata>
+        <f:viewParam name="fromCity" value="#{searchBean.fromCity}" />
+        <f:viewParam name="toCity" value="#{searchBean.toCity}" />
+        <f:viewParam name="numPassengers" value="#{searchBean.numPassengers}" />
+        <f:viewParam name="fromDate" value="#{searchBean.fromDate}" converter="javax.faces.DateTime" />
+        <f:viewParam name="toDate" value="#{searchBean.toDate}" converter="javax.faces.DateTime" />
+    </f:metadata>
+
     <ui:composition template="/WEB-INF/template.xhtml">
         <ui:define name="content">
             <b:row>
@@ -21,7 +29,7 @@ and open the template in the editor.
                 <b:column span="2">
                 </b:column>
                 <b:column span="8">
-                    <p:selectOneButton value="#{selectOneButton.option}">
+                    <p:selectOneButton value="#{selectOneButton.option}" >
                         <f:selectItem itemLabel="Price" itemValue="0" />
                         <f:selectItem itemLabel="Popularity" itemValue="1" />
                         <f:selectItem itemLabel="Rating" itemValue="2" />
@@ -29,28 +37,32 @@ and open the template in the editor.
                 </b:column>
             </b:row>
             <b:row>
-                <b:jumbotron>
-                    <h:form>
-   
-                        
-                        <h:dataTable value="#{hotels.allHotels}"  var="hotel" >
-                                     <h:column>
+                <b:jumbotron id="jumbo" >
+                     
+                    <h:dataTable value="#{searchBean.availableHotels}" var="hotel" style="width: 100%; "  >
+                        <h:column>
                             
-                            <b:panel onclick="PF('dlg1').show();"> <h:outputText value = "#{hotel.name}"/> </b:panel>
-                                                        
-                            
-                            </h:column>
+                            <b:panel contentStyle="padding: 0" title="Ett makalöst erbjudande!" collapsible="false"  >
+                                <b:row>
+                                    <b:column span="3">
+                                        <img src="#{request.contextPath}/resources/img/hotel1.jpg" style="align-items: flex-end"/>
+                                    </b:column>
+                                    <b:column span="6">
+                                        <h4><h:outputText value="#{hotel.name}"/> ***</h4>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porta elit eget euismod iaculis. Duis bibendum enim id nisl lobortis, a vehicula sem fringilla... 
+                                    </b:column>
+                                    <b:column span="3" style="text-align: right">
+                                        <div style="height: 100px;"></div>
+                                        <div style="padding: 10px">
+                                            <h:outputText value="Price: #{hotel.price}"  />
+                                        </div>
+                                    </b:column>
+                                </b:row>
+                            </b:panel>  
+                        </h:column>                        
+                    </h:dataTable>
+                 </b:jumbotron>
 
-                         
-                        </h:dataTable>
-                    </h:form>         
-                    <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40">
-                        <h:outputText value="Resistance to PrimeFaces is futile!" />
-                    </p:dialog>
-                    <p:dialog header="Basic Dialog" widgetVar="dlg2" minHeight="40">
-                        <h:outputText value="Resistance to PrimeFaces is futile!" />
-                    </p:dialog>   
-                </b:jumbotron>
             </b:row>
             <b:row>
                 <b:column span="2">
@@ -65,7 +77,6 @@ and open the template in the editor.
                 <b:column span="2">
                     <p:commandButton value="Confirm" style ="padding: 10px 5px;"  />
                 </b:column>
-
             </b:row>
         </ui:define>
     </ui:composition>

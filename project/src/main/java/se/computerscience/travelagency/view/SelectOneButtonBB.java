@@ -27,7 +27,7 @@ public class SelectOneButtonBB {
     
     @PostConstruct
     private void init() {
-    option = 1;
+        option = 1;
     }
  
 }

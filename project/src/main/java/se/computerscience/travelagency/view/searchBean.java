@@ -69,7 +69,7 @@ public class searchBean {
         return cityDAO.searchCityByNameToString(query);
     }
     
-    public List<Hotel> getAvailableHotels (String city) {
-        return null;
+    public List<Hotel> getAvailableHotels () {
+        return hotelDAO.findAll(); // Använd denna så länge.
     }
 }
