@@ -16,7 +16,7 @@ public class FlightDAO extends GeneralDAO<Flight> implements IFlightDAO{
 
     @Override
     public List<Flight> searchFlightByCities(City dep, City des, Date depature) {
-        return em.createQuery("SELECT t FROM Flight t WHERE t.desCity = :des AND t.depCity = :dep AND t.depature = :depature")
+        return em.createQuery("SELECT t FROM Flight t WHERE t.desCity = :des AND t.depCity = :dep AND t.depature = :depature order by t.price")
                 .setParameter("des", des)
                 .setParameter("dep", dep)
                 .setParameter("depature", depature)
