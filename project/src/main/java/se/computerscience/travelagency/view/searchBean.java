@@ -86,4 +86,12 @@ public class searchBean {
     public List<Hotel> orderByPrice(List<Hotel> hotelList) {
         return hotelDAO.orderByPrice(hotelList);
     }
+    
+    public List<Hotel> orderByRating(List<Hotel> hotelList) {
+        return hotelDAO.orderByRating(hotelList);
+    }
+    
+    public List<Hotel> orderByPopularity(List<Hotel> hotelList) {
+        return hotelDAO.orderByRatingAndPrice(hotelList);
+    }
 }
