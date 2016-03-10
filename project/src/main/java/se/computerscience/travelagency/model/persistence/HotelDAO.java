@@ -1,10 +1,12 @@
 package se.computerscience.travelagency.model.persistence;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -13,6 +15,10 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class HotelDAO extends GeneralDAO<Hotel> implements IHotelDAO {
+    
+    @EJB
+    CityDAO cityDAO;
+    
     public HotelDAO() {
         super(Hotel.class);
     }
@@ -25,43 +31,58 @@ public class HotelDAO extends GeneralDAO<Hotel> implements IHotelDAO {
                 .setParameter("returnDate", returnDate)
                 .getResultList();
     }
+    
     @Override
-    public List<Hotel> availableHotel(Date arrivalDate, Date returnDate, City city, int numPassangers){
-        int counter = 0;
-        List<Hotel> availableHotel = new LinkedList<>();
+    public List<Hotel> getAvailableHotels(Date arrivalDate, Date returnDate, String cityName, String persons) {
+        int numPersons = 0;
+        try {
+            numPersons = Integer.parseInt(persons);
+        }
+        catch(NumberFormatException e) {
+            List<Hotel> emptyList = new ArrayList<>();
+            return emptyList; // Exit the request.
+        }
+        
+        // Find City by String
+        City city = cityDAO.cityByName(cityName);
+        if (city == null) {
+            List<Hotel> emptyList = new ArrayList<>();
+            return emptyList; // Exit the request.
+        }
+        
+        List<Hotel> availableHotels = new LinkedList<>();
         List<Hotel> hotelList = city.getHotelList();
         for (Hotel hotel : hotelList) {
-            counter = searchByDate(arrivalDate, arrivalDate, hotel).size();
-            if ((hotel.getNumberOfRooms() - counter) >= numPassangers) {
-                availableHotel.add(hotel);
+            int numBookedRooms = searchByDate(arrivalDate, arrivalDate, hotel).size();
+            if ((hotel.getNumberOfRooms() - numBookedRooms) >= numPersons) {
+                availableHotels.add(hotel);
             }
         }
-        return availableHotel;
+        return availableHotels;
     }
     
     @Override
-    public List<Hotel> orderByRating(List<Hotel> hotelList){
+    public List<Hotel> orderByRating(List<Hotel> hotelList) {
         Collections.sort(hotelList, Hotel.Comparators.RATING);
         return hotelList;
-        
     }
     
     @Override
-    public List<Hotel> orderByName(List<Hotel> hotelList){
+    public List<Hotel> orderByName(List<Hotel> hotelList) {
         Collections.sort(hotelList, Hotel.Comparators.NAME);
         return hotelList;
         
     }
     
     @Override
-    public List<Hotel> orderByPrice(List<Hotel> hotelList){
+    public List<Hotel> orderByPrice(List<Hotel> hotelList) {
         Collections.sort(hotelList, Hotel.Comparators.PRICE);
         return hotelList;
         
     }
     
     @Override
-    public List<Hotel> orderByRatingAndPrice(List<Hotel> hotelList){
+    public List<Hotel> orderByRatingAndPrice(List<Hotel> hotelList) {
         Collections.sort(hotelList, Hotel.Comparators.RATINGandPRICE);
         return hotelList;
     }
