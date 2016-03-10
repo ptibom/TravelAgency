@@ -1,6 +1,9 @@
+package se.computerscience.travelagency.view;
+
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -17,19 +20,20 @@ import lombok.Setter;
  */
 @Named("selectOneButton")
 @RequestScoped 
+@ManagedBean
 public class SelectOneButtonBB {
 
-    
-    
     @Setter
     @Getter
-    private int option = 0;
+    private String option = "0";
     
     @PostConstruct
     private void init() {
-        option = 1;
+        option = "0";
     }
  
+    
+    
 }
 
 

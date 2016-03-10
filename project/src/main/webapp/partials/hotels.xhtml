@@ -29,17 +29,21 @@ and open the template in the editor.
                 <b:column span="2">
                 </b:column>
                 <b:column span="8">
-                    <p:selectOneButton value="#{selectOneButton.option}" >
-                        <f:selectItem itemLabel="Price" itemValue="0" />
-                        <f:selectItem itemLabel="Popularity" itemValue="1" />
+                    <p:selectOneButton value="#{selectOneButton.option}" onchange="byRating()" >
+                        <f:selectItem itemLabel="Price" itemValue="0"  />
+                        <f:selectItem itemLabel="Popularity" itemValue="1"  />
                         <f:selectItem itemLabel="Rating" itemValue="2" />
+                        
+                        
                     </p:selectOneButton>
+                      <p:commandButton value="Submit" update="display" icon="ui-icon-check" />
+                     <h:outputText  id="display" value="Options: #{selectOneButton.option}" />
                 </b:column>
             </b:row>
             <b:row>
                 <b:jumbotron id="jumbo" >
                      
-                    <h:dataTable value="#{searchBean.orderByPrice(searchBean.getAvailableHotels(searchBean.fromDate, searchBean.toDate, searchBean.toCity, searchBean.numPassengers))}" var="hotel" style="width: 100%; "  >
+                    <h:dataTable value="#{searchBean.retrievedHotels}" var="hotel" style="width: 100%; "  >
                         <h:column>
                             
                             <b:panel contentStyle="padding: 0" title="Ett makalöst erbjudande!" collapsible="false"  >
@@ -78,7 +82,29 @@ and open the template in the editor.
                     <p:commandButton value="Confirm" style ="padding: 10px 5px;"  />
                 </b:column>
             </b:row>
+             <script>
+                  function byRating() {
+        switch(#{selectOneButton.option}){
+            
+        case '0':
+              #{searchBean.retrievedHotels} = searchBean.orderByPrice(searchBean.getAvailableHotels(searchBean.fromDate, searchBean.toDate, searchBean.toCity, searchBean.numPassengers);
+             break;
+        case '1':
+            #{searchBean.retrievedHotels} = searchBean.orderByRating(searchBean.getAvailableHotels(searchBean.fromDate, searchBean.toDate, searchBean.toCity, searchBean.numPassengers);
+            break;
+        case '2':
+            #{searchBean.retrievedHotels} = searchBean.orderByRatingAndPrice(searchBean.getAvailableHotels(searchBean.fromDate, searchBean.toDate, searchBean.toCity, searchBean.numPassengers);
+            break;
+        default:  
+             #{searchBean.retrievedHotels} = searchBean.orderByPrice(searchBean.getAvailableHotels(searchBean.fromDate, searchBean.toDate, searchBean.toCity, searchBean.numPassengers);
+             break;
+        }
+}
+
+
+        </script>
         </ui:define>
     </ui:composition>
-
+   
+        
 </html>

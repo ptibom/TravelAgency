@@ -60,7 +60,12 @@ public class searchBean {
     @Setter
     @Future
     @NotNull(message = "{required.field}")
-    private Date toDate;      
+    private Date toDate; 
+    
+    @Getter
+    @Setter
+    @Future
+    private List<Hotel> retrievedHotels;  
     
     public List<String> search(String query) {
         System.out.println("Search string: " + query);
