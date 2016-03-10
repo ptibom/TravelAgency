@@ -32,5 +32,12 @@ public class CityDAO extends GeneralDAO<City> implements ICityDAO {
         return result;
     }
     
+    @Override
+    public City cityByName(String cityName){
+        return (City)em.createQuery("SELECT t FROM City t WHERE LOWER(t.name) LIKE LOWER(:cityName)")
+                .setParameter("cityName", cityName)
+                .getSingleResult();
+    }
+    
     
 }

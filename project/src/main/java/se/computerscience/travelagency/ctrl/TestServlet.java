@@ -38,7 +38,10 @@ public class TestServlet extends HttpServlet {
             throws ServletException, IOException {
         
         
-        List<Hotel> hList = hotelDAO.findAll();
+        City c = cityDAO.cityByName("AbdiCity");
+        System.out.println("C" + c.getName());
+        
+        /*List<Hotel> hList = hotelDAO.findAll();
         hotelDAO.orderByPrice(hList);
         for(Hotel hotel: hList) {
             System.out.println("Price: "+hotel.getPrice());
@@ -57,7 +60,7 @@ public class TestServlet extends HttpServlet {
         hotelDAO.orderByRatingAndPrice(hList);
         for(Hotel hotel: hList) {
             System.out.println("price: "+hotel.getPrice() + " rating: "+hotel.getRating());
-        }
+        }*/
         
         
         /*City city = cityDAO.findById(101L);
