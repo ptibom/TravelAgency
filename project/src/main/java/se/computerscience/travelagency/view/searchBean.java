@@ -75,7 +75,10 @@ public class searchBean {
     }
     public List<Hotel> getAvailableHotels (Date fromDate, Date toDate, String cityString, int numPassangers) {
         City city = cityDAO.cityByName(cityString);
-        
         return hotelDAO.availableHotel(fromDate, toDate, city, numPassangers);
+    }
+    
+    public List<Hotel> orderByPrice(List<Hotel> hotelList) {
+        return hotelDAO.orderByPrice(hotelList);
     }
 }
