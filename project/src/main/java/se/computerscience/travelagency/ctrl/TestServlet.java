@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import se.computerscience.travelagency.model.persistence.City;
+import se.computerscience.travelagency.model.persistence.Flight;
 import se.computerscience.travelagency.model.persistence.Hotel;
 import se.computerscience.travelagency.model.persistence.ICityDAO;
 import se.computerscience.travelagency.model.persistence.IFlightDAO;
@@ -37,28 +38,23 @@ public class TestServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        Calendar cal = new GregorianCalendar();
+        cal.set(2016, 02, 24);
+        Date d1 = cal.getTime();
+        System.out.println("DATE" + d1.toString());
         
-        List<Hotel> hList = hotelDAO.findAll();
-        hotelDAO.orderByPrice(hList);
-        for(Hotel hotel: hList) {
-            System.out.println("Price: "+hotel.getPrice());
+        City dep = cityDAO.findById(1L);
+        City des = cityDAO.findById(51L);
+        List<Flight> fl = flightDAO.searchFlightByCities(des, dep, d1);
+        
+        for (Flight flight : fl) {
+            System.out.println("FlightID "+flight.getId());
         }
         
-        hotelDAO.orderByRating(hList);
-        for(Hotel hotel: hList) {
-            System.out.println("rating: "+hotel.getRating());
-        }
-        
-        hotelDAO.orderByName(hList);
-        for(Hotel hotel: hList) {
-            System.out.println("name: "+hotel.getName());
-        }
-        
-        hotelDAO.orderByRatingAndPrice(hList);
-        for(Hotel hotel: hList) {
-            System.out.println("price: "+hotel.getPrice() + " rating: "+hotel.getRating());
-        }
-        
+        /*List<Flight> f = flightDAO.findAll();
+        for (Flight flight : f) {
+            System.out.println("f" + flight.getPrice());
+        }*/
         
         /*City city = cityDAO.findById(101L);
         Calendar cal = new GregorianCalendar();
