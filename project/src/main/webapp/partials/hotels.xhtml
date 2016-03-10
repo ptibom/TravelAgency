@@ -39,7 +39,7 @@ and open the template in the editor.
             <b:row>
                 <b:jumbotron id="jumbo" >
                      
-                    <h:dataTable value="#{searchBean.getAvailableHotels(searchBean.fromDate, searchBean.toDate, searchBean.toCity, searchBean.numPassengers)}" var="hotel" style="width: 100%; "  >
+                    <h:dataTable value="#{searchBean.orderByPrice(searchBean.getAvailableHotels(searchBean.fromDate, searchBean.toDate, searchBean.toCity, searchBean.numPassengers))}" var="hotel" style="width: 100%; "  >
                         <h:column>
                             
                             <b:panel contentStyle="padding: 0" title="Ett makalöst erbjudande!" collapsible="false"  >
