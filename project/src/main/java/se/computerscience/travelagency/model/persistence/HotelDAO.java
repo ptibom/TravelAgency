@@ -1,12 +1,10 @@
 package se.computerscience.travelagency.model.persistence;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -44,7 +42,7 @@ public class HotelDAO extends GeneralDAO<Hotel> implements IHotelDAO {
         List<Hotel> hotelList = city.getHotelList();
         for (Hotel hotel : hotelList) {
             int numBookedRooms = searchByDate(arrivalDate, arrivalDate, hotel).size();
-            if ((hotel.getNumberOfRooms() - numBookedRooms) >= numPersons) {
+            if ((hotel.getNumberOfRooms() - numBookedRooms) >= (numPersons/2)) {
                 availableHotels.add(hotel);
             }
         }
@@ -61,14 +59,12 @@ public class HotelDAO extends GeneralDAO<Hotel> implements IHotelDAO {
     public List<Hotel> orderByName(List<Hotel> hotelList) {
         Collections.sort(hotelList, Hotel.Comparators.NAME);
         return hotelList;
-        
     }
     
     @Override
     public List<Hotel> orderByPrice(List<Hotel> hotelList) {
         Collections.sort(hotelList, Hotel.Comparators.PRICE);
         return hotelList;
-        
     }
     
     @Override

@@ -92,7 +92,7 @@ public class Hotel implements Serializable, Comparable<Hotel>{
         public static Comparator<Hotel> PRICE = new Comparator<Hotel>() {
             @Override
             public int compare(Hotel h1, Hotel h2) {
-                return h1.getPrice().intValue() - h2.getPrice().intValue();
+                return h1.getPrice().compareTo(h2.getPrice());
             }
         };
         

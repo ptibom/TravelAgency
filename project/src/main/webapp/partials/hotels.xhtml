@@ -22,17 +22,20 @@
                     <strong>Sort by</strong>
                 </b:column>
                 <b:column span="8">
-                    <p:selectOneButton value="#{selectOneButton.option}" style="margin-top: -5px" >
-                        <f:selectItem itemLabel="Price" itemValue="0"  />
-                        <f:selectItem itemLabel="Popularity" itemValue="1"  />
-                        <f:selectItem itemLabel="Rating" itemValue="2" />
-                    </p:selectOneButton>
+                    <h:form>
+                        <p:selectOneButton id="numPersons" value="#{searchBean.sortBy}" style="margin-top: -5px">
+                            <f:selectItem itemLabel="Price" itemValue="1" />
+                            <f:selectItem itemLabel="Rating" itemValue="2" />
+                            <f:selectItem itemLabel="Popularity" itemValue="3" />
+                            <p:ajax update="jumbo" event="change" />
+                        </p:selectOneButton>
+                    </h:form>
                 </b:column>
             </b:row>
             <b:row>
                 <b:jumbotron id="jumbo" >
-                    <ui:repeat value="#{searchBean.availableHotels}" var="hotel">
-                        <b:panel contentStyle="padding: 0" title="Ett makalöst erbjudande!" collapsible="false"  >
+                    <ui:repeat id="displayHotels" value="#{searchBean.availableHotels}" var="hotel">
+                        <b:panel contentStyle="padding: 0" title="An offer you cannot refuse!" collapsible="false"  >
                             <b:row>
                                 <b:column span="3">
                                     <img src="#{request.contextPath}/resources/img/hotel1.jpg" style="width: 100%; max-width: 150px"/>
