@@ -1,6 +1,5 @@
 package se.computerscience.travelagency.view;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -60,23 +59,16 @@ public class searchBean {
     @Setter
     @Future
     @NotNull(message = "{required.field}")
-    private Date toDate; 
+    private Date toDate;
     
-    @Getter
-    @Setter
-    @Future
-    private List<Hotel> retrievedHotels;  
-    
-    public List<String> search(String query) {
-        System.out.println("Search string: " + query);
-        List<String> stringList = cityDAO.searchCityByNameToString(query);
-        List<City> cityList = cityDAO.searchCityByName(query);
+    public List<String> searchCity(String query) {
         return cityDAO.searchCityByNameToString(query);
     }
-    
-
     public List<Hotel> getAvailableHotels () {
-        return hotelDAO.getAvailableHotels(fromDate, toDate, toCity, numPassengers);
+        City city = cityDAO.cityByName(toCity);
+        List<Hotel> hotels = hotelDAO.getAvailableHotels(fromDate, toDate, city, numPassengers);
+        System.out.println(hotels.size());
+        return hotels;
     }
     
     public List<Hotel> orderByPrice(List<Hotel> hotelList) {

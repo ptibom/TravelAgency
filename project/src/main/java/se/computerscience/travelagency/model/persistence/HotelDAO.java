@@ -15,10 +15,7 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class HotelDAO extends GeneralDAO<Hotel> implements IHotelDAO {
-    
-    @EJB
-    CityDAO cityDAO;
-    
+        
     public HotelDAO() {
         super(Hotel.class);
     }
@@ -33,19 +30,12 @@ public class HotelDAO extends GeneralDAO<Hotel> implements IHotelDAO {
     }
     
     @Override
-    public List<Hotel> getAvailableHotels(Date arrivalDate, Date returnDate, String cityName, String persons) {
+    public List<Hotel> getAvailableHotels(Date arrivalDate, Date returnDate, City city, String persons) {
         int numPersons = 0;
         try {
             numPersons = Integer.parseInt(persons);
         }
         catch(NumberFormatException e) {
-            List<Hotel> emptyList = new ArrayList<>();
-            return emptyList; // Exit the request.
-        }
-        
-        // Find City by String
-        City city = cityDAO.cityByName(cityName);
-        if (city == null) {
             List<Hotel> emptyList = new ArrayList<>();
             return emptyList; // Exit the request.
         }

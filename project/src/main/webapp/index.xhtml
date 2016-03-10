@@ -13,12 +13,12 @@
                     <b:column span="1"></b:column>
                     <b:column span="5">
                         <h4>Travel from?</h4>
-                        <p:autoComplete id="fromCity" value="#{searchBean.fromCity}" completeMethod="#{searchBean.search}" placeholder="From City" inputStyleClass="form-control" inputStyle="margin-bottom: -5px" size="30">
+                        <p:autoComplete id="fromCity" value="#{searchBean.fromCity}" completeMethod="#{searchBean.searchCity}" placeholder="From City" inputStyleClass="form-control" inputStyle="margin-bottom: -5px" size="30">
                             <p:ajax update="msgFromCity" event="blur" />
                         </p:autoComplete>
                         <div style="width: 200px"><p:message for="fromCity" id="msgFromCity" /></div>
                         <h4>Where do you want to go?</h4>
-                        <p:autoComplete id="toCity" value="#{searchBean.toCity}" completeMethod="#{searchBean.search}" placeholder="To City" inputStyleClass="form-control" inputStyle="margin-bottom: -5px" size="30">
+                        <p:autoComplete id="toCity" value="#{searchBean.toCity}" completeMethod="#{searchBean.searchCity}" placeholder="To City" inputStyleClass="form-control" inputStyle="margin-bottom: -5px" size="30">
                             <p:ajax update="msgToCity" event="blur" />
                         </p:autoComplete>
                         <div style="width: 200px"><p:message for="toCity" id="msgToCity" /></div>

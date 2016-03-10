@@ -46,13 +46,13 @@ public class Hotel implements Serializable, Comparable<Hotel>{
     @Getter
     @Setter
     @Size(max = 255)
-    private String decsription;
+    @Column(nullable = false)
+    private String name;
     
     @Getter
     @Setter
     @Size(max = 255)
-    @Column(nullable = false)
-    private String name;
+    private String decsription;
     
     @Getter
     @Setter

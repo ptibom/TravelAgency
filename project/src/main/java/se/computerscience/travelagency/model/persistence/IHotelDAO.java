@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface IHotelDAO extends IDAO<Hotel> {
     public List<Hotel> searchByDate(Date from, Date to, Hotel hotel);
-    public List<Hotel> getAvailableHotels(Date arrivalDate, Date returnDate, String cityName, String numPersons);
+    public List<Hotel> getAvailableHotels(Date arrivalDate, Date returnDate, City city, String numPersons);
     public List<Hotel> orderByRating(List<Hotel> hotelList);
     public List<Hotel> orderByName(List<Hotel> hotelList);
     public List<Hotel> orderByPrice(List<Hotel> hotelList);
