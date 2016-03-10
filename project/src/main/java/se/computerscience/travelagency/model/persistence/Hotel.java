@@ -2,6 +2,7 @@
 package se.computerscience.travelagency.model.persistence;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +23,7 @@ import lombok.Setter;
  * @author Hossein
  */
 @Entity
-public class Hotel implements Serializable {
+public class Hotel implements Serializable, Comparable<Hotel>{
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -65,4 +66,45 @@ public class Hotel implements Serializable {
     @JoinColumn(name = "id")
     @Getter
     private List<Booking> bookingList;
+
+    @Override
+    public int compareTo(Hotel hotel) {
+        return Comparators.NAME.compare(this, hotel);
+    }
+    
+    
+    public static class Comparators {
+
+        public static Comparator<Hotel> NAME = new Comparator<Hotel>() {
+            @Override
+            public int compare(Hotel h1, Hotel h2) {
+                return h1.name.compareTo(h2.name);
+            }
+        };
+        
+        public static Comparator<Hotel> RATING = new Comparator<Hotel>() {
+            @Override
+            public int compare(Hotel h1, Hotel h2) {
+                return h2.getRating() - h1.getRating();
+            }
+        };
+        
+        public static Comparator<Hotel> PRICE = new Comparator<Hotel>() {
+            @Override
+            public int compare(Hotel h1, Hotel h2) {
+                return h1.getPrice().intValue() - h2.getPrice().intValue();
+            }
+        };
+        
+        public static Comparator<Hotel> RATINGandPRICE = new Comparator<Hotel>() {
+            @Override
+            public int compare(Hotel h1, Hotel h2) {
+                int i = Comparators.RATING.compare(h1, h2);
+                if (i == 0) {
+                    i = Comparators.PRICE.compare(h1, h2);
+                }
+                return i;
+            }
+        };
+    }
 }

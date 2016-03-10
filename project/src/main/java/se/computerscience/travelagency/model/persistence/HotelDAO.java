@@ -1,5 +1,7 @@
 package se.computerscience.travelagency.model.persistence;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -35,6 +37,33 @@ public class HotelDAO extends GeneralDAO<Hotel> implements IHotelDAO {
             }
         }
         return availableHotel;
+    }
+    
+    @Override
+    public List<Hotel> orderByRating(List<Hotel> hotelList){
+        Collections.sort(hotelList, Hotel.Comparators.RATING);
+        return hotelList;
+        
+    }
+    
+    @Override
+    public List<Hotel> orderByName(List<Hotel> hotelList){
+        Collections.sort(hotelList, Hotel.Comparators.NAME);
+        return hotelList;
+        
+    }
+    
+    @Override
+    public List<Hotel> orderByPrice(List<Hotel> hotelList){
+        Collections.sort(hotelList, Hotel.Comparators.PRICE);
+        return hotelList;
+        
+    }
+    
+    @Override
+    public List<Hotel> orderByRatingAndPrice(List<Hotel> hotelList){
+        Collections.sort(hotelList, Hotel.Comparators.RATINGandPRICE);
+        return hotelList;
     }
 
     

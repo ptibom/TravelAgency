@@ -38,7 +38,29 @@ public class TestServlet extends HttpServlet {
             throws ServletException, IOException {
         
         
-        City city = cityDAO.findById(101L);
+        List<Hotel> hList = hotelDAO.findAll();
+        hotelDAO.orderByPrice(hList);
+        for(Hotel hotel: hList) {
+            System.out.println("Price: "+hotel.getPrice());
+        }
+        
+        hotelDAO.orderByRating(hList);
+        for(Hotel hotel: hList) {
+            System.out.println("rating: "+hotel.getRating());
+        }
+        
+        hotelDAO.orderByName(hList);
+        for(Hotel hotel: hList) {
+            System.out.println("name: "+hotel.getName());
+        }
+        
+        hotelDAO.orderByRatingAndPrice(hList);
+        for(Hotel hotel: hList) {
+            System.out.println("price: "+hotel.getPrice() + " rating: "+hotel.getRating());
+        }
+        
+        
+        /*City city = cityDAO.findById(101L);
         Calendar cal = new GregorianCalendar();
         cal.set(2016, 02, 01);
         Date d1 = cal.getTime();
@@ -61,7 +83,7 @@ public class TestServlet extends HttpServlet {
             for (Hotel hotel : availableHotel) {
                 System.out.println("available hotel "+hotel.getName());
             }
-        }
+        }*/
     }
     
 
