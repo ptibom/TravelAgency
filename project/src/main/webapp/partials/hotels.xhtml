@@ -34,8 +34,8 @@
             </b:row>
             <b:row>
                 <b:jumbotron id="jumbo" >
-                    <ui:repeat id="displayHotels" value="#{searchBean.availableHotels}" var="hotel">
-                        <b:panel contentStyle="padding: 0" title="An offer you cannot refuse!" collapsible="false"  >
+                    <ui:repeat value="#{searchBean.availableHotels}" var="hotel">
+                        <b:modal  title="#{hotel.name}" styleClass="modal_#{hotel.id} fade">
                             <b:row>
                                 <b:column span="3">
                                     <img src="#{request.contextPath}/resources/img/hotel1.jpg" style="width: 100%; max-width: 150px"/>
@@ -64,7 +64,41 @@
                                     </div>
                                 </b:column>
                             </b:row>
-                        </b:panel>                    
+                            <f:facet name="footer">
+                                <b:button value="close" dismiss="modal" onclick="return false;"/>
+                                <b:button value="Ok" look="primary" dismiss="modal" onclick="return false;"/>
+                            </f:facet>
+                        </b:modal>
+                        <b:panel contentStyle="padding: 0" title="An offer you cannot refuse!" collapsible="false" onclick="$('.modal_#{hotel.id}').modal();return false;" style="cursor: pointer">
+                            <b:row>
+                                <b:column span="3">
+                                    <img src="#{request.contextPath}/resources/img/hotel1.jpg" style="width: 100%; max-width: 150px"/>
+                                </b:column>
+                                <b:column span="6">
+                                    <b:row>
+                                        <b:column span="6">
+                                            <h4><h:outputText value="#{hotel.name}"/></h4>
+                                        </b:column>
+                                        <b:column span="6">
+                                            <div style="margin-top: 10px">
+                                                <p:rating value="#{hotel.rating}" readonly="true" />
+                                            </div>
+                                        </b:column>
+                                    </b:row>
+                                    <b:row>
+                                        <b:column>
+                                            <h:outputText value="#{hotel.decsription}" />
+                                        </b:column>
+                                    </b:row>                                         
+                                </b:column>
+                                <b:column span="3" style="text-align: right">
+                                    <div style="margin: 10px">
+                                        Total price
+                                        <h3 style="color: #ff0033; margin-top: 5px"><h:outputText value="$#{hotel.price}" /></h3>
+                                    </div>
+                                </b:column>
+                            </b:row>
+                        </b:panel>
                     </ui:repeat>
                  </b:jumbotron>
             </b:row>
