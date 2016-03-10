@@ -69,7 +69,7 @@ public class searchBean {
         return cityDAO.searchCityByNameToString(query);
     }
     
-    public List<Hotel> getAvailableHotels (Date fromDate, Date toDate, City city, int numPassangers) {
-        return hotelDAO.availableHotel(fromDate, toDate, city, numPassangers);
+    public List<Hotel> getAvailableHotels () {
+        return hotelDAO.getAvailableHotels(fromDate, toDate, toCity, numPassengers);
     }
 }

@@ -17,7 +17,7 @@ public class CityDAO extends GeneralDAO<City> implements ICityDAO {
     
     @Override
     public List<City> searchCityByName(String cityName) {
-        return (List<City>)em.createQuery("SELECT t FROM City t WHERE LOWER(t.name) LIKE LOWER(:cityName)")
+        return (List<City>)em.createQuery("SELECT t FROM City t WHERE LOWER(t.name) LIKE LOWER(:cityName) ORDER BY t.name ASC")
                 .setParameter("cityName", "%"+cityName+"%")
                 .getResultList();
     }
