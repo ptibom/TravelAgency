@@ -70,6 +70,8 @@ public class SearchBean {
     @Pattern(regexp = "[1-3]")
     private String sortBy;
    
+    @Getter
+    @Setter
     private List<Person> passengerList;
     
     

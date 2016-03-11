@@ -19,4 +19,14 @@ public class BookingDAO extends GeneralDAO<Booking> implements IBookingDAO {
           return em.createQuery("SELECT t FROM Booking t")
                 .getResultList();
     }
+    
+     @Override
+    public void  insertBooking(List<Person> passengers, Booking booking ){
+        
+          em.createQuery("INSERT INTO BOOKING" + "VALUES (" + booking.getFlyBack() + ", " + booking.getFlyTo() + ", " + booking.getPrice().toString() + ")" );
+        
+      //  for(Person passenger:passengers)
+      //    em.createQuery("INSERT INTO PERSON" + "VALUES (" )
+                
+    }
 }

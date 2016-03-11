@@ -12,68 +12,85 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui">
 
+    <f:metadata>
+        <f:viewParam name="fromCity" value="#{searchBean.fromCity}" />
+        <f:viewParam name="toCity" value="#{searchBean.toCity}" />
+        <f:viewParam name="numPassengers" value="#{searchBean.numPassengers}" />
+        <f:viewParam name="fromDate" value="#{searchBean.fromDate}" converter="javax.faces.DateTime" />
+        <f:viewParam name="toDate" value="#{searchBean.toDate}" converter="javax.faces.DateTime" />
+
+        <f:viewParam name="gender" value="#{searchBean.fromCity}" />
+        <f:viewParam name="address" value="#{searchBean.toCity}" />
+        <f:viewParam name="postalNumber" value="#{searchBean.numPassengers}" />
+        <f:viewParam name="phoneNumber" value="#{searchBean.fromDate}" />
+        <f:viewParam name="emailAddress" value="#{searchBean.toDate}" />
+        <f:viewParam name="firstName" value="#{searchBean.toDate}" />
+        <f:viewParam name="lastName" value="#{searchBean.toDate}" />
+    </f:metadata>
+
     <ui:composition template="/WEB-INF/template.xhtml">
         <ui:define name="content">
             <br></br>
-            <row>
-                <column span="2">
-                    <h:outputText value ="Choose a payment method:" />
-                </column>
-                <column span="2">
-                </column>
-                <column span="4">
-                    <p:selectOneRadio id="console" value="#{bookingBean.cardOption}">
-                        <f:selectItem itemLabel="Master Card" itemValue="0" />
-                        <f:selectItem itemLabel="Visa" itemValue="1" />
-                        <f:selectItem itemLabel="American Express" itemValue="2" />
-                    </p:selectOneRadio>
-                </column>
-            </row>
+            <h:form id="register">
+                <f:event listener="#{user.validatePassword}" type="postValidate" />
+                <row>
+                    <column span="2">
+                        <h:outputText value ="Choose a payment method:" />
+                    </column>
+                    <column span="2">
+                    </column>
+                    <column span="4">
+                        <p:selectOneRadio id="console" value="#{bookingbean.cardOption}">
+                            <f:selectItem itemLabel="Master Card" itemValue="0" />
+                            <f:selectItem itemLabel="Visa" itemValue="1" />
+                            <f:selectItem itemLabel="American Express" itemValue="2" />
+                        </p:selectOneRadio>
+                    </column>
+                </row>
+                <br></br>
+                <b:row>
+                    <b:column span = "3">
+                        <h:outputText value="Card number: "/>
+                    </b:column>
+                    <b:column span = "2">
+                    </b:column>
+                    <b:column span = "2">  
+                        <h:inputText id="creditCardNumber" value="#{bookingbean.creditCardNumber}" requiredMessage="Please enter credit card number"/>
+                    </b:column>
+                </b:row> 
+                <b:row>
+                    <b:column span = "3">
+                        <h:outputText value="Cardholders name:"/>
+                    </b:column>
+                    <b:column span = "2">
+                    </b:column>
+                    <b:column span = "2">  
+                        <h:inputText id="cardHolderName" value="#{bookingbean.cardHolderName}" requiredMessage="Please enter card holder name"/>
+                    </b:column>
+                </b:row>
+                <b:row>
+                    <b:column span = "3">
+                        <h:outputText value="Card expiration Date:"/>
+                    </b:column>
+                    <b:column span = "2">
+                    </b:column>
+                    <b:column span = "2">  
+                        <h:inputText  id="expirationDate"  value="#{bookingbean.expirationDate}" requiredMessage="Please enter expiration date dd/mm/yy"/>
+                    </b:column>
+                </b:row>
+                <br></br>
+                <b:row>
+                    <b:column span="2">
+                        <b:button outcome="formContact" value="Back" />
+                    </b:column>
+                    <b:column span="6">
+                    </b:column>
+                    <b:column span="4">
+                        <b:commandButton action="formContact"  value="Place Order" /> 
+                    </b:column>
+                </b:row>
+            </h:form>
             <br></br>
-            <b:row>
-                <b:column span = "3">
-                    <h:outputText value="Card number: "/>
-                </b:column>
-                <b:column span = "2">
-                </b:column>
-                <b:column span = "2">  
-                    <h:inputText value="#{bookingbean.creditCardNumber}"/>
-                </b:column>
-            </b:row> 
-            <b:row>
-                 <b:column span = "3">
-                    <h:outputText value="Cardholders name:"/>
-                </b:column>
-                <b:column span = "2">
-                </b:column>
-                <b:column span = "2">  
-                    <h:inputText value="#{bookingbean.cardHolderName}"/>
-                </b:column>
-            </b:row>
-            <b:row>
-             <b:column span = "3">
-                    <h:outputText value="Card expiration Date:"/>
-                </b:column>
-                <b:column span = "2">
-                </b:column>
-                <b:column span = "2">  
-                    <h:inputText value="#{bookingbean.expirationDate}"/>
-                </b:column>
-            </b:row>
-            <br></br>
-            <b:row>
-                <b:column span="2">
-                    
-                     <b:button outcome="formContact" value="Back" />
-                </b:column>
-                 <b:column span="6">
-                    
-                </b:column>
-                 <b:column span="4">
-                     <b:button outcome="formContact" value="Place Order" /> 
-                </b:column>
-             </b:row>
-           <br></br>
         </ui:define>
     </ui:composition>
 

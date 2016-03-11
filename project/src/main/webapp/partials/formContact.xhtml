@@ -21,7 +21,11 @@ and open the template in the editor.
     <ui:composition template="/WEB-INF/template.xhtml">
         <ui:define name="content">
             <br></br>
-            <h:form>
+            <h:form id = "register">
+                
+                
+                
+                
                 <b:row>
                       <b:column span="1">
                           </b:column>
@@ -31,7 +35,21 @@ and open the template in the editor.
                     <b:column span="5">
                     </b:column>
                     <b:column span="2">
-                <p:button outcome="formPayment" value="Next" style="width: 155px;" />
+                  <h:commandButton action="/partials/formPayment.xhtml?faces-redirect=true&amp;includeViewParams=true" value="Next" class="btn btn-default">
+                            <f:param name="fromCity" value="#{searchBean.fromCity}" />
+                            <f:param name="toCity" value="#{searchBean.toCity}" />
+                            <f:param name="numPassengers" value="#{searchBean.numPassengers}" />
+                            <f:param name="fromDate" value="#{searchBean.fromDate}" />
+                            <f:param name="toDate" value="#{searchBean.toDate}" />
+                            
+                            <f:param name="gender" value="#{searchBean.fromCity}" />
+                            <f:param name="address" value="#{searchBean.toCity}" />
+                            <f:param name="postalNumber" value="#{searchBean.numPassengers}" />
+                            <f:param name="phoneNumber" value="#{searchBean.fromDate}" />
+                            <f:param name="emailAddress" value="#{searchBean.toDate}" />
+                            <f:param name="firstName" value="#{searchBean.toDate}" />
+                            <f:param name="lastName" value="#{searchBean.toDate}" />
+                        </h:commandButton>
                 </b:column>
                 </b:row>
                 <b:panel id="panel2" title="Passenger information" style="margin-bottom:10px;">
@@ -45,8 +63,6 @@ and open the template in the editor.
                                         <f:selectItem itemLabel="Male" itemValue="Male" />
                                         <f:selectItem itemLabel="Female" itemValue="Female" />
                                     </p:selectOneButton>
-                              
-
                                 </b:row>
                                 <b:row>
                                     <b:column span = "3">
