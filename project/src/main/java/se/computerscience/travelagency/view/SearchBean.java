@@ -25,7 +25,7 @@ import se.computerscience.travelagency.model.persistence.IHotelDAO;
 @Named(value = "searchBean")
 @ManagedBean
 @SessionScoped
-public class searchBean {
+public class SearchBean {
     
     @EJB
     ICityDAO cityDAO;
