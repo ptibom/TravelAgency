@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -54,19 +55,16 @@ public class Flight implements Serializable{
     
     @ManyToOne
     @Setter
-    //@Column(nullable = false)
     private Plane plane;
     
     @ManyToOne
     @Getter
     @Setter
-    //@Column(nullable = false)
     private City depCity;
     
     @ManyToOne
     @Getter
     @Setter
-    //@Column(nullable = false)
     private City desCity;
     
     @OneToMany(mappedBy = "flyTo")
@@ -76,6 +74,13 @@ public class Flight implements Serializable{
     @OneToMany(mappedBy = "flyBack")
     @JoinColumn(name = "id")
     private List<Booking> bookingFlyBackList;
+    
+    public long getDuration(){
+        long duration  = arrival.getTime() - depature.getTime();
+        //long diffInSeconds = TimeUnit.MILLISECONDS.toSeconds(duration);
+        return TimeUnit.MILLISECONDS.toMinutes(duration);
+        //long diffInHours = TimeUnit.MILLISECONDS.toHours(duration);
+    }
     
     public static class Comparators {
 
@@ -105,8 +110,5 @@ public class Flight implements Serializable{
                 return i ;
             }
         };
-        
-        
     }
-    
 }

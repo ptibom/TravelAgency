@@ -98,9 +98,9 @@ public class TestServlet extends HttpServlet {
             System.out.println("flight id "+flight.getId() + " price " + flight.getPrice());
         }
         for (Flight flight : flightDAO.orderByPriceAndDuration(fl)) {
-            long duration  = (flight.getArrival().getTime() - flight.getDepature().getTime());
-            long diffInMinutes = TimeUnit.MILLISECONDS.toMinutes(duration);
-            System.out.println("flight id "+flight.getId() + " duration " + diffInMinutes + " price " + flight.getPrice());
+            long duration  = flight.getDuration();
+            //long diffInMinutes = TimeUnit.MILLISECONDS.toMinutes(duration);
+            System.out.println("flight id "+flight.getId() + " duration " + duration + " price " + flight.getPrice());
         }
         /*Calendar cal = new GregorianCalendar();
         cal.set(2016, 02, 24);
