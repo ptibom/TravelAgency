@@ -26,6 +26,12 @@ public class Person implements Serializable {
     
     @Getter
     @Setter
+    @Column(nullable = false)
+    private int gender;
+    
+    
+    @Getter
+    @Setter
     @Size(max = 255)
     @Column(nullable = false)
     private String firstName;
