@@ -35,32 +35,46 @@
             <b:row>
                 <b:jumbotron id="jumbo" >
                     <ui:repeat value="#{searchBean.availableHotels}" var="hotel">
-                        <b:panel contentStyle="padding: 0" collapsible="false">
+                        <b:panel collapsible="false">
                             <b:row>
-                                <b:column span="3">
-                                    <img src="#{request.contextPath}/resources/img/hotel1.jpg" style="width: 100%; max-width: 150px"/>
-                                </b:column>
-                                <b:column span="6">
-                                    <b:row>
-                                        <b:column span="6">
-                                            <h4><h:outputText value="#{hotel.name}"/></h4>
+                                <b:column span="9">
+                                    <b:row style="margin-top: 2px; margin-bottom: 2px">
+                                        <b:column span="2">
+                                            <h:graphicImage library="images" name="flights/sas.png" />
                                         </b:column>
-                                        <b:column span="6">
-                                            <div style="margin-top: 10px">
-                                                <p:rating value="#{hotel.rating}" readonly="true" />
-                                            </div>
+                                        <b:column span="4">
+                                            <h:outputText value="12:30 - 11:10"/><br />
+                                            <span style="color: #999999"><h:outputText value="SAS"/></span>
+                                        </b:column>
+                                        <b:column span="3">
+                                            <h:outputText value="5h 20m"/><br />
+                                            <span style="color: #999999"><h:outputText value="GOT - MXP"/></span>
+                                        </b:column>
+                                        <b:column span="3">
+                                            <h:outputText value="No stops"/>
                                         </b:column>
                                     </b:row>
-                                    <b:row>
-                                        <b:column>
-                                            <h:outputText value="#{hotel.decsription}" />
+                                    <b:row style="margin-top: 2px; margin-bottom: 2px">
+                                        <b:column span="2">
+                                            <h:graphicImage library="images" name="flights/sas.png" />
                                         </b:column>
-                                    </b:row>                                         
+                                        <b:column span="4">
+                                            <h:outputText value="12:30 - 11:10"/><br />
+                                            <span style="color: #999999"><h:outputText value="SAS"/></span>
+                                        </b:column>
+                                        <b:column span="3">
+                                            <h:outputText value="5h 20m"/><br />
+                                            <span style="color: #999999"><h:outputText value="MXP - GOT"/></span>
+                                        </b:column>
+                                        <b:column span="3">
+                                            <h:outputText value="No stops"/>
+                                        </b:column>
+                                    </b:row>
                                 </b:column>
                                 <b:column span="3" style="text-align: right">
-                                    <div style="margin: 10px">
-                                        <h3><h:outputText value="$#{hotel.price}" /><small>roundtrip</small></h3>
-                                    </div>
+                                    <h3 style="margin: 0px"><h:outputText value="$#{hotel.price}" /></h3>
+                                        <span style="color: #999999">roundtrip</span><br />
+                                        <b:button class="btn btn-primary" value="Select" style="margin-top: 5px" />
                                 </b:column>
                             </b:row>
                         </b:panel>
