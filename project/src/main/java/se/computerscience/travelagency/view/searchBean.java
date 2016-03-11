@@ -89,8 +89,8 @@ public class searchBean {
                 hotels = orderByRating(hotels);
                 break;
             case "3": 
-                System.out.println("ByPopularity");
-                hotels = orderByPopularity(hotels);
+                System.out.println("orderByName");
+                hotels = orderByName(hotels);
                 break;
             default:
                 System.out.println("ByPrice");
@@ -109,7 +109,7 @@ public class searchBean {
         return hotelDAO.orderByRating(hotels);
     }
     
-    public List<Hotel> orderByPopularity(List<Hotel> hotels) {
-        return hotelDAO.orderByRatingAndPrice(hotels);
+    public List<Hotel> orderByName(List<Hotel> hotels) {
+        return hotelDAO.orderByName(hotels);
     }
 }
