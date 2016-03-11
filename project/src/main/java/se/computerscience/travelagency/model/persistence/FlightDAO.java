@@ -1,5 +1,6 @@
 package se.computerscience.travelagency.model.persistence;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -21,5 +22,23 @@ public class FlightDAO extends GeneralDAO<Flight> implements IFlightDAO{
                 .setParameter("dep", dep)
                 .setParameter("depature", depature)
                 .getResultList();
+    }
+
+    @Override
+    public List<Flight> orderByPrice(List<Flight> flightList) {
+        Collections.sort(flightList, Flight.Comparators.PRICE);
+        return flightList;
+    }
+
+    @Override
+    public List<Flight> orderByDuration(List<Flight> flightList) {
+        Collections.sort(flightList, Flight.Comparators.FLIGHT_TIME);
+        return flightList;
+    }
+
+    @Override
+    public List<Flight> orderByPriceAndDuration(List<Flight> flightList) {
+        Collections.sort(flightList, Flight.Comparators.PRICEandTIME);
+        return flightList;
     }
 }

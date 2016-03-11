@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,48 +39,86 @@ public class TestServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        
+        List<Flight> fl = new LinkedList<>();
+        Flight f1= new Flight();
+        Flight f2= new Flight();
+        Flight f3= new Flight();
+       
         Calendar cal = new GregorianCalendar();
-        cal.set(2016, 02, 24);
-        Date d1 = cal.getTime();
-        System.out.println("DATE" + d1.toString());
+        cal.set(2016, 02, 3, 10, 55, 20);
+        Date arrival = cal.getTime();        
+        cal.set(2016, 02, 3, 8, 55, 20);
+        Date depature = cal.getTime();
+        // f1
+        f1.setArrival(arrival);
+        f1.setDepature(depature);
+        f1.setDepCity(null);
+        f1.setDesCity(null);
+        f1.setPlane(null);
+        f1.setPrice(100D);
         
-        City dep = cityDAO.findById(1L);
-        City des = cityDAO.findById(51L);
-        List<Flight> fl = flightDAO.searchFlightByCities(des, dep, d1);
+        cal.set(2016, 02, 3, 10, 14, 20);
+        arrival = cal.getTime();        
+        cal.set(2016, 02, 3, 9, 55, 20);
+        depature = cal.getTime();
         
-        for (Flight flight : fl) {
-            System.out.println("FlightID "+flight.getId());
+        // f2
+        f2.setArrival(arrival);
+        f2.setDepature(depature);
+        f2.setDepCity(null);
+        f2.setDesCity(null);
+        f2.setPlane(null);
+        f2.setPrice(200D);
+
+        cal.set(2016, 02, 3, 10, 15, 20);
+        arrival = cal.getTime();        
+        cal.set(2016, 02, 3, 9, 55, 20);
+        depature = cal.getTime();
+        
+        // f3
+        f3.setArrival(arrival);
+        f3.setDepature(depature);
+        f3.setDepCity(null);
+        f3.setDesCity(null);
+        f3.setPlane(null);
+        f3.setPrice(150D);
+        
+        fl.add(f1);
+        fl.add(f2);
+        fl.add(f3);
+
+        
+        for (Flight flight : flightDAO.orderByDuration(fl)) {
+            long duration  = (flight.getArrival().getTime() - flight.getDepature().getTime());
+            long diffInMinutes = TimeUnit.MILLISECONDS.toMinutes(duration);
+            System.out.println("flight id "+flight.getId() + " duration " + diffInMinutes);
         }
-        
-        /*List<Flight> f = flightDAO.findAll();
-        for (Flight flight : f) {
-            System.out.println("f" + flight.getPrice());
-        }*/
-        
-        /*City city = cityDAO.findById(101L);
-        Calendar cal = new GregorianCalendar();
-        cal.set(2016, 02, 01);
+        for (Flight flight : flightDAO.orderByPrice(fl)) {
+            System.out.println("flight id "+flight.getId() + " price " + flight.getPrice());
+        }
+        for (Flight flight : flightDAO.orderByPriceAndDuration(fl)) {
+            long duration  = (flight.getArrival().getTime() - flight.getDepature().getTime());
+            long diffInMinutes = TimeUnit.MILLISECONDS.toMinutes(duration);
+            System.out.println("flight id "+flight.getId() + " duration " + diffInMinutes + " price " + flight.getPrice());
+        }
+        /*Calendar cal = new GregorianCalendar();
+        cal.set(2016, 02, 24);
+        cal.set(2016, 02, 3, 10, 55, 20);
         Date d1 = cal.getTime();
-        
-        cal.set(2016, 05, 01);
+        cal.set(2016, 02, 3, 9, 5, 20);
         Date d2 = cal.getTime();
-        int counter = 0;
-        
-        List<Hotel> availableHotel = new LinkedList<>();
-        if (city != null) {
-            System.out.println("C id "+city.getId());
-            List<Hotel> hotelList = city.getHotelList();
-            System.out.println("Size of hotelList" + hotelList.size());
-            for (Hotel hotel : hotelList) {
-                counter = hotelDAO.searchByDate(d1, d2, hotel).size();
-                if ((hotel.getNumberOfRooms() - counter) >= 1) {
-                    availableHotel.add(hotel);
-                }
-            }
-            for (Hotel hotel : availableHotel) {
-                System.out.println("available hotel "+hotel.getName());
-            }
-        }*/
+        Date startDate = d1;
+        Date endDate   = d1;
+
+        long duration  = d1.getTime() - d2.getTime();
+        long diffInSeconds = TimeUnit.MILLISECONDS.toSeconds(duration);
+        long diffInMinutes = TimeUnit.MILLISECONDS.toMinutes(duration);
+        long diffInHours = TimeUnit.MILLISECONDS.toHours(duration);
+
+        System.out.println("diff in sec" + diffInSeconds);
+        System.out.println("diff in min" + diffInMinutes);
+        System.out.println("diff in hour" + diffInHours);*/
     }
     
 

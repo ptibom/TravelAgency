@@ -8,6 +8,8 @@ import java.util.List;
  */
 public interface IFlightDAO extends IDAO<Flight> {
     public List<Flight> searchFlightByCities(City dep, City des, Date depature);
-    
+    public List<Flight> orderByPrice(List<Flight> flightList);
+    public List<Flight> orderByDuration(List<Flight> flightList);
+    public List<Flight> orderByPriceAndDuration(List<Flight> flightList);
     
 }

@@ -1,6 +1,7 @@
 package se.computerscience.travelagency.model.persistence;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -21,7 +22,7 @@ import lombok.Setter;
  * @author Hossein
  */
 @Entity
-public class Flight implements Serializable {
+public class Flight implements Serializable{
 
     public Flight() {
     }
@@ -75,5 +76,37 @@ public class Flight implements Serializable {
     @OneToMany(mappedBy = "flyBack")
     @JoinColumn(name = "id")
     private List<Booking> bookingFlyBackList;
+    
+    public static class Comparators {
+
+        public static Comparator<Flight> PRICE = new Comparator<Flight>() {
+            @Override
+            public int compare(Flight f1, Flight f2) {
+                return (int) (f1.price - f2.price);
+            }
+        };
+        public static Comparator<Flight> FLIGHT_TIME = new Comparator<Flight>() {
+            @Override
+            public int compare(Flight f1, Flight f2) {
+                Date f1D = f1.depature;
+                Date f1A = f1.arrival;
+                Date f2D = f2.depature;
+                Date f2A = f2.arrival;
+                return (int) ((f1A.getTime() - f1D.getTime()) - (f2A.getTime() - f2D.getTime()));
+            }
+        };
+        public static Comparator<Flight> PRICEandTIME = new Comparator<Flight>() {
+            @Override
+            public int compare(Flight f1, Flight f2) {
+                int i = Comparators.PRICE.compare(f1, f2);
+                if (i == 0) {
+                    i = Comparators.FLIGHT_TIME.compare(f1, f2);
+                }
+                return i ;
+            }
+        };
+        
+        
+    }
     
 }
