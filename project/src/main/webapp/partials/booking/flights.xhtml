@@ -34,8 +34,8 @@
             </b:row>
             <b:row>
                 <b:jumbotron id="jumbo" >
-                    <ui:repeat value="#{searchBean.availableHotels}" var="hotel">
-                        <b:panel collapsible="false">
+                    <ui:repeat value="#{searchBean.availableFlights}" var="flight">
+                        <b:panel title="Outbound flight" collapsible="false">
                             <b:row>
                                 <b:column span="9">
                                     <b:row style="margin-top: 2px; margin-bottom: 2px">
@@ -54,27 +54,13 @@
                                             <h:outputText value="No stops"/>
                                         </b:column>
                                     </b:row>
-                                    <b:row style="margin-top: 2px; margin-bottom: 2px">
-                                        <b:column span="2">
-                                            <h:graphicImage library="images" name="flights/sas.png" />
-                                        </b:column>
-                                        <b:column span="4">
-                                            <h:outputText value="12:30 - 11:10"/><br />
-                                            <span style="color: #999999"><h:outputText value="SAS"/></span>
-                                        </b:column>
-                                        <b:column span="3">
-                                            <h:outputText value="5h 20m"/><br />
-                                            <span style="color: #999999"><h:outputText value="MXP - GOT"/></span>
-                                        </b:column>
-                                        <b:column span="3">
-                                            <h:outputText value="No stops"/>
-                                        </b:column>
-                                    </b:row>
                                 </b:column>
                                 <b:column span="3" style="text-align: right">
-                                    <h3 style="margin: 0px"><h:outputText value="$#{hotel.price}" /></h3>
+                                    <h3 style="margin: 0px"><h:outputText value="$#{flight.price}" /></h3>
                                         <span style="color: #999999">roundtrip</span><br />
-                                        <b:button class="btn btn-primary" value="Select" style="margin-top: 5px" />
+                                        <h:form>
+                                            <b:commandButton update="jumbo" action="#{searchBean.setOutboundFlightId(flight.id)})}" class="btn btn-primary" value="Select" style="margin-top: 5px" />
+                                        </h:form>
                                 </b:column>
                             </b:row>
                         </b:panel>
