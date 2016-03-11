@@ -1,5 +1,6 @@
 package se.computerscience.travelagency.view;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -17,6 +18,7 @@ import se.computerscience.travelagency.model.persistence.City;
 import se.computerscience.travelagency.model.persistence.Hotel;
 import se.computerscience.travelagency.model.persistence.ICityDAO;
 import se.computerscience.travelagency.model.persistence.IHotelDAO;
+import se.computerscience.travelagency.model.persistence.Person;
 
 /**
  *
@@ -25,7 +27,7 @@ import se.computerscience.travelagency.model.persistence.IHotelDAO;
 @Named(value = "searchBean")
 @ManagedBean
 @SessionScoped
-public class searchBean {
+public class SearchBean {
     
     @EJB
     ICityDAO cityDAO;
@@ -67,6 +69,9 @@ public class searchBean {
     @Setter
     @Pattern(regexp = "[1-3]")
     private String sortBy;
+   
+    private List<Person> passengerList;
+    
     
     @PostConstruct
     public void init() {
@@ -111,5 +116,18 @@ public class searchBean {
     
     public List<Hotel> orderByName(List<Hotel> hotels) {
         return hotelDAO.orderByName(hotels);
+    }
+    
+    public List<Person> intializePassengerList(){
+        passengerList = new ArrayList<>();
+        int passangers = Integer.parseInt(numPassengers);
+        
+        for(int i = 0; i<passangers; i++){
+            
+            passengerList.add(new Person());
+        }
+        
+        return passengerList;
+        
     }
 }

@@ -14,6 +14,7 @@ and open the template in the editor.
 
     <ui:composition template="/WEB-INF/template.xhtml">
         <ui:define name="content">
+            <br></br>
             <row>
                 <column span="2">
                     <h:outputText value ="Choose a payment method:" />
@@ -21,48 +22,58 @@ and open the template in the editor.
                 <column span="2">
                 </column>
                 <column span="4">
-                    <p:selectOneRadio id="console" value="#{radioView.console}">
+                    <p:selectOneRadio id="console" value="#{bookingBean.cardOption}">
                         <f:selectItem itemLabel="Master Card" itemValue="0" />
                         <f:selectItem itemLabel="Visa" itemValue="1" />
                         <f:selectItem itemLabel="American Express" itemValue="2" />
                     </p:selectOneRadio>
                 </column>
             </row>
-            
+            <br></br>
             <b:row>
                 <b:column span = "3">
+                    <h:outputText value="Card number: "/>
+                </b:column>
+                <b:column span = "2">
+                </b:column>
+                <b:column span = "2">  
+                    <h:inputText value="#{bookingbean.creditCardNumber}"/>
+                </b:column>
+            </b:row> 
+            <b:row>
+                 <b:column span = "3">
                     <h:outputText value="Cardholders name:"/>
                 </b:column>
                 <b:column span = "2">
                 </b:column>
                 <b:column span = "2">  
-                    <h:inputText value=""/>
-                </b:column>
-            </b:row>
-            
-            
-            <b:row>
-                 <b:column span = "3">
-                    <h:outputText value="Card number:"/>
-                </b:column>
-                <b:column span = "2">
-                </b:column>
-                <b:column span = "2">  
-                    <h:inputText value=""/>
+                    <h:inputText value="#{bookingbean.cardHolderName}"/>
                 </b:column>
             </b:row>
             <b:row>
              <b:column span = "3">
-                    <h:outputText value="Cardholders name:"/>
+                    <h:outputText value="Card expiration Date:"/>
                 </b:column>
                 <b:column span = "2">
                 </b:column>
                 <b:column span = "2">  
-                    <h:inputText value=""/>
+                    <h:inputText value="#{bookingbean.expirationDate}"/>
                 </b:column>
             </b:row>
-
-            <b:button outcome="formContact" value="Next" />
+            <br></br>
+            <b:row>
+                <b:column span="2">
+                    
+                     <b:button outcome="formContact" value="Back" />
+                </b:column>
+                 <b:column span="6">
+                    
+                </b:column>
+                 <b:column span="4">
+                     <b:button outcome="formContact" value="Place Order" /> 
+                </b:column>
+             </b:row>
+           <br></br>
         </ui:define>
     </ui:composition>
 

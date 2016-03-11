@@ -11,68 +11,97 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui">
-    
+    <f:metadata>
+        <f:viewParam name="fromCity" value="#{searchBean.fromCity}" />
+        <f:viewParam name="toCity" value="#{searchBean.toCity}" />
+        <f:viewParam name="numPassengers" value="#{searchBean.numPassengers}" />
+        <f:viewParam name="fromDate" value="#{searchBean.fromDate}" converter="javax.faces.DateTime" />
+        <f:viewParam name="toDate" value="#{searchBean.toDate}" converter="javax.faces.DateTime" />
+    </f:metadata>
     <ui:composition template="/WEB-INF/template.xhtml">
         <ui:define name="content">
+            <br></br>
             <h:form>
-                
-    <p:panel id="panel" header="Contact Information" style="margin-bottom:10px;">
-        <p:messages id="messages" />
-       
-             
                 <b:row>
-                 <b:column span = "2">
-                    <h:outputText value="Address:"/>
+                      <b:column span="1">
+                          </b:column>
+                    <b:column span="2">
+                        <p:button outcome="formPayment" value="Back" style="width: 150px; "/>
                 </b:column>
-       
-                <b:column span = "4">  
-                    <h:inputText value=""/>
+                    <b:column span="5">
+                    </b:column>
+                    <b:column span="2">
+                <p:button outcome="formPayment" value="Next" style="width: 155px;" />
                 </b:column>
+                </b:row>
+                <b:panel id="panel2" title="Passenger information" style="margin-bottom:10px;">
+                    <ui:repeat value="#{searchBean.intializePassengerList()}" var="passenger" varStatus="varStat">
+                        <b:panel title="Passenger #{varStat.index+1} ">
+                                 <b:row>
+                                    <b:column span ="5">  
+                                        <h:outputText value="Gender: " />
+                                    </b:column>
+                                     <p:selectOneButton value="#{passenger.gender}" class="genderButton">
+                                        <f:selectItem itemLabel="Male" itemValue="Male" />
+                                        <f:selectItem itemLabel="Female" itemValue="Female" />
+                                    </p:selectOneButton>
+                              
 
-                 <b:column span = "2">
-                    <h:outputText value="Postal number:"/>
-                </b:column>
-     
-                <b:column span = "2">  
-                    <h:inputText value=""/>
-                </b:column>
-            </b:row>
- 
-              <b:row>
-                 <b:column span = "2">
-                    <h:outputText value="Phone number"/>
-                </b:column>
-             
-                <b:column span = "4">  
-                    <h:inputText value=""/>
-                </b:column>
-
-                 <b:column span = "2">
-                    <h:outputText value="Email Adress"/>
-                </b:column>
-             
-                <b:column span = "2">  
-                    <h:inputText value=""/>
-                </b:column>
-            </b:row>
-       
-    </p:panel>
-                
-                <p:panel id="panel" header="Passenger information" style="margin-bottom:10px;">
-                    
-                    <ui:repeat>
-                        
-                        
-                        
+                                </b:row>
+                                <b:row>
+                                    <b:column span = "3">
+                                        <h:outputText value="Address:"/>
+                                    </b:column>
+                                    <b:column span = "4">  
+                                        <h:inputText value="#{passenger.address}" size="60"/>
+                                    </b:column>
+                                </b:row>
+                                <b:row>
+                                    <b:column span = "3">
+                                        <h:outputText value="Postal number:"/>
+                                    </b:column>
+                                    <b:column span = "3">  
+                                        <h:inputText value="#{passenger.postalCode}" size="60"/>
+                                    </b:column>
+                                </b:row>
+                                <b:row>
+                                    <b:column span = "3">
+                                        <h:outputText value="Phone number"/>
+                                    </b:column>
+                                    <b:column span = "4">  
+                                        <h:inputText value="#{passenger.phoneNumber}" size="60"/>
+                                    </b:column>
+                                </b:row>
+                                <b:row>
+                                    <b:column span = "3">
+                                        <h:outputText value="Email Adress"/>
+                                    </b:column>
+                                    <b:column span = "3">  
+                                        <h:inputText value="#{passenger.emailAdress}" size="60"/>
+                                    </b:column>
+                                </b:row>
+                                <b:row>
+                                    <b:column span = "3">
+                                        <h:outputText value="First name:"/>
+                                    </b:column>
+                                    <b:column span = "2">  
+                                        <h:inputText value="#{passenger.firstName}" size="60"/>
+                                    </b:column>
+                                </b:row>
+                                <b:row>
+                                    <b:column span = "3">
+                                        <h:outputText value="Last name:"/>
+                                    </b:column>
+                                    <b:column span = "2">  
+                                        <h:inputText value="#{passenger.lastName}" size="60"/>
+                                    </b:column>
+                                </b:row>
+                        </b:panel>
+                        <br></br>
                     </ui:repeat>
-                    
-                    
-                </p:panel>      
+                </b:panel>      
                 
- 
-    <b:button outcome="formPayment" value="Next" />
-</h:form>
+            </h:form>
         </ui:define>
     </ui:composition>
-    
 </html>

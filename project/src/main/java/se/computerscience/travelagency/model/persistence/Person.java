@@ -8,7 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -30,8 +32,7 @@ public class Person implements Serializable {
     @Getter
     @Setter
     @Column(nullable = false)
-    private int gender;
-    
+    private String gender;
     
     @Getter
     @Setter
@@ -45,8 +46,33 @@ public class Person implements Serializable {
     @Column(nullable = false)
     private String lastName;
    
+    @Getter
+    @Setter
+    @Size(max = 255)
+    @Column(nullable = false)
+    private String Address;
+    
+     
+    @Getter
+    @Setter
+    @Size(max = 255)
+    @Column(nullable = false)
+    private String postalCode;
+    
+    @Getter
+    @Setter
+    @Size(max = 255)
+    @Column(nullable = false)
+    private String phoneNumber;   
+    
+    @Getter
+    @Setter
+    @Size(max = 255)
+    @Column(nullable = false)
+    private String emailAdress;
+    
     @ManyToMany(mappedBy = "person")
-    @JoinColumn(name = "id")
+    @JoinTable(name = "PERSONS")
     private List<Booking> bookingList;
     
     public Person() {
