@@ -75,11 +75,18 @@ public class Flight implements Serializable{
     @JoinColumn(name = "id")
     private List<Booking> bookingFlyBackList;
     
-    public long getDuration(){
+    public String getDuration(){
+        String time = "";
         long duration  = arrival.getTime() - depature.getTime();
-        //long diffInSeconds = TimeUnit.MILLISECONDS.toSeconds(duration);
-        return TimeUnit.MILLISECONDS.toMinutes(duration);
-        //long diffInHours = TimeUnit.MILLISECONDS.toHours(duration);
+        long diffInMin = TimeUnit.MILLISECONDS.toMinutes(duration);
+        long diffInHours = TimeUnit.MILLISECONDS.toHours(duration);
+        if (diffInHours != 0) {
+            time += diffInHours+" h ";
+        } 
+        if (diffInMin != 0){
+            time += diffInMin+" m";
+        }
+        return time;
     }
     
     public static class Comparators {

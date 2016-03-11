@@ -98,7 +98,7 @@ public class TestServlet extends HttpServlet {
             System.out.println("flight id "+flight.getId() + " price " + flight.getPrice());
         }
         for (Flight flight : flightDAO.orderByPriceAndDuration(fl)) {
-            long duration  = flight.getDuration();
+            String duration  = flight.getDuration();
             //long diffInMinutes = TimeUnit.MILLISECONDS.toMinutes(duration);
             System.out.println("flight id "+flight.getId() + " duration " + duration + " price " + flight.getPrice());
         }
