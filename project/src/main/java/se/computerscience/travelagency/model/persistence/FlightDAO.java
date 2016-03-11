@@ -41,4 +41,16 @@ public class FlightDAO extends GeneralDAO<Flight> implements IFlightDAO{
         Collections.sort(flightList, Flight.Comparators.PRICEandTIME);
         return flightList;
     }
+
+    @Override
+    public List<Flight> orderByEarliest(List<Flight> flightList) {
+        Collections.sort(flightList, Flight.Comparators.EARLIEST);
+        return flightList;
+    }
+
+    @Override
+    public List<Flight> orderByLatest(List<Flight> flightList) {
+        Collections.sort(flightList, Flight.Comparators.LATEST);
+        return flightList;
+    }
 }
