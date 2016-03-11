@@ -1,12 +1,13 @@
 package se.computerscience.travelagency.view;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -23,7 +24,7 @@ import se.computerscience.travelagency.model.persistence.IHotelDAO;
  */
 @Named(value = "searchBean")
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class searchBean {
     
     @EJB
@@ -60,16 +61,55 @@ public class searchBean {
     @Setter
     @Future
     @NotNull(message = "{required.field}")
-    private Date toDate;      
+    private Date toDate;
     
-    public List<String> search(String query) {
-        System.out.println("Search string: " + query);
-        List<String> stringList = cityDAO.searchCityByNameToString(query);
-        List<City> cityList = cityDAO.searchCityByName(query);
-        return cityDAO.searchCityByNameToString(query);
+    @Getter
+    @Setter
+    @Pattern(regexp = "[1-3]")
+    private String sortBy;
+    
+    @PostConstruct
+    public void init() {
+        sortBy = "2";
     }
     
-    public List<Hotel> getAvailableHotels () {
-        return hotelDAO.getAvailableHotels(fromDate, toDate, toCity, numPassengers);
+    public List<String> searchCity(String query) {
+        return cityDAO.searchCityByNameToString(query);
+    }
+    public List<Hotel> getAvailableHotels() {
+        City city = cityDAO.cityByName(toCity);
+        List<Hotel> hotels = hotelDAO.getAvailableHotels(fromDate, toDate, city, numPassengers);
+        switch (sortBy) {
+            case "1": 
+                System.out.println("ByPrice");
+                hotels = orderByPrice(hotels);
+                break;
+            case "2": 
+                System.out.println("ByRating");
+                hotels = orderByRating(hotels);
+                break;
+            case "3": 
+                System.out.println("orderByName");
+                hotels = orderByName(hotels);
+                break;
+            default:
+                System.out.println("ByPrice");
+                hotels = orderByPrice(hotels);
+                break;
+        }
+        System.out.println(hotels.get(0).getName());
+        return hotels;
+    }
+    
+    public List<Hotel> orderByPrice(List<Hotel> hotels) {
+        return hotelDAO.orderByPrice(hotels);
+    }
+    
+    public List<Hotel> orderByRating(List<Hotel> hotels) {
+        return hotelDAO.orderByRating(hotels);
+    }
+    
+    public List<Hotel> orderByName(List<Hotel> hotels) {
+        return hotelDAO.orderByName(hotels);
     }
 }

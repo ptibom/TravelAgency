@@ -1,12 +1,10 @@
 package se.computerscience.travelagency.model.persistence;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -15,10 +13,7 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class HotelDAO extends GeneralDAO<Hotel> implements IHotelDAO {
-    
-    @EJB
-    CityDAO cityDAO;
-    
+        
     public HotelDAO() {
         super(Hotel.class);
     }
@@ -33,7 +28,7 @@ public class HotelDAO extends GeneralDAO<Hotel> implements IHotelDAO {
     }
     
     @Override
-    public List<Hotel> getAvailableHotels(Date arrivalDate, Date returnDate, String cityName, String persons) {
+    public List<Hotel> getAvailableHotels(Date arrivalDate, Date returnDate, City city, String persons) {
         int numPersons = 0;
         try {
             numPersons = Integer.parseInt(persons);
@@ -43,23 +38,15 @@ public class HotelDAO extends GeneralDAO<Hotel> implements IHotelDAO {
             return emptyList; // Exit the request.
         }
         
-        // Find City by String
-        List<City> cities = cityDAO.searchCityByName(cityName);
-        if (cities.isEmpty()) {
-            List<Hotel> emptyList = new ArrayList<>();
-            return emptyList; // Could not find the City.
-        }
-        City city = cities.get(0); // Get first match.
-        
-        List<Hotel> availableHotel = new LinkedList<>();
+        List<Hotel> availableHotels = new LinkedList<>();
         List<Hotel> hotelList = city.getHotelList();
         for (Hotel hotel : hotelList) {
             int numBookedRooms = searchByDate(arrivalDate, arrivalDate, hotel).size();
-            if ((hotel.getNumberOfRooms() - numBookedRooms) >= numPersons) {
-                availableHotel.add(hotel);
+            if ((hotel.getNumberOfRooms() - numBookedRooms) >= (numPersons/2)) {
+                availableHotels.add(hotel);
             }
         }
-        return availableHotel;
+        return availableHotels;
     }
     
     @Override
@@ -72,14 +59,12 @@ public class HotelDAO extends GeneralDAO<Hotel> implements IHotelDAO {
     public List<Hotel> orderByName(List<Hotel> hotelList) {
         Collections.sort(hotelList, Hotel.Comparators.NAME);
         return hotelList;
-        
     }
     
     @Override
     public List<Hotel> orderByPrice(List<Hotel> hotelList) {
         Collections.sort(hotelList, Hotel.Comparators.PRICE);
         return hotelList;
-        
     }
     
     @Override
@@ -88,5 +73,4 @@ public class HotelDAO extends GeneralDAO<Hotel> implements IHotelDAO {
         return hotelList;
     }
 
-    
 }

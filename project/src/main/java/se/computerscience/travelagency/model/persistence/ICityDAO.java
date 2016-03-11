@@ -9,4 +9,5 @@ import java.util.List;
 public interface ICityDAO extends IDAO<City> {
     public List<City> searchCityByName(String cityName);
     public List<String> searchCityByNameToString(String cityName);
+    public City cityByName(String cityName);
 }
