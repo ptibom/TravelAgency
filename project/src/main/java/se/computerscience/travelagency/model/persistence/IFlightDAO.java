@@ -11,5 +11,7 @@ public interface IFlightDAO extends IDAO<Flight> {
     public List<Flight> orderByPrice(List<Flight> flightList);
     public List<Flight> orderByDuration(List<Flight> flightList);
     public List<Flight> orderByPriceAndDuration(List<Flight> flightList);
+    public List<Flight> orderByEarliest(List<Flight> flightList);
+    public List<Flight> orderByLatest(List<Flight> flightList);
     
 }
