@@ -31,7 +31,7 @@ public class PlaneTest {
     public static Archive<?> createDeployment() {
         return ShrinkWrap.create(WebArchive.class)
                 // Add all classes
-                .addPackage("se.computerscience.model.persistance")
+                .addPackage("se.computerscience.travelagency.model.persistence")
                 // This will add test-persitence.xml as persistence.xml (renamed)
                 // in folder META-INF, see Files > jpa_managing > target > arquillian
                 .addAsResource("test-persistence.xml", "META-INF/persistence.xml")

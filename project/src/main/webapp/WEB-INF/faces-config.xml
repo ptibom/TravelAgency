@@ -7,6 +7,7 @@
      <navigation-rule>
     <from-view-id>*</from-view-id>
     <navigation-case>
+<<<<<<< HEAD
         <from-outcome>formPassenger</from-outcome>
         <to-view-id>/partials/formPassenger.xhtml</to-view-id>
     </navigation-case>
@@ -17,6 +18,10 @@
        <navigation-case>
         <from-outcome>formPayment</from-outcome>
         <to-view-id>/partials/formPayment.xhtml</to-view-id>
+=======
+        <from-outcome>hotels</from-outcome>
+        <to-view-id>/partials/hotels.xhtml</to-view-id>
+>>>>>>> master
     </navigation-case>
   
 </navigation-rule>

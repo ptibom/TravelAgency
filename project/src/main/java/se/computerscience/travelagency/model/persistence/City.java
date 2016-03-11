@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 import lombok.Getter;
@@ -32,17 +33,27 @@ public class City implements Serializable {
     private String name;
     
     @OneToMany(mappedBy = "city")
+    @Getter
+    @JoinColumn(name = "id")
     private List<Hotel> hotelList;
     
     @OneToMany(mappedBy = "depCity")
+    @Getter
+    @JoinColumn(name = "id")
     private List<Flight> flightDepList;
     
     @OneToMany(mappedBy = "desCity")
+    @Getter
+    @JoinColumn(name = "id")
     private List<Flight> flightDesList;
     
     @OneToMany(mappedBy = "depCity")
+    @JoinColumn(name = "id")
+    @Getter
     private List<Booking> bookingDepList;
     
     @OneToMany(mappedBy = "desCity")
+    @JoinColumn(name = "id")
+    @Getter
     private List<Booking> bookingDesList;
 }
