@@ -39,10 +39,12 @@ public class CityBean {
     
     
     
-    public void addCity() {
+    public String addCity() {
         City city = new City();
         city.setName(cityNameAdd);
         cityDAO.create(city);
+        cityNameAdd=""; // make it empty again
+        return "/admin/city?faces-redirect=true";
     }
     public String editCity() {
         try {
@@ -57,13 +59,14 @@ public class CityBean {
         }
         
     }
-    public void deleteCity() {
+    public String deleteCity() {
         try {
             Long id = Long.parseLong(cityIdDel);
             cityDAO.delete(id);
         } catch (Exception e) {
             System.out.println("failed to parse id @citybean:deleteCity");
         }
+        return "/admin/city?faces-redirect=true";
     }
     
     public List<City> allCities(){
