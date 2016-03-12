@@ -1,7 +1,10 @@
 package se.computerscience.travelagency.model.persistence;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
+import static javax.persistence.CascadeType.PERSIST;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -73,28 +76,15 @@ public class Person implements Serializable {
     private String emailAdress;
     
     @ManyToMany(mappedBy = "person")
-    @JoinTable(name = "PERSONS")
+  //  @JoinTable(name = "PERSON_BOOKING")
     private List<Booking> bookingList;
     
     public Person() {
     }
     
-    public String toViewParamString(){
-        return gender + ":" + firstName +":" + lastName +":" + address +":" + postalCode +":" + phoneNumber +":" + emailAdress;
+    public void AddBooking(Booking b){
+        if(bookingList == null)bookingList = new ArrayList<Booking>();
+        bookingList.add(b);
     }
-    
-    public void initializeFromParam(String param){
-           
-        String[] items = param.split(":");
-        
-        gender= items[0];
-        firstName= items[1];
-        lastName= items[2];
-        address= items[3];
-        postalCode= items[4];
-        phoneNumber= items[5];
-        emailAdress= items[6];
-        
-    }
-    
+     
 }

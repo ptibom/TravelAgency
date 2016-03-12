@@ -3,11 +3,13 @@ package se.computerscience.travelagency.model.persistence;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -34,8 +36,10 @@ public class Booking implements Serializable {
     //@Column(nullable = false)
     private Double price;
    
-    @ManyToMany
-    @JoinTable(name="PERSONS")
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name="PERSON_BOOKING", joinColumns=@JoinColumn(name="BOOKING_ID", referencedColumnName ="ID"),
+            inverseJoinColumns=@JoinColumn(name="PERSON_ID", referencedColumnName="ID"))
+    @Setter
     @Getter
     //@Column(nullable = false)
     private List<Person> person;

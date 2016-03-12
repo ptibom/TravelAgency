@@ -12,36 +12,12 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui">
 
-    <f:metadata>
-        <f:viewParam name="fromCity" value="#{searchBean.fromCity}" />
-        <f:viewParam name="toCity" value="#{searchBean.toCity}" />
-        <f:viewParam name="numPassengers" value="#{searchBean.numPassengers}" />
-        <f:viewParam name="fromDate" value="#{searchBean.fromDate}" converter="javax.faces.DateTime" />
-        <f:viewParam name="toDate" value="#{searchBean.toDate}" converter="javax.faces.DateTime" />
-        <f:viewParam name="passengerList" value="#{searchBean.passengerList}" converter="#{personConverter}" />
-    </f:metadata>
     
     <ui:composition template="/WEB-INF/template.xhtml">
         <ui:define name="content">
             <br></br>
-            <h:form id="register">
-                <f:event listener="#{bookingBean.validateCreditCard}" type="postValidate" />
-                <row>
-                    <column span="2">
-                        <h:outputText value ="Choose a payment method:" />
-                    </column>
-                    <column span="2">
-                    </column>
-                    <column span="4">
-                        <p:selectOneRadio id="cardOption" value="#{bookingBean.cardOption}">
-                            <f:selectItem itemLabel="Master Card" itemValue="0" />
-                            <f:selectItem itemLabel="Visa" itemValue="1" />
-                            <f:selectItem itemLabel="American Express" itemValue="2" />
-                            <p:ajax update="msgCardOption" event="blur" />
-                        </p:selectOneRadio>
-                        <div style="width: 200px"><p:message for="cardOption" id="msgCardOption" /></div>
-                    </column>
-                </row>
+            <h:form >
+
                 <br></br>
                 <b:row>
                     <b:column span = "3">
@@ -92,7 +68,7 @@ and open the template in the editor.
                     <b:column span="6">
                     </b:column>
                     <b:column span="4">
-                       <h:commandButton action="/partials/orderProcessed.xhtml?faces-redirect=true&amp;includeViewParams=true" actionListener="#{bookingctrl.save()}"  value="Place Order" class="btn btn-default"></h:commandButton>
+                        <h:commandButton action="/partials/orderProcessed.xhtml?faces-redirect=true&amp;includeViewParams=true" actionListener="#{bookingCtrl.save()}"  value="Place Order" class="btn btn-default"></h:commandButton>
                     </b:column>
                 </b:row>
                 <br></br>

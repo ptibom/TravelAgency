@@ -1,5 +1,6 @@
 package se.computerscience.travelagency.model.persistence;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -8,5 +9,5 @@ import java.util.List;
  */
 public interface IBookingDAO extends IDAO<Booking> {
     public List<Person> getPassengers ();
-    public void insertBooking(  List<Person>  passengers, Booking booking);
+    public void insertBooking(  Booking b);
 }

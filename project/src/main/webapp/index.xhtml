@@ -23,7 +23,7 @@
                         </p:autoComplete>
                         <div style="width: 200px"><p:message for="toCity" id="msgToCity" /></div>
                         <h4>Persons</h4>
-                        <p:selectOneMenu id="numPersons" style="width: 150px" value="#{searchBean.numPassengers}">
+                        <p:selectOneMenu id="numPersons" style="width: 150px" value="#{bookingBean.numPassengers}">
                             <f:selectItem itemLabel="Select persons" itemValue="" noSelectionOption="true" />
                             <f:selectItem itemLabel="1" itemValue="1" />
                             <f:selectItem itemLabel="2" itemValue="2" />
@@ -64,7 +64,7 @@
                         <h:commandButton action="/partials/formContact.xhtml?faces-redirect=true&amp;includeViewParams=true" value="Search" class="btn btn-default">
                             <f:param name="fromCity" value="#{searchBean.fromCity}" />
                             <f:param name="toCity" value="#{searchBean.toCity}" />
-                            <f:param name="numPassengers" value="#{searchBean.numPassengers}" />
+                            <f:param name="numPassengers" value="#{bookingBean.numPassengers}" />
                             <f:param name="fromDate" value="#{searchBean.fromDate}" />
                             <f:param name="toDate" value="#{searchBean.toDate}" />
                         </h:commandButton>

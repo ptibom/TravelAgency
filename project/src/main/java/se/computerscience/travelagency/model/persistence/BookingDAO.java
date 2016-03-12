@@ -1,5 +1,6 @@
 package se.computerscience.travelagency.model.persistence;
 
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 
@@ -21,12 +22,9 @@ public class BookingDAO extends GeneralDAO<Booking> implements IBookingDAO {
     }
     
      @Override
-    public void  insertBooking(List<Person> passengers, Booking booking ){
-        
-          em.createQuery("INSERT INTO BOOKING" + "VALUES (" + booking.getFlyBack() + ", " + booking.getFlyTo() + ", " + booking.getPrice().toString() + ")" );
-        
-      //  for(Person passenger:passengers)
-      //    em.createQuery("INSERT INTO PERSON" + "VALUES (" )
-                
+    public void  insertBooking(Booking b ){
+  
+        em.persist(b);
+              
     }
 }

@@ -1,14 +1,15 @@
 package se.computerscience.travelagency.view;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Model;
 import javax.inject.Named;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -27,7 +28,7 @@ import se.computerscience.travelagency.model.persistence.Person;
 @Named(value = "searchBean")
 @ManagedBean
 @SessionScoped
-public class SearchBean {
+public class SearchBean implements Serializable{
     
     @EJB
     ICityDAO cityDAO;
@@ -120,16 +121,5 @@ public class SearchBean {
         return hotelDAO.orderByName(hotels);
     }
     
-    public List<Person> intializePassengerList(){
-        passengerList = new ArrayList<>();
-        int passangers = Integer.parseInt(numPassengers);
-        
-        for(int i = 0; i<passangers; i++){
-            
-            passengerList.add(new Person());
-        }
-        
-        return passengerList;
-        
-    }
+ 
 }

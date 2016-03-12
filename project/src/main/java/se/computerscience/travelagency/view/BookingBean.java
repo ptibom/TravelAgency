@@ -6,21 +6,18 @@
 package se.computerscience.travelagency.view;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ComponentSystemEvent;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import se.computerscience.travelagency.model.persistence.Person;
 
 @Named(value = "bookingBean")
 @ManagedBean
@@ -28,99 +25,52 @@ import lombok.Setter;
 public class BookingBean implements Serializable {
 
     @Getter
+    List<Person> passengerList;
+    
+    @Getter
+    @Setter
+    private String numPassengers;
+    
+    @Getter
     @Setter
     @NotNull(message = "{required.field}")
-    String creditCardNumber;
+    @Pattern(regexp = "\\d+")
+    @Size(min=16, max=16)
+    private String creditCardNumber;
+    
+    @Getter
+    @Setter
+    @NotNull(message = "{required.field}")
+    private String cardHolderName;
 
     @Getter
     @Setter
     @NotNull(message = "{required.field}")
-    String cardHolderName;
+    private String expirationDate;
 
     @Getter
     @Setter
     @NotNull(message = "{required.field}")
-    String expirationDate;
+    private String cardOption;
 
-    @Getter
-    @Setter
-    @NotNull(message = "{required.field}")
-    String cardOption;
-
-    public void validateCreditCard(ComponentSystemEvent event) {
-
-        FacesContext fc = FacesContext.getCurrentInstance();
-        UIComponent comps = event.getComponent();
-
-        // Ui input
-        UIInput uiInputCreditCardNr = (UIInput) comps.findComponent("creditCardNumber");
-        UIInput uiInputcardHolderName = (UIInput) comps.findComponent("cardHolderName");
-        UIInput uiInputexpirationDate = (UIInput) comps.findComponent("creditCardNumber");;
-        UIInput uiInputCardOption = (UIInput) comps.findComponent("cardOption");;
-
-        String creditCardNr = uiInputCreditCardNr.getLocalValue() == null ? ""
-                : uiInputCreditCardNr.getLocalValue().toString();
-        String cardHolderNam = uiInputcardHolderName.getLocalValue() == null ? ""
-                : uiInputcardHolderName.getLocalValue().toString();
-        String expirationDat = uiInputexpirationDate.getLocalValue() == null ? ""
-                : uiInputexpirationDate.getLocalValue().toString();
-        String cardOpt = uiInputCardOption.getLocalValue() == null ? ""
-                : uiInputCardOption.getLocalValue().toString();
-        
-        // If any of them are empty, let the ordinary validators handle them
-        if (cardOpt.isEmpty() || expirationDat.isEmpty() ||
-                 cardHolderNam.isEmpty() ||creditCardNr.isEmpty()) {
-		return;
-	  }
-        
-        boolean valid = true;
-        String VALIDATE_ERROR_MESSAGE = "";
-
-        //Get parameters
-        String creditCardNrID = uiInputCreditCardNr.getClientId();
-
-        switch (cardOpt) {
-
-            case "0":
-                valid = validateMasterCard(creditCardNr);
-                VALIDATE_ERROR_MESSAGE = "MasterCard number not valid";
-                break;
-            case "1":
-                valid = validateVisa(creditCardNr);
-                VALIDATE_ERROR_MESSAGE = "Visa number not valid";
-                break;
-            case "2":
-                valid = validateAmericanExpress(creditCardNr);
-                VALIDATE_ERROR_MESSAGE = "American Express number not valid";
-                break;
-            default:
-        }
-
-        if (!valid) {
-            FacesMessage msg = new FacesMessage(VALIDATE_ERROR_MESSAGE);
-            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-            fc.addMessage(creditCardNrID, msg);
-            fc.renderResponse();
-        }
-    }
 
     @PostConstruct
     public void init(){
         cardOption = "0";
     }
-    private boolean validateMasterCard(String value) {
-
-        return value.length() == 16 && value.substring(0, 1).equals("5");
+    
+       public List<Person> intializePassengerList(){
+           System.out.println(numPassengers);
+        passengerList = new ArrayList<>();
+        
+        if(numPassengers == null)return null;
+        int passangers = Integer.parseInt(numPassengers);
+        
+        for(int i = 0; i<passangers; i++){
+            passengerList.add(new Person());
+        }
+        
+        return passengerList;
+        
     }
-
-    private boolean validateAmericanExpress(String value) {
-
-        return value.length() == 15 && value.substring(0, 1).equals("3");
-    }
-
-    private boolean validateVisa(String value) {
-
-        return value.length() == 16 && value.substring(0, 1).equals("4");
-    }
-
 }
