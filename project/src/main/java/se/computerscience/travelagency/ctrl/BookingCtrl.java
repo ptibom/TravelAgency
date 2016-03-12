@@ -35,14 +35,15 @@ import se.computerscience.travelagency.view.SearchBean;
     
     public void save(){
         
+      System.out.println(" I was run");
     Booking booked = new Booking();
     booked.setFlyBackDate(searchbean.getFromDate());
     booked.setFlyToDate(searchbean.getToDate());
     booked.setPrice(1000.0);
-  
     
     bookingDAO.insertBooking(searchbean.getPassengerList(), booked);
         
+    
     }
     
     @Inject

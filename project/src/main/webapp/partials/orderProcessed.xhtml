@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui">
 
-    <f:metadata>
-        <f:viewParam name="fromCity" value="#{searchBean.fromCity}" />
-        <f:viewParam name="toCity" value="#{searchBean.toCity}" />
-        <f:viewParam name="numPassengers" value="#{searchBean.numPassengers}" />
-        <f:viewParam name="fromDate" value="#{searchBean.fromDate}" converter="javax.faces.DateTime" />
-        <f:viewParam name="toDate" value="#{searchBean.toDate}" converter="javax.faces.DateTime" />
-    </f:metadata>
 
     <ui:composition template="/WEB-INF/template.xhtml">
         <ui:define name="content">
-            <b:panel><h3>Congratulations, your order has been processed </h3></b:panel>
+            Congratulations, your order has been processed
         </ui:define>
     </ui:composition>
 </html>

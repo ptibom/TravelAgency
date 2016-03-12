@@ -5,6 +5,7 @@
  */
 package se.computerscience.travelagency.view;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -20,32 +21,30 @@ import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import se.computerscience.travelagency.model.persistence.IBookingDAO;
-import se.computerscience.travelagency.model.persistence.Person;
 
 @Named(value = "bookingBean")
 @ManagedBean
 @SessionScoped
-public class BookingBean {
+public class BookingBean implements Serializable {
 
     @Getter
     @Setter
-    @NotNull
+    @NotNull(message = "{required.field}")
     String creditCardNumber;
 
     @Getter
     @Setter
-    @NotNull
+    @NotNull(message = "{required.field}")
     String cardHolderName;
 
     @Getter
     @Setter
-    @NotNull
+    @NotNull(message = "{required.field}")
     String expirationDate;
 
     @Getter
     @Setter
-    @NotNull
+    @NotNull(message = "{required.field}")
     String cardOption;
 
     public void validateCreditCard(ComponentSystemEvent event) {
@@ -121,7 +120,6 @@ public class BookingBean {
 
     private boolean validateVisa(String value) {
 
-        System.out.println("Visa card length:" + value.length() + " FIRST VALUE=" +  value.substring(0, 1) );
         return value.length() == 16 && value.substring(0, 1).equals("4");
     }
 

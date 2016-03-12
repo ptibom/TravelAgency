@@ -23,84 +23,84 @@ and open the template in the editor.
             <br></br>
             <h:form >
                 <b:row>
-                      <b:column span="1">
-                          </b:column>
+                    <b:column span="1">
+                    </b:column>
                     <b:column span="2">
                         <p:button outcome="formPayment" value="Back" style="width: 150px; "/>
-                </b:column>
+                    </b:column>
                     <b:column span="5">
                     </b:column>
-                    <b:column span="2">                         
-                <h:commandButton action="/partials/formPayment.xhtml?faces-redirect=true&amp;includeViewParams=true" value="Next" class="btn btn-default">
-                            <f:param name="passengerList" value="#{searchBean.passengerList}" />
-                </h:commandButton>
-                </b:column>
+                    <b:column span="2">
+                        <h:commandButton action="/partials/formPayment.xhtml?faces-redirect=true&amp;includeViewParams=true" value="Next" class="btn btn-default">
+                            <f:param name="passengerList" value="#{searchBean.passengerList}"  />
+                        </h:commandButton>
+                    </b:column>
                 </b:row>
                 <b:panel id="panel2" title="Passenger information" style="margin-bottom:10px;">
                     <ui:repeat value="#{searchBean.intializePassengerList()}" var="passenger" varStatus="varStat">
                         <b:panel title="Passenger #{varStat.index+1} ">
-                                 <b:row>
-                                    <b:column span ="5">  
-                                        <h:outputText value="Gender: " />
-                                    </b:column>
-                                     <p:selectOneButton value="#{passenger.gender}" class="genderButton">
-                                        <f:selectItem itemLabel="Male" itemValue="Male" />
-                                        <f:selectItem itemLabel="Female" itemValue="Female" />
-                                    </p:selectOneButton>
-                                </b:row>
-                                <b:row>
-                                    <b:column span = "3">
-                                        <h:outputText value="Address:"/>
-                                    </b:column>
-                                    <b:column span = "4">  
-                                        <h:inputText value="#{passenger.address}" size="60"/>
-                                    </b:column>
-                                </b:row>
-                                <b:row>
-                                    <b:column span = "3">
-                                        <h:outputText value="Postal number:"/>
-                                    </b:column>
-                                    <b:column span = "3">  
-                                        <h:inputText value="#{passenger.postalCode}" size="60"/>
-                                    </b:column>
-                                </b:row>
-                                <b:row>
-                                    <b:column span = "3">
-                                        <h:outputText value="Phone number"/>
-                                    </b:column>
-                                    <b:column span = "4">  
-                                        <h:inputText value="#{passenger.phoneNumber}" size="60"/>
-                                    </b:column>
-                                </b:row>
-                                <b:row>
-                                    <b:column span = "3">
-                                        <h:outputText value="Email Adress"/>
-                                    </b:column>
-                                    <b:column span = "3">  
-                                        <h:inputText value="#{passenger.emailAdress}" size="60"/>
-                                    </b:column>
-                                </b:row>
-                                <b:row>
-                                    <b:column span = "3">
-                                        <h:outputText value="First name:"/>
-                                    </b:column>
-                                    <b:column span = "2">  
-                                        <h:inputText value="#{passenger.firstName}" size="60"/>
-                                    </b:column>
-                                </b:row>
-                                <b:row>
-                                    <b:column span = "3">
-                                        <h:outputText value="Last name:"/>
-                                    </b:column>
-                                    <b:column span = "2">  
-                                        <h:inputText value="#{passenger.lastName}" size="60"/>
-                                    </b:column>
-                                </b:row>
+                            <b:row>
+                                <b:column span ="5">  
+                                    <h:outputText value="Gender: " />
+                                </b:column>
+                                <p:selectOneButton value="#{passenger.gender}" class="genderButton">
+                                    <f:selectItem itemLabel="Male" itemValue="Male" />
+                                    <f:selectItem itemLabel="Female" itemValue="Female" />
+                                </p:selectOneButton>
+                            </b:row>
+                            <b:row>
+                                <b:column span = "3">
+                                    <h:outputText value="Address:"/>
+                                </b:column>
+                                <b:column span = "4">  
+                                    <h:inputText value="#{passenger.address}" size="60"/>
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column span = "3">
+                                    <h:outputText value="Postal number:"/>
+                                </b:column>
+                                <b:column span = "3">  
+                                    <h:inputText value="#{passenger.postalCode}" size="60"/>
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column span = "3">
+                                    <h:outputText value="Phone number"/>
+                                </b:column>
+                                <b:column span = "4">  
+                                    <h:inputText value="#{passenger.phoneNumber}" size="60"/>
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column span = "3">
+                                    <h:outputText value="Email Adress"/>
+                                </b:column>
+                                <b:column span = "3">  
+                                    <h:inputText value="#{passenger.emailAdress}" size="60"/>
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column span = "3">
+                                    <h:outputText value="First name:"/>
+                                </b:column>
+                                <b:column span = "2">  
+                                    <h:inputText value="#{passenger.firstName}" size="60"/>
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column span = "3">
+                                    <h:outputText value="Last name:"/>
+                                </b:column>
+                                <b:column span = "2">  
+                                    <h:inputText value="#{passenger.lastName}" size="60"/>
+                                </b:column>
+                            </b:row>
                         </b:panel>
                         <br></br>
                     </ui:repeat>
                 </b:panel>      
-                
+
             </h:form>
         </ui:define>
     </ui:composition>

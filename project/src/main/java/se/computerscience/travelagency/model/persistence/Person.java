@@ -79,8 +79,7 @@ public class Person implements Serializable {
     public Person() {
     }
     
-    @Override
-    public String toString(){
+    public String toViewParamString(){
         return gender + ":" + firstName +":" + lastName +":" + address +":" + postalCode +":" + phoneNumber +":" + emailAdress;
     }
     

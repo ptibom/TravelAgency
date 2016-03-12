@@ -1,23 +1,26 @@
-package org.omnifaces.showcase.components;
+package utilities;
+
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
 import se.computerscience.travelagency.model.persistence.Person;
 
-@FacesConverter("testConverter")
+@FacesConverter("personConverter")
 public class PersonConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
 
         List<Person> passengers = new ArrayList<>();
+        
+        if(passengers.isEmpty())throw new ConverterException("No passengers found");
 
         //Return string to List of objects, splitting person by |
         for (String person : value.split("|")) {
@@ -35,7 +38,7 @@ public class PersonConverter implements Converter {
         List<Person> passengers = (ArrayList<Person>) value;
 
         for (Person passenger : passengers) {
-            param += passenger.toString() + "|";
+            param += passenger.toViewParamString() + "|";
         }
         return param;
     }
