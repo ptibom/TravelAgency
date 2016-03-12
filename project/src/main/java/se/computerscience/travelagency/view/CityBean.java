@@ -1,5 +1,6 @@
 package se.computerscience.travelagency.view;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -27,7 +28,7 @@ public class CityBean {
     @Setter
     @Pattern(regexp = "[A-Za-zÅÄÖåäö]+", message = "{required.letters}")
     @NotNull(message = "{required.field}")
-    private String cityNameAdd, cityNameEdit;
+    private String cityNameAdd, cityNameEdit, cityNameDel;
     
     @Getter
     @Setter
@@ -43,14 +44,16 @@ public class CityBean {
         city.setName(cityNameAdd);
         cityDAO.create(city);
     }
-    public void editCity() {
+    public String editCity() {
         try {
             Long id = Long.parseLong(cityIdEdit);
             City city = cityDAO.findById(id);
             city.setName(cityNameEdit);
             cityDAO.update(city);
+            return "/admin/city?faces-redirect=true";
         } catch (Exception e) {
             System.out.println("failed to parse id @citybean:editCity");
+            return "/admin/index?faces-redirect=true";
         }
         
     }
@@ -61,5 +64,9 @@ public class CityBean {
         } catch (Exception e) {
             System.out.println("failed to parse id @citybean:deleteCity");
         }
+    }
+    
+    public List<City> allCities(){
+        return cityDAO.findAll();
     }
 }

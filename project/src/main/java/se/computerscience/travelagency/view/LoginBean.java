@@ -25,8 +25,9 @@ public class LoginBean implements Serializable {
     @Getter
     @Setter
     private String password;
-
-    public void login() {
+    
+    
+    public String login() {
         FacesContext context = FacesContext.getCurrentInstance();
         ExternalContext externalContext = context.getExternalContext();
         HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
@@ -35,8 +36,10 @@ public class LoginBean implements Serializable {
             request.login(userName, password);
             User user = new User(userName);
             externalContext.getSessionMap().put("user", user);
+            return "/admin/index?faces-redirect=true";
         } catch (ServletException e) {
             System.err.println("Logg in failed");
+            return "";
         }
     }
 
