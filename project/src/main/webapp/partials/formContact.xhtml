@@ -30,15 +30,10 @@ and open the template in the editor.
                 </b:column>
                     <b:column span="5">
                     </b:column>
-                    <b:column span="2">
-                <h:commandButton action="/partials/formContact.xhtml?faces-redirect=true&amp;includeViewParams=true" value="Search" class="btn btn-default">
-                            <f:param name="fromCity" value="#{searchBean.fromCity}" />
-                            <f:param name="toCity" value="#{searchBean.toCity}" />
-                            <f:param name="numPassengers" value="#{searchBean.numPassengers}" />
-                            <f:param name="fromDate" value="#{searchBean.fromDate}" />
-                            <f:param name="toDate" value="#{searchBean.toDate}" />
+                    <b:column span="2">                         
+                <h:commandButton action="/partials/formPayment.xhtml?faces-redirect=true&amp;includeViewParams=true" value="Next" class="btn btn-default">
                             <f:param name="passengerList" value="#{searchBean.passengerList}" />
-                        </h:commandButton>
+                </h:commandButton>
                 </b:column>
                 </b:row>
                 <b:panel id="panel2" title="Passenger information" style="margin-bottom:10px;">

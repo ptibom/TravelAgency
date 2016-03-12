@@ -51,7 +51,7 @@ public class Person implements Serializable {
     @Setter
     @Size(max = 255)
     @Column(nullable = false)
-    private String Address;
+    private String address;
     
      
     @Getter
@@ -77,6 +77,25 @@ public class Person implements Serializable {
     private List<Booking> bookingList;
     
     public Person() {
+    }
+    
+    @Override
+    public String toString(){
+        return gender + ":" + firstName +":" + lastName +":" + address +":" + postalCode +":" + phoneNumber +":" + emailAdress;
+    }
+    
+    public void initializeFromParam(String param){
+           
+        String[] items = param.split(":");
+        
+        gender= items[0];
+        firstName= items[1];
+        lastName= items[2];
+        address= items[3];
+        postalCode= items[4];
+        phoneNumber= items[5];
+        emailAdress= items[6];
+        
     }
     
 }

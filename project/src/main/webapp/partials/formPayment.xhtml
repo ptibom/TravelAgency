@@ -19,7 +19,6 @@ and open the template in the editor.
         <f:viewParam name="fromDate" value="#{searchBean.fromDate}" converter="javax.faces.DateTime" />
         <f:viewParam name="toDate" value="#{searchBean.toDate}" converter="javax.faces.DateTime" />
         <f:viewParam name="passengerList" value="#{searchBean.passengerList}" />
-       
     </f:metadata>
     
     <ui:composition template="/WEB-INF/template.xhtml">
@@ -93,7 +92,7 @@ and open the template in the editor.
                     <b:column span="6">
                     </b:column>
                     <b:column span="4">
-                        <b:commandButton action="/partials/formContact.xhtml?faces-redirect=true&amp;includeViewParams=true" actionListener="#{bookingctrl.save()}"  value="Place Order" /> 
+                        <b:commandButton action="/partials/formContact.xhtml?faces-redirect=true" actionListener="#{bookingctrl.save()}"  value="Place Order" /> 
                     </b:column>
                 </b:row>
             </h:form>
