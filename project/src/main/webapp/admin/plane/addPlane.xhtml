@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    
+    <ui:composition template="/WEB-INF/template.xhtml" rendered="#{request.isUserInRole('adminRole')}">
+        <ui:define name="content">          
+            <h:form>
+                <h3>Add Plane</h3>
+                <h:panelGrid columns="1">
+                    <h:outputLabel for="plane" value="Plane type"/>
+                    <h:inputText value="#{planeBean.planeTypeAdd}" id="addType"/>
+                    <h:message for="plane" />
+                    
+                    <h:outputLabel for="plane" value="Plane capacity"/>
+                    <h:inputText value="#{planeBean.planeCapacityAdd}" id="addCap"/>
+                    <h:message for="plane" />
+                </h:panelGrid> 
+                
+                <h:commandButton value="Cancel" immediate="true" class="btn btn-default" action="index?faces-redirect=true" />
+                <h:commandButton value="Add plane" action="#{planeBean.addPlane()}" class="btn btn-default"/>
+            </h:form>    
+        </ui:define>
+    </ui:composition>
+</html>

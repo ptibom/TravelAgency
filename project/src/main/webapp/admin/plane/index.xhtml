@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    <ui:composition template="/WEB-INF/template.xhtml" rendered="#{request.isUserInRole('adminRole')}">
+        <ui:define name="content">
+            <!-- Logg in to access the admin page -->      
+            <h:link value="Add Plane" outcome="addPlane.xhtml" />
+            <h:dataTable var="plane" value="#{planeBean.allPlanes()}"  class="table table-striped">
+                <h:column><h:outputText value="#{plane.id}"/></h:column>
+                <h:column><h:outputText value="#{plane.type}"/></h:column>
+                <h:column><h:outputText value="#{plane.capacity}"/></h:column>
+                <h:column>
+                     <h:link value="Edit" outcome="editPlane.xhtml" >
+                        <f:param name="id" value="#{plane.id}" />
+                        <f:param name="type" value="#{plane.type}" />
+                        <f:param name="capacity" value="#{plane.capacity}" />
+                    </h:link>
+                </h:column>
+                <h:column>
+                     <h:link value="Delete" outcome="delPlane.xhtml" >
+                        <f:param name="id" value="#{plane.id}" />
+                        <f:param name="type" value="#{plane.type}" />
+                        <f:param name="capacity" value="#{plane.capacity}" />
+                    </h:link>
+                </h:column>
+            </h:dataTable>    
+        </ui:define>
+    </ui:composition>
+</html>
