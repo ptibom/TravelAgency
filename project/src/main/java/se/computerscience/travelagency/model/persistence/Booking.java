@@ -62,10 +62,12 @@ public class Booking implements Serializable {
     
     @ManyToOne
     @Getter
+    @Setter
     //@Column(nullable = false)
     private City desCity;
     
     @ManyToOne
+    @Setter
     @Getter
     //@Column(nullable = false)
     private City depCity;

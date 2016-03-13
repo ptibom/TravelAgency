@@ -14,6 +14,7 @@ import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import se.computerscience.travelagency.model.persistence.Booking;
+import se.computerscience.travelagency.model.persistence.City;
 import se.computerscience.travelagency.model.persistence.IBookingDAO;
 import se.computerscience.travelagency.model.persistence.Person;
 import se.computerscience.travelagency.view.BookingBean;
@@ -39,6 +40,13 @@ import se.computerscience.travelagency.view.SearchBean;
     booked.setFlyBackDate(searchBean.getFromDate());
     booked.setFlyToDate(searchBean.getToDate());
     booked.setPrice(1000.0);
+    // Booking need a city
+  //  City fromCity = new City();
+  //  fromCity.setName(searchBean.getFromCity());
+  //  City toCity = new City();
+  //  toCity.setName(searchBean.getToCity());
+  //  booked.setDepCity(fromCity);
+  //  booked.setDesCity(toCity);
     
     // Create relationship
     booked.setPerson(bookingBean.getPassengerList());
