@@ -12,7 +12,7 @@
             <h:link value="Add Booking" outcome="addBooking.xhtml" /> <br />
             <h:link value="Back to admin menu" outcome="/admin/index.xhtml" /> 
             
-            <h:dataTable var="booking" value="#{bookingBean.allBookings()}"  class="table table-striped">
+            <h:dataTable var="booking" value="#{bookingAdminBean.allBookings()}"  class="table table-striped">
                 <h:column><h:outputText value="Id: #{booking.id}"/></h:column>
                 <h:column><h:outputText value="dscId: #{booking.desCityId}"/></h:column>
                 <h:column><h:outputText value="dpcId: #{booking.depCityId}"/></h:column>

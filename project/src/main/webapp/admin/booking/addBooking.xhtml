@@ -13,39 +13,39 @@
                 <h3>Add booking</h3>
                 <h:panelGrid columns="1">
                     <h:outputLabel for="name" value="desCityId"/>
-                    <h:inputText value="#{bookingBean.desCityId}" id="addDes" />
+                    <h:inputText value="#{bookingAdminBean.desCityId}" id="addDes" />
                     <h:message for="name" />
                     
                     <h:outputLabel for="name" value="depCityId"/>
-                    <h:inputText value="#{bookingBean.depCityId}" id="addDep"/>
+                    <h:inputText value="#{bookingAdminBean.depCityId}" id="addDep"/>
                     <h:message for="name" />
                     
                     <h:outputLabel for="name" value="flightToId"/>
-                    <h:inputText value="#{bookingBean.flightToId}" id="addFto"/>
+                    <h:inputText value="#{bookingAdminBean.flightToId}" id="addFto"/>
                     <h:message for="name" />
                     
                     <h:outputLabel for="name" value="flightBackId"/>
-                    <h:inputText value="#{bookingBean.flightBackId}" id="addFbk"/>
+                    <h:inputText value="#{bookingAdminBean.flightBackId}" id="addFbk"/>
                     <h:message for="name" />
                     
                     <h:outputLabel for="name" value="fly to date"/>
-                    <p:calendar value="#{bookingBean.depatureToDate}" id="fDate" pages="1" mindate="#{now}" />
+                    <p:calendar value="#{bookingAdminBean.depatureToDate}" id="fDate" pages="1" mindate="#{now}" />
                     <h:message for="name" />
                     
                     <h:outputLabel for="name" value="fly to date"/>
-                    <p:calendar value="#{bookingBean.depatureBackDate}" id="bDate" pages="1" mindate="#{now}"/>
+                    <p:calendar value="#{bookingAdminBean.depatureBackDate}" id="bDate" pages="1" mindate="#{now}"/>
                     <h:message for="name" />
                     
                     <h:outputLabel for="name" value="hotelId"/>
-                    <h:inputText value="#{bookingBean.hotelId}" id="hotelId"/>
+                    <h:inputText value="#{bookingAdminBean.hotelId}" id="hotelId"/>
                     <h:message for="name" />
                     
                     <h:outputLabel for="name" value="personId"/>
-                    <h:inputText value="#{bookingBean.personId}" id="personId"/>
+                    <h:inputText value="#{bookingAdminBean.personId}" id="personId"/>
                     <h:message for="name" />
                     
                     <h:outputLabel for="name" value="price"/>
-                    <h:inputText value="#{bookingBean.price}" id="price"/>
+                    <h:inputText value="#{bookingAdminBean.price}" id="price"/>
                     <h:message for="name" />
                     
                 </h:panelGrid> 
