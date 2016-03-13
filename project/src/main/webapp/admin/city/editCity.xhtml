@@ -7,18 +7,27 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui">
     
+    <f:metadata>
+        <f:viewParam name="id" value="#{cityBean.cityIdEdit}"  />
+        <f:viewParam name="name" value="#{cityBean.cityNameEdit}"  />
+    </f:metadata>
+    
     <ui:composition template="/WEB-INF/template.xhtml" rendered="#{request.isUserInRole('adminRole')}">
         <ui:define name="content">          
             <h:form>
-                <h3>Add city</h3>
+                <h3>Edit city</h3>
                 <h:panelGrid columns="1">
+                    <h:outputLabel for="id" value="City id"/>
+                    <h:inputText value="#{cityBean.cityIdEdit}" id="editId" disabled="true"/>
+                    <h:message for="id" />                  
+
                     <h:outputLabel for="city" value="City name"/>
-                    <h:inputText value="#{cityBean.cityNameAdd}" id="addName"/>
+                    <h:inputText value="#{cityBean.cityNameEdit}" id="editName"/>
                     <h:message for="city" />
                 </h:panelGrid> 
                 
-                <h:commandButton value="Cancel" immediate="true" class="btn btn-default" action="city?faces-redirect=true" />
-                <h:commandButton value="Add city" action="#{cityBean.addCity()}" class="btn btn-default"/>
+                <h:commandButton value="Cancel" immediate="true" class="btn btn-default" action="index?faces-redirect=true" />
+                <h:commandButton value="Save" action="#{cityBean.editCity()}" class="btn btn-default"/>
             </h:form>    
         </ui:define>
     </ui:composition>

@@ -44,7 +44,7 @@ public class CityBean {
         city.setName(cityNameAdd);
         cityDAO.create(city);
         cityNameAdd=""; // make it empty again
-        return "/admin/city?faces-redirect=true";
+        return "index?faces-redirect=true";
     }
     public String editCity() {
         try {
@@ -52,7 +52,7 @@ public class CityBean {
             City city = cityDAO.findById(id);
             city.setName(cityNameEdit);
             cityDAO.update(city);
-            return "/admin/city?faces-redirect=true";
+            return "index?faces-redirect=true";
         } catch (Exception e) {
             System.out.println("failed to parse id @citybean:editCity");
             return "/admin/index?faces-redirect=true";
@@ -66,7 +66,7 @@ public class CityBean {
         } catch (Exception e) {
             System.out.println("failed to parse id @citybean:deleteCity");
         }
-        return "/admin/city?faces-redirect=true";
+        return "index?faces-redirect=true";
     }
     
     public List<City> allCities(){
