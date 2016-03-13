@@ -104,7 +104,10 @@ public class SearchBean {
     
     public List<Hotel> getAvailableHotels() {
         City city = cityDAO.cityByName(toCity);
+        System.out.println(city.getName());
+        System.out.println(fromDate.toString() +" " + toDate.toString() + " " + numPassengers);
         List<Hotel> hotels = hotelDAO.getAvailableHotels(fromDate, toDate, city, numPassengers);
+        System.out.println(hotels.size());
         switch (sortBy) {
             case "1": 
                 hotels = orderHotelByPrice(hotels);

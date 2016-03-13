@@ -91,16 +91,17 @@ public class Person implements Serializable {
     @Column(nullable = false)
     private String emailAdress;
     
-    @ManyToMany(mappedBy = "person")
-  //  @JoinTable(name = "PERSON_BOOKING")
-    private List<Booking> bookingList;
+    @ManyToMany(mappedBy = "persons")
+    private List<Booking> bookings;
     
     public Person() {
     }
     
-    public void AddBooking(Booking b){
-        if(bookingList == null)bookingList = new ArrayList<Booking>();
-        bookingList.add(b);
+    public void addBooking (Booking b){
+        if (bookings == null) { 
+            bookings = new ArrayList<>();
+        }
+        bookings.add(b);
     }
      
 }

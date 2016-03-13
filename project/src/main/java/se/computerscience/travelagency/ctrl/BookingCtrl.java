@@ -23,11 +23,13 @@ import se.computerscience.travelagency.model.persistence.Person;
 import se.computerscience.travelagency.view.BookingBean;
 import se.computerscience.travelagency.view.SearchBean;
 
-@Model
-@ManagedBean
-@SessionScoped
-public class BookingCtrl {
 
+public class BookingCtrl {
+    
+    public void save() {}
+    public List<Person> getPassengers(String query) {return null;}
+/*
+   
     @EJB
     IBookingDAO bookingDAO;
 
@@ -55,7 +57,6 @@ public class BookingCtrl {
         booked.setFlyBack(flightDAO.findById(1L));
         booked.setFlyTo(flightDAO.findById(2L));
         booked.setHotel(hotelDAO.findById(1L));
-        booked.setPerson(bookingBean.getPassengerList());
         for (Person passenger : bookingBean.getPassengerList()) {
             passenger.AddBooking(booked);
         }
@@ -75,5 +76,5 @@ public class BookingCtrl {
     public List<Person> getPassengers(String query) {
         return bookingDAO.getPassengers();
     }
-
+*/
 }
