@@ -64,9 +64,9 @@ public class BookingBean implements Serializable {
         return passengerList;
 
     }
-    public void clear(){
-        SearchBean searchingBean = new SearchBean();
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("searchingBean",searchingBean);
+    public String clear(){
+       FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+       return "/index.xhtml?faces-redirect=true";
     }
 
 }

@@ -35,21 +35,17 @@ import se.computerscience.travelagency.view.SearchBean;
      SearchBean searchBean;
     
     public void save(){     
-    
     Booking booked = new Booking();
     booked.setFlyBackDate(searchBean.getFromDate());
     booked.setFlyToDate(searchBean.getToDate());
     booked.setPrice(1000.0);
-    booked.setPerson(bookingBean.getPassengerList());
-
     
+    // Create relationship
+    booked.setPerson(bookingBean.getPassengerList());
     for(Person passenger : bookingBean.getPassengerList()){
        passenger.AddBooking(booked);
-      
-    }
-      
+    } 
      bookingDAO.insertBooking(booked);
-    
     }
     
     @Inject

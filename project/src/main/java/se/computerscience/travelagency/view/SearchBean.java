@@ -10,6 +10,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Model;
 import javax.inject.Named;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -116,13 +117,8 @@ public class SearchBean implements Serializable{
         return hotelDAO.orderByName(hotels);
     }
     
+
     public void clear(){
-        fromCity = null;
-        toCity = null;
-        sortBy = "1";
-        fromDate = null;
-        toDate = null;
-        
+       FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
- 
 }
