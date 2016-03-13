@@ -38,7 +38,7 @@
                         <b:modal  title="#{hotel.name}" styleClass="modal_#{hotel.id} fade">
                             <b:row>
                                 <b:column span="3">
-                                    <img src="#{request.contextPath}/resources/img/hotel1.jpg" style="width: 100%; max-width: 150px"/>
+                                    <h:graphicImage library="images" name="hotel1.jpg" style="width: 100%; max-width: 150px" alt="Hotel Thumbnail" />
                                 </b:column>
                                 <b:column span="6">
                                     <b:row>
@@ -65,14 +65,16 @@
                                 </b:column>
                             </b:row>
                             <f:facet name="footer">
-                                <b:button value="close" dismiss="modal" onclick="return false;"/>
-                                <b:button value="Ok" look="primary" dismiss="modal" onclick="return false;"/>
+                                <b:button value="Close" dismiss="modal" onclick="return false;"/>
+                                <h:link outcome="/partials/booking/flights.xhtml" includeViewParams="true" class="btn btn-primary" value="Select">
+                                    <f:param name="hotelId" value="#{hotel.id}" />
+                                </h:link>
                             </f:facet>
                         </b:modal>
                         <b:panel contentStyle="padding: 0" title="An offer you cannot refuse!" collapsible="false" onclick="$('.modal_#{hotel.id}').modal();return false;" style="cursor: pointer">
                             <b:row>
                                 <b:column span="3">
-                                    <h:graphicImage library="images" name="hotel1.jpg" style="width: 100%; max-width: 150px" alt="Kelde logo" />
+                                    <h:graphicImage library="images" name="hotel1.jpg" style="width: 100%; max-width: 150px" alt="Hotel Thumbnail" />
                                 </b:column>
                                 <b:column span="6">
                                     <b:row>

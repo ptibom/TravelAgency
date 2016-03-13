@@ -1,12 +1,13 @@
 package se.computerscience.travelagency.view;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -25,7 +26,7 @@ import se.computerscience.travelagency.model.persistence.IHotelDAO;
  */
 @Named(value = "searchBean")
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class SearchBean {
     
     @EJB
@@ -69,22 +70,32 @@ public class SearchBean {
     
     @Getter
     @Setter
-    @Pattern(regexp = "[1-3]")
+    @Pattern(regexp = "[1-3]", message = "Required: 1-3")
     private String sortBy;
     
     @Getter
     @Setter
-    @Pattern(regexp = "[\\d+]")
+    @Pattern(regexp = "\\d+", message = "{required.numbers}")
     private String outboundFlightId;
     
     @Getter
     @Setter
-    @Pattern(regexp = "[\\d+]")
+    @Pattern(regexp = "\\d+", message = "{required.numbers}")
     private String returnFlightId;
     
+    @Getter
+    @Setter
+    @Pattern(regexp = "\\d+", message = "{required.numbers}")
+    private String hotelId;
+    
+    @Getter
+    @Setter
+    private String direction;
+ 
     @PostConstruct
     public void init() {
         sortBy = "2";
+        direction = "Outbound flight";
     }
     
     public List<String> searchCity(String query) {
@@ -114,16 +125,20 @@ public class SearchBean {
     public List<Flight> getAvailableFlights() {
         City depCity;
         City arrCity;
+        Date depDate;
         if (outboundFlightId == null) {
             depCity = cityDAO.cityByName(fromCity);
             arrCity = cityDAO.cityByName(toCity);
+            depDate = fromDate;
         }
         else {
             depCity = cityDAO.cityByName(toCity);
             arrCity = cityDAO.cityByName(fromCity);
+            depDate = toDate;
+            direction = "Return flight";
         }
         
-        List<Flight> flights = flightDAO.searchFlightByCities(depCity, arrCity, fromDate);
+        List<Flight> flights = flightDAO.searchFlightByCities(depCity, arrCity, depDate);
         switch (sortBy) {
             case "1": 
                 flights = orderFlightByPrice(flights);

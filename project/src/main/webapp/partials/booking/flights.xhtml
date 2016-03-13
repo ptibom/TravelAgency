@@ -11,6 +11,7 @@
         <f:viewParam name="fromCity" value="#{searchBean.fromCity}" />
         <f:viewParam name="toCity" value="#{searchBean.toCity}" />
         <f:viewParam name="numPassengers" value="#{searchBean.numPassengers}" />
+        <f:viewParam name="hotelId" value="#{searchBean.hotelId}" />
         <f:viewParam name="fromDate" value="#{searchBean.fromDate}" converter="javax.faces.DateTime" />
         <f:viewParam name="toDate" value="#{searchBean.toDate}" converter="javax.faces.DateTime" />
     </f:metadata>
@@ -35,7 +36,7 @@
             <b:row>
                 <b:jumbotron id="jumbo" >
                     <ui:repeat value="#{searchBean.availableFlights}" var="flight">
-                        <b:panel title="Outbound flight" collapsible="false">
+                        <b:panel title="#{searchBean.direction}" collapsible="false">
                             <b:row>
                                 <b:column span="9">
                                     <b:row style="margin-top: 2px; margin-bottom: 2px">
@@ -48,7 +49,7 @@
                                         </b:column>
                                         <b:column span="3">
                                             <h:outputText value="5h 20m"/><br />
-                                            <span style="color: #999999"><h:outputText value="GOT - MXP"/></span>
+                                            <span style="color: #999999"><h:outputText value="#{flight.depCity.name.substring(0, 3).toUpperCase()}"/> - <h:outputText value="#{flight.desCity.name.substring(0, 3).toUpperCase()}" /></span>
                                         </b:column>
                                         <b:column span="3">
                                             <h:outputText value="No stops"/>
@@ -59,7 +60,11 @@
                                     <h3 style="margin: 0px"><h:outputText value="$#{flight.price}" /></h3>
                                         <span style="color: #999999">roundtrip</span><br />
                                         <h:form>
-                                            <b:commandButton update="jumbo" action="#{searchBean.setOutboundFlightId(flight.id)})}" class="btn btn-primary" value="Select" style="margin-top: 5px" />
+                                            <b:commandButton update="jumbo" action="#{searchBean.setOutboundFlightId(flight.id)}" class="btn btn-primary" value="Select" style="margin-top: 5px" rendered="#{searchBean.outboundFlightId == null}" />
+                                            <h:link outcome="/partials/booking/formContact.xhtml" includeViewParams="true" class="btn btn-primary" value="Select" style="margin-top: 5px" rendered="#{searchBean.outboundFlightId != null}">
+                                                <f:param name="outFlight" value="#{searchBean.outboundFlightId}" />
+                                                <f:param name="returnFlight" value="#{searchBean.returnFlightId}" />
+                                            </h:link>
                                         </h:form>
                                 </b:column>
                             </b:row>
