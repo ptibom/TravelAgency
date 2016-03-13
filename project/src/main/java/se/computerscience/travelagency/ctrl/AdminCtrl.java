@@ -85,9 +85,10 @@ public class AdminCtrl {
         return redir();
         
     }
+    
     public String deleteHotel() {
         try {
-            Long id = Long.parseLong(hotelBean.getRooms());
+            Long id = Long.parseLong(hotelBean.getHid());
             hotelDAO.delete(id);
         } catch (Exception e) {
             System.out.println("error "+e);
