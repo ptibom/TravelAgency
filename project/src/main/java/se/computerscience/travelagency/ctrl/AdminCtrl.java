@@ -94,10 +94,6 @@ public class AdminCtrl {
         }
         return redir();
     }
-    
-    public List<Hotel> allHotels(){
-        return hotelDAO.findAll();
-    }
 
     public String redir() {        
         return "index?faces-redirect=true";

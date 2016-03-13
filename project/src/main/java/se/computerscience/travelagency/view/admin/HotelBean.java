@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
+import se.computerscience.travelagency.model.persistence.Hotel;
 import se.computerscience.travelagency.model.persistence.ICityDAO;
 import se.computerscience.travelagency.model.persistence.IHotelDAO;
 
@@ -70,4 +71,8 @@ public class HotelBean {
     @Pattern(regexp = "\\d+", message = "{required.numbers}")
     @NotNull(message = "{required.field}")
     private String cityId;
+    
+    public List<Hotel> allHotels(){
+        return hotelDAO.findAll();
+    }
 }
