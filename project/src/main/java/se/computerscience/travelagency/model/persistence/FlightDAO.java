@@ -16,11 +16,11 @@ public class FlightDAO extends GeneralDAO<Flight> implements IFlightDAO{
     }
 
     @Override
-    public List<Flight> searchFlightByCities(City dep, City des, Date depature) {
-        return em.createQuery("SELECT t FROM Flight t WHERE t.desCity = :des AND t.depCity = :dep AND t.depature = :depature order by t.price")
-                .setParameter("des", des)
-                .setParameter("dep", dep)
-                .setParameter("depature", depature)
+    public List<Flight> searchFlightByCities(City depCity, City desCity, Date depDate) {
+        return em.createQuery("SELECT t FROM Flight t WHERE t.desCity = :desCity AND t.depCity = :depCity AND CAST(t.depature AS DATE) = :depDate order by t.price")
+                .setParameter("desCity", desCity)
+                .setParameter("depCity", depCity)
+                .setParameter("depDate", depDate)
                 .getResultList();
     }
 
