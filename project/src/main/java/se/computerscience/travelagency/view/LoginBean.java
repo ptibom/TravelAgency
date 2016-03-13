@@ -1,6 +1,7 @@
 package se.computerscience.travelagency.view;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
@@ -39,14 +40,26 @@ public class LoginBean implements Serializable {
 
         try {
             request.login(userName, password);
+            List<AdminUser> adminList = userDAO.findByIDandPw(userName, password);
+            if (adminList.size() < 1) {
+                System.err.println("1");
+                logout();
+                return "login?faces-redirect=true";
+            }
             AdminUser user = userDAO.findByIDandPw(userName, password).get(0);
             if (user == null) {
-                return "";
+                System.err.println("2");
+                logout();
+                return "login?faces-redirect=true";
             }
             externalContext.getSessionMap().put("admin", user);
+            System.err.println("3");
             return "/admin/index?faces-redirect=true";
         } catch (ServletException e) {
             System.err.println("Logg in failed");
+            return "";
+        } catch (NullPointerException e) {
+            System.err.println("this account does not exist");
             return "";
         }
     }
