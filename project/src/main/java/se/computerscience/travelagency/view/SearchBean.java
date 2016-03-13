@@ -138,6 +138,10 @@ public class SearchBean {
             direction = "Return flight";
         }
         
+        System.out.println(depCity.getName());
+        System.out.println(arrCity.getName());
+        System.out.println(depDate.toString());
+        
         List<Flight> flights = flightDAO.searchFlightByCities(depCity, arrCity, depDate);
         switch (sortBy) {
             case "1": 
