@@ -8,7 +8,6 @@
       xmlns:b="http://bootsfaces.net/ui">
     <ui:composition template="/WEB-INF/template.xhtml">
         <ui:define name="content">
-            <!-- Logg in to access the admin page -->
             <h:form id="login-form" rendered="#{!request.isUserInRole('adminRole')}" >
                 <h:panelGrid columns="3">
                     <h:outputLabel for="username" value="username"/> 
