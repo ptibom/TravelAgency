@@ -3,6 +3,7 @@ package se.computerscience.travelagency.view.admin;
 import java.util.List;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
@@ -10,8 +11,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
-import se.computerscience.travelagency.model.persistence.City;
-import se.computerscience.travelagency.model.persistence.Hotel;
 import se.computerscience.travelagency.model.persistence.ICityDAO;
 import se.computerscience.travelagency.model.persistence.IHotelDAO;
 
@@ -20,15 +19,14 @@ import se.computerscience.travelagency.model.persistence.IHotelDAO;
  * @author Hossein
  */
 @Named(value = "hotelBean")
-@ManagedBean
-@SessionScoped
+@RequestScoped
 public class HotelBean {
     
     @EJB
     private IHotelDAO hotelDAO;
+    
     @EJB
     private ICityDAO cityDAO;
-    
     
     @Getter
     @Setter

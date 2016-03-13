@@ -3,11 +3,13 @@ package se.computerscience.travelagency.ctrl;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import se.computerscience.travelagency.model.persistence.City;
 import se.computerscience.travelagency.model.persistence.Hotel;
 import se.computerscience.travelagency.model.persistence.ICityDAO;
 import se.computerscience.travelagency.model.persistence.IHotelDAO;
+import se.computerscience.travelagency.view.admin.HotelBean;
 
 /**
  *
@@ -22,23 +24,25 @@ public class AdminCtrl {
     
     @EJB
     private ICityDAO cityDAO;
+    
+    private HotelBean hotelBean;
 
     public AdminCtrl() {
     }
     
     public String addHotel() {
         try {
-            long cId = Long.parseLong(this.cityId);
+            long cId = Long.parseLong(hotelBean.getCityId());
             City city = cityDAO.findById(cId);
             
             if(city != null) {
                 Hotel hotel = new Hotel();
-                hotel.setDecsription(description);
-                hotel.setName(name);
+                hotel.setDecsription(hotelBean.getDescription());
+                hotel.setName(hotelBean.getName());
                 
-                int nrRooms = Integer.parseInt(rooms);
-                int numPrice = Integer.parseInt(price);
-                int numRating = Integer.parseInt(rating);
+                int nrRooms = Integer.parseInt(hotelBean.getRooms());
+                int numPrice = Integer.parseInt(hotelBean.getPrice());
+                int numRating = Integer.parseInt(hotelBean.getRating());
                 
                 hotel.setNumberOfRooms(nrRooms);
                 hotel.setPrice(numPrice);
@@ -54,18 +58,18 @@ public class AdminCtrl {
     }
     public String editHotel() {
         try {
-            long cId = Long.parseLong(cityId);
+            long cId = Long.parseLong(hotelBean.getCityId());
             City city = cityDAO.findById(cId);
             
             if(city != null) {
-                Long parsedId = Long.parseLong(hid);
+                Long parsedId = Long.parseLong(hotelBean.getHid());
                 Hotel hotel = hotelDAO.findById(parsedId);
-                hotel.setDecsription(description);
-                hotel.setName(name);
+                hotel.setDecsription(hotelBean.getDescription());
+                hotel.setName(hotelBean.getName());
                 
-                int nrRooms = Integer.parseInt(rooms);
-                int numPrice = Integer.parseInt(price);
-                int numRating = Integer.parseInt(rating);
+                int nrRooms = Integer.parseInt(hotelBean.getRooms());
+                int numPrice = Integer.parseInt(hotelBean.getPrice());
+                int numRating = Integer.parseInt(hotelBean.getRating());
                 
                 hotel.setNumberOfRooms(nrRooms);
                 hotel.setPrice(numPrice);
@@ -81,7 +85,7 @@ public class AdminCtrl {
     }
     public String deleteHotel() {
         try {
-            Long id = Long.parseLong(hid);
+            Long id = Long.parseLong(hotelBean.getRooms());
             hotelDAO.delete(id);
         } catch (Exception e) {
             System.out.println("error "+e);
@@ -93,15 +97,12 @@ public class AdminCtrl {
         return hotelDAO.findAll();
     }
 
-    public String redir() {
-        name = null;
-        rooms = null;
-        description = null;
-        price = null;
-        rating = null;
-        hid = null;
-        cityId = null;
-        
+    public String redir() {        
         return "index?faces-redirect=true";
+    }
+    
+    @Inject
+    public void setHotelBean(HotelBean hotelBean) {
+        this.hotelBean = hotelBean;
     }
 }
