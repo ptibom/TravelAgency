@@ -2,12 +2,30 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+       xmlns:f="http://java.sun.com/jsf/core">
 
 
     <ui:composition template="/WEB-INF/template.xhtml">
         <ui:define name="content">
-            Congratulations, your order has been processed
+            <h:form>
+            <b:row>
+                 
+                 <h4 style="padding-left:  140px">    Congratulations, your order has been processed</h4>
+           </b:row>
+            <br></br>
+            <b:row>
+                <b:column span="2"></b:column>
+            <b:column span="4">
+                <p:commandButton action="/index.xhtml"  actionListener="#{bookingBean.clear()}"  value="Place new Order" class="btn btn-default">
+                        
+                </p:commandButton>
+                       
+            </b:column>
+                </b:row> 
+            </h:form> 
         </ui:define>
     </ui:composition>
 </html>

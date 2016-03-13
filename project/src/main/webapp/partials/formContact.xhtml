@@ -26,13 +26,12 @@ and open the template in the editor.
                     <b:column span="1">
                     </b:column>
                     <b:column span="2">
-                        <p:button outcome="formPayment" value="Back" style="width: 150px; "/>
+                        <h:button outcome="/index.xhtml?faces-redirect=true" value="Back" class="btn btn-default"/>
                     </b:column>
                     <b:column span="5">
                     </b:column>
                     <b:column span="2">
-                        <h:commandButton action="/partials/formPayment.xhtml?faces-redirect=true" value="Next" class="btn btn-default">
-                        </h:commandButton>
+                        <h:commandButton action="/partials/formPayment.xhtml?faces-redirect=true" value="Next" class="btn btn-default"/>
                     </b:column>
                 </b:row>
                 <b:panel id="panel2" title="Passenger information" style="margin-bottom:10px;">
@@ -42,25 +41,36 @@ and open the template in the editor.
                                 <b:column span ="5">  
                                     <h:outputText value="Gender: " />
                                 </b:column>
-                                <p:selectOneButton value="#{passenger.gender}" class="genderButton">
+                                <p:selectOneButton id="gender" value="#{passenger.gender}" class="genderButton">
                                     <f:selectItem itemLabel="Male" itemValue="Male" />
                                     <f:selectItem itemLabel="Female" itemValue="Female" />
+                                    <p:ajax update="msgGender" event="change" />
+                                    <f:validator validatorId="gender" /> 
                                 </p:selectOneButton>
+                                <div style="width: 200px"><p:message for="gender" id="msgGender" /></div>
                             </b:row>
                             <b:row>
                                 <b:column span = "3">
-                                    <h:outputText value="Address:"/>
+                                    <h:outputText id ="addressID" value="Address:"/>
                                 </b:column>
                                 <b:column span = "4">  
-                                    <h:inputText value="#{passenger.address}" size="60"/>
+                                    <h:inputText id ="address" value="#{passenger.address}" size="60">
+                                        <f:validator validatorId="address" /> 
+                                        <p:ajax update="msgAddress" event="blur" />
+                                    </h:inputText>
+                                    <div style="width: 200px"><p:message for="address" id="msgAddress" /></div>
                                 </b:column>
                             </b:row>
                             <b:row>
                                 <b:column span = "3">
-                                    <h:outputText value="Postal number:"/>
+                                    <h:outputText value="Postal Code"/>
                                 </b:column>
                                 <b:column span = "3">  
-                                    <h:inputText value="#{passenger.postalCode}" size="60"/>
+                                    <h:inputText id="postalCode" value="#{passenger.postalCode}" size="60">
+                                        <f:validator validatorId="postalCode" /> 
+                                        <p:ajax update="msgPostalCode" event="blur" />                                   
+                                    </h:inputText>
+                                    <div style="width: 200px"><p:message for="postalCode" id="msgPostalCode" /></div>
                                 </b:column>
                             </b:row>
                             <b:row>
@@ -68,7 +78,11 @@ and open the template in the editor.
                                     <h:outputText value="Phone number"/>
                                 </b:column>
                                 <b:column span = "4">  
-                                    <h:inputText value="#{passenger.phoneNumber}" size="60"/>
+                                    <h:inputText id="phoneNumber" value="#{passenger.phoneNumber}" size="60">
+                                        <f:validator validatorId="phoneNumber" /> 
+                                        <p:ajax update="msgPhoneNumber" event="blur" />    
+                                    </h:inputText>
+                                    <div style="width: 200px"><p:message for="phoneNumber" id="msgPhoneNumber" /></div>
                                 </b:column>
                             </b:row>
                             <b:row>
@@ -76,7 +90,11 @@ and open the template in the editor.
                                     <h:outputText value="Email Adress"/>
                                 </b:column>
                                 <b:column span = "3">  
-                                    <h:inputText value="#{passenger.emailAdress}" size="60"/>
+                                    <h:inputText id="emailAddress" value="#{passenger.emailAdress}" size="60">
+                                        <f:validator validatorId="emailAddress" /> 
+                                        <p:ajax update="msgEmailAddress" event="blur" />                                    
+                                    </h:inputText>
+                                    <div style="width: 200px"><p:message for="emailAddress" id="msgEmailAddress" /></div>
                                 </b:column>
                             </b:row>
                             <b:row>
@@ -84,22 +102,29 @@ and open the template in the editor.
                                     <h:outputText value="First name:"/>
                                 </b:column>
                                 <b:column span = "2">  
-                                    <h:inputText value="#{passenger.firstName}" size="60"/>
+                                    <h:inputText id="firstName" value="#{passenger.firstName}" size="60">
+                                        <f:validator validatorId="firstName" /> 
+                                        <p:ajax update="msgFirstName" event="blur" />  
+                                    </h:inputText>
+                                    <div style="width: 200px"><p:message for="firstName" id="msgFirstName" /></div>
                                 </b:column>
                             </b:row>
                             <b:row>
                                 <b:column span = "3">
-                                    <h:outputText value="Last name:"/>
+                                    <h:outputText  value="Last name:"/>   
                                 </b:column>
                                 <b:column span = "2">  
-                                    <h:inputText value="#{passenger.lastName}" size="60"/>
+                                    <h:inputText id="lastName" value="#{passenger.lastName}" size="60">
+                                        <f:validator validatorId="lastName" /> 
+                                        <p:ajax update="msgLastName" event="blur" />  
+                                    </h:inputText>
+                                    <div style="width: 200px"><p:message for="lastName" id="msgLastName" /></div>
                                 </b:column>
                             </b:row>
                         </b:panel>
                         <br></br>
                     </ui:repeat>
-                </b:panel>      
-
+                </b:panel>     
             </h:form>
         </ui:define>
     </ui:composition>

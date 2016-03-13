@@ -29,25 +29,14 @@ import se.computerscience.travelagency.view.SearchBean;
     @EJB
     IBookingDAO bookingDAO;
 
-    
     @Inject
      BookingBean bookingBean;
     @Inject
      SearchBean searchBean;
     
-    
-    
-    public void save(){
-        
+    public void save(){     
     
     Booking booked = new Booking();
-  /*  
-    if(searchBean == null) System.out.println(" SEARCHBEAN IS NULL WHY");
-    else System.out.println(" SEARCHBEAN IS not NULL!! ") ;
-    
-     if(searchBean.getFromDate() == null) System.out.println(" getFromDate IS NULL WHY");
-    else System.out.println(" getFromDate IS not NULL!! ") ;
-*/
     booked.setFlyBackDate(searchBean.getFromDate());
     booked.setFlyToDate(searchBean.getToDate());
     booked.setPrice(1000.0);

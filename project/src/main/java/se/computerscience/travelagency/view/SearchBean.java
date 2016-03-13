@@ -71,11 +71,6 @@ public class SearchBean implements Serializable{
     @Pattern(regexp = "[1-3]")
     private String sortBy;
    
-    @Getter
-    @Setter
-    private List<Person> passengerList;
-    
-    
     @PostConstruct
     public void init() {
         sortBy = "2";
@@ -121,5 +116,13 @@ public class SearchBean implements Serializable{
         return hotelDAO.orderByName(hotels);
     }
     
+    public void clear(){
+        fromCity = null;
+        toCity = null;
+        sortBy = "1";
+        fromDate = null;
+        toDate = null;
+        
+    }
  
 }

@@ -11,13 +11,10 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui">
-
-    
     <ui:composition template="/WEB-INF/template.xhtml">
         <ui:define name="content">
             <br></br>
             <h:form >
-
                 <br></br>
                 <b:row>
                     <b:column span = "3">
@@ -27,7 +24,7 @@ and open the template in the editor.
                     </b:column>
                     <b:column span = "7">  
                         <p:inputText id="creditCardNumber" value="#{bookingBean.creditCardNumber}">
-                        <p:ajax update="msgCreditCardNumber" event="blur" />
+                            <p:ajax update="msgCreditCardNumber" event="blur" />
                         </p:inputText>
                         <div style="width: 200px"><p:message for="creditCardNumber" id="msgCreditCardNumber" /></div>
                     </b:column>
@@ -41,9 +38,9 @@ and open the template in the editor.
                     </b:column>
                     <b:column span = "7">  
                         <p:inputText id="cardHolderName" value="#{bookingBean.cardHolderName}">
-                        <p:ajax update="msgCardHolderName" event="blur" />
+                            <p:ajax update="msgCardHolderName" event="blur" />
                         </p:inputText>
-                         <div style="width: 200px"><p:message for="cardHolderName" id="msgCardHolderName" /></div>
+                        <div style="width: 200px"><p:message for="cardHolderName" id="msgCardHolderName" /></div>
                     </b:column>
                 </b:row>
                 <br></br>
@@ -55,9 +52,9 @@ and open the template in the editor.
                     </b:column>
                     <b:column span = "7">  
                         <p:inputText  id="expirationDate"  value="#{bookingBean.expirationDate}">
-                        <p:ajax update="msgExpirationDate" event="blur" />
+                            <p:ajax update="msgExpirationDate" event="blur" />
                         </p:inputText>
-                         <div style="width: 200px"><p:message for="expirationDate" id="msgExpirationDate" /></div>
+                        <div style="width: 200px"><p:message for="expirationDate" id="msgExpirationDate" /></div>
                     </b:column>
                 </b:row>
                 <br></br>
