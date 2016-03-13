@@ -17,9 +17,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Email;
 
 /**
  *
@@ -44,12 +46,14 @@ public class Person implements Serializable {
     @Getter
     @Setter
     @NotNull(message = "{required.field}")
+    @Pattern(regexp="[a-z]*")
     @Size(max = 255)
     @Column(nullable = false)
     private String firstName;
     
     @Getter
     @Setter
+    @Pattern(regexp="[a-z]*")
     @NotNull(message = "{required.field}")
     @Size(max = 255)
     @Column(nullable = false)
@@ -66,6 +70,7 @@ public class Person implements Serializable {
     @Getter
     @Setter
     @NotNull(message = "{required.field}")
+    @Pattern(regexp = "\\d+", message = "{required.numbers}")
     @Size(max = 255)
     @Column(nullable = false)
     private String postalCode;
@@ -73,12 +78,14 @@ public class Person implements Serializable {
     @Getter
     @Setter
     @NotNull(message = "{required.field}")
+    @Pattern(regexp = "\\d+", message = "{required.numbers}")
     @Size(max = 255)
     @Column(nullable = false)
     private String phoneNumber;   
     
     @Getter
     @Setter
+    @Email
     @NotNull(message = "{required.field}")
     @Size(max = 255)
     @Column(nullable = false)
