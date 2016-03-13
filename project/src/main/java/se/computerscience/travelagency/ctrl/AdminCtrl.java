@@ -9,6 +9,7 @@ import se.computerscience.travelagency.model.persistence.City;
 import se.computerscience.travelagency.model.persistence.Hotel;
 import se.computerscience.travelagency.model.persistence.ICityDAO;
 import se.computerscience.travelagency.model.persistence.IHotelDAO;
+import se.computerscience.travelagency.view.SearchBean;
 import se.computerscience.travelagency.view.admin.HotelBean;
 
 /**
@@ -26,6 +27,7 @@ public class AdminCtrl {
     private ICityDAO cityDAO;
     
     private HotelBean hotelBean;
+    
 
     public AdminCtrl() {
     }
@@ -105,4 +107,5 @@ public class AdminCtrl {
     public void setHotelBean(HotelBean hotelBean) {
         this.hotelBean = hotelBean;
     }
+    
 }
