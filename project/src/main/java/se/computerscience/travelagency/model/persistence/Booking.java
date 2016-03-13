@@ -2,6 +2,7 @@ package se.computerscience.travelagency.model.persistence;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -92,4 +93,30 @@ public class Booking implements Serializable {
     public long getPersonId() {
         return person.getId();
     }
+
+    @Override
+    public String toString() {
+        return "Booking{" + "id=" + id + ", price=" + price + ", person=" + person + ", flyTo=" + flyTo + ", flyBack=" + flyBack + ", hotel=" + hotel + ", desCity=" + desCity + ", depCity=" + depCity + ", flyToDate=" + flyToDate + ", flyBackDate=" + flyBackDate + '}';
+    }
+    
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Booking)) {
+            return false;
+        }
+        Booking other = (Booking) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+    
+    
 }

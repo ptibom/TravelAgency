@@ -2,6 +2,7 @@ package se.computerscience.travelagency.model.persistence;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -56,4 +57,30 @@ public class City implements Serializable {
     @JoinColumn(name = "id")
     @Getter
     private List<Booking> bookingDesList;
+
+    @Override
+    public String toString() {
+        return "City{" + "id=" + id + ", name=" + name + ", hotelList=" + hotelList + ", flightDepList=" + flightDepList + ", flightDesList=" + flightDesList + ", bookingDepList=" + bookingDepList + ", bookingDesList=" + bookingDesList + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof City)) {
+            return false;
+        }
+        City other = (City) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }

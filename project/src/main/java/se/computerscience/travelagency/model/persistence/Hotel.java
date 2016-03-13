@@ -4,6 +4,7 @@ package se.computerscience.travelagency.model.persistence;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -115,4 +116,30 @@ public class Hotel implements Serializable, Comparable<Hotel>{
             }
         };
     }
+
+    @Override
+    public String toString() {
+        return "Hotel{" + "id=" + id + ", numberOfRooms=" + numberOfRooms + ", rating=" + rating + ", name=" + name + ", decsription=" + decsription + ", price=" + price + ", city=" + city + ", bookingList=" + bookingList + '}';
+    }
+    
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Hotel)) {
+            return false;
+        }
+        Hotel other = (Hotel) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+    
+    
 }

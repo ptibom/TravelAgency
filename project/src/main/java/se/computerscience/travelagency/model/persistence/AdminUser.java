@@ -31,4 +31,9 @@ public class AdminUser {
         this.name = name;
         this.pw = pw;
     }
+
+    @Override
+    public String toString() {
+        return "AdminUser{" + "name=" + name + ", pw=" + pw + '}';
+    }
 }
