@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    <ui:composition template="/WEB-INF/template.xhtml" rendered="#{request.isUserInRole('adminRole')}">
+        <ui:define name="content">
+            <!-- Logg in to access the admin page -->      
+            
+            
+            <h:link value="Add Hotel" outcome="addHotel.xhtml" /><br/>
+            <h:link value="Back to admin menu" outcome="/admin/index.xhtml" /> 
+            
+            <h:dataTable var="hotel" value="#{hotelBean.allHotels()}"  class="table table-striped">
+                <h:column><h:outputText value="Id: #{hotel.id}"/></h:column>
+                <h:column><h:outputText value="Name: #{hotel.name}"/></h:column>
+                <h:column><h:outputText value="Rooms: #{hotel.numberOfRooms}"/></h:column>
+                <h:column><h:outputText value="Price: #{hotel.price}"/></h:column>
+                <h:column><h:outputText value="City ID: #{hotel.cityId}"/></h:column>
+                <h:column><h:outputText value="Rating: #{hotel.rating}"/></h:column>
+                <h:column>
+                     <h:link value="Edit" outcome="editHotel.xhtml" >
+                        <f:param name="id" value="#{hotel.id}" />
+                        <f:param name="name" value="#{hotel.name}" />
+                        <f:param name="rooms" value="#{hotel.numberOfRooms}" />
+                        <f:param name="price" value="#{hotel.price}" />
+                        <f:param name="rating" value="#{hotel.rating}" />
+                        <f:param name="cityid" value="#{hotel.cityId}"  />
+                        <f:param name="desc" value="#{hotel.decsription}" />
+                    </h:link>
+                </h:column>
+                <h:column>
+                     <h:link value="Delete" outcome="delHotel.xhtml" >
+                        <f:param name="id" value="#{hotel.id}" />
+                        <f:param name="name" value="#{hotel.name}" />
+                        <f:param name="rooms" value="#{hotel.numberOfRooms}" />
+                        <f:param name="price" value="#{hotel.price}" />
+                        <f:param name="rating" value="#{hotel.rating}" />
+                        <f:param name="cityid" value="#{hotel.cityId}"  />
+                        <f:param name="desc" value="#{hotel.decsription}" />
+                    </h:link>
+                </h:column>
+            </h:dataTable>    
+        </ui:define>
+    </ui:composition>
+</html>

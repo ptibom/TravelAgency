@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    <ui:composition template="/WEB-INF/template.xhtml" rendered="#{request.isUserInRole('adminRole')}">
+        <ui:define name="content">
+            <!-- Logg in to access the admin page -->  
+            
+            <h:link value="Add city" outcome="addCity.xhtml" /><br />
+            <h:link value="Back to admin menu" outcome="/admin/index.xhtml" /> 
+            
+            <h:dataTable var="city" value="#{cityBean.allCities()}"  class="table table-striped">
+                <h:column><h:outputText value="#{city.id}"/></h:column>
+                <h:column><h:outputText value="#{city.name}"/></h:column>
+                <h:column>
+                     <h:link value="Edit" outcome="editCity.xhtml" >
+                        <f:param name="id" value="#{city.id}" />
+                        <f:param name="name" value="#{city.name}" />
+                    </h:link>
+                </h:column>
+                <h:column>
+                     <h:link value="Delete" outcome="delCity.xhtml" >
+                        <f:param name="id" value="#{city.id}" />
+                        <f:param name="name" value="#{city.name}" />
+                    </h:link>
+                </h:column>
+            </h:dataTable>    
+        </ui:define>
+    </ui:composition>
+</html>
