@@ -8,30 +8,51 @@
       xmlns:b="http://bootsfaces.net/ui">
     
     <f:metadata>
-        <f:viewParam name="id" value="#{planeBean.planeIdDel}"  />
-        <f:viewParam name="type" value="#{planeBean.planeTypeDel}"  />
-        <f:viewParam name="capacity" value="#{planeBean.planeCapacityDel}"  />
+        <f:viewParam name="id" value="#{hotelBean.hid}" />
+        <f:viewParam name="name" value="#{hotelBean.name}" />
+        <f:viewParam name="rooms" value="#{hotelBean.rooms}" />
+        <f:viewParam name="price" value="#{hotelBean.price}" />
+        <f:viewParam name="rating" value="#{hotelBean.rating}" />
+        <f:viewParam name="cityid" value="#{hotelBean.cityId}"  />
+        <f:viewParam name="desc" value="#{hotelBean.description}" />
     </f:metadata>
     
     <ui:composition template="/WEB-INF/template.xhtml" rendered="#{request.isUserInRole('adminRole')}">
         <ui:define name="content">          
             <h:form>
-                <h3>Delete Plane</h3>
+                <h3>Delete Hotel</h3>
                 <h:panelGrid columns="1">
-                    <h:outputLabel for="id" value="Plane id"/>
-                    <h:inputText value="#{planeBean.planeIdDel}" id="removeId" disabled="true" />
-                    <h:message for="id" />
-
-                    <h:outputLabel for="type" value="plane Type"/>
-                    <h:inputText value="#{planeBean.planeTypeDel}" id="removeType" disabled="true" />
-                    <h:message for="type" />
-
-                    <h:outputLabel for="capacity" value="plane capacity"/>
-                    <h:inputText value="#{planeBean.planeCapacityDel}" id="removeCap" disabled="true" />
-                    <h:message for="capacity" />
+                    <h:outputLabel for="hid" value="Hotel id"/>
+                    <h:inputText value="#{hotelBean.hid}" id="hotelId" disabled="true"/>
+                    <h:message for="hid" />
+                    
+                    <h:outputLabel for="name" value="Name" />
+                    <h:inputText value="#{hotelBean.name}" id="addName" disabled="true" />
+                    <h:message for="name" />
+                    
+                    <h:outputLabel for="price" value="Price"/>
+                    <h:inputText value="#{hotelBean.price}" id="addPrice" disabled="true"/>
+                    <h:message for="price" />
+                    
+                    <h:outputLabel for="rooms" value="Rooms"/>
+                    <h:inputText value="#{hotelBean.rooms}" id="addRooms" disabled="true"/>
+                    <h:message for="rooms" />
+                    
+                    <h:outputLabel for="rating" value="Rating"/>
+                    <h:inputText value="#{hotelBean.rating}" id="addRating" disabled="true"/>
+                    <h:message for="rating" />
+                    
+                    <h:outputLabel for="cityId" value="City ID"/>
+                    <h:inputText value="#{hotelBean.cityId}" id="addcity" disabled="true"/>
+                    <h:message for="city" />
+                    
+                    <h:outputLabel for="desc" value="Description"/>
+                    <h:inputTextarea value="#{hotelBean.description}" id="addDesc" disabled="true"/>
+                    <h:message for="desc" />
                 </h:panelGrid> 
-                <h:commandButton value="Cancel" immediate="true" class="btn btn-default" action="index?faces-redirect=true" />
-                <h:commandButton value="Delete" action="#{planeBean.deletePlane()}" class="btn btn-default"/>
+                
+                <h:commandButton value="Cancel" immediate="true" class="btn btn-default" action="#{hotelBean.redir()}" />
+                <h:commandButton value="Delete Hotel" action="#{hotelBean.deleteHotel()}" class="btn btn-default"/>
             </h:form>    
         </ui:define>
     </ui:composition>

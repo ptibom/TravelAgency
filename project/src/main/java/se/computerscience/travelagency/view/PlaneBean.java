@@ -28,19 +28,19 @@ public class PlaneBean {
     @Setter
     @Pattern(regexp = "[A-Za-zÅÄÖåäö]+", message = "{required.letters}")
     @NotNull(message = "{required.field}")
-    private String planeTypeAdd, planeTypeEdit, planeTypeDel;
+    private String type;
     
     @Getter
     @Setter
     @Pattern(regexp = "\\d+", message = "{required.numbers}")
     @NotNull(message = "{required.field}")
-    private String planeIdEdit, planeIdDel;
+    private String pid;
     
     @Getter
     @Setter
     @Pattern(regexp = "\\d+", message = "{required.numbers}")
     @NotNull(message = "{required.field}")
-    private String planeCapacityEdit, planeCapacityDel, planeCapacityAdd;
+    private String capacity;
     
     
     
@@ -50,39 +50,43 @@ public class PlaneBean {
     public String addPlane() {
         try {
             Plane plane = new Plane();
-            int cap = Integer.parseInt(planeCapacityAdd);
+            int cap = Integer.parseInt(capacity);
             plane.setCapacity(cap);
-            plane.setType(planeTypeAdd);
+            plane.setType(type);
             planeDAO.create(plane);
         } catch (Exception e) {
             System.err.println("error"+e);
         }
         
-        return "index?faces-redirect=true";
+        return redir();
     }
     public String editPlane() {
         try {
-            Long id = Long.parseLong(planeIdEdit);
-            int cap = Integer.parseInt(planeCapacityEdit);
+            Long id = Long.parseLong(pid);
+            int cap = Integer.parseInt(capacity);
             Plane plane = planeDAO.findById(id);
             plane.setCapacity(cap);
-            plane.setType(planeTypeEdit);
+            plane.setType(type);
             planeDAO.update(plane);
         } catch (Exception e) {
             System.err.println("error"+e);
         }
-        return "index?faces-redirect=true";        
+        return redir();       
     }
     public String deletePlane() {
         try {
-            Long id = Long.parseLong(planeIdDel);
+            Long id = Long.parseLong(pid);
             planeDAO.delete(id);
         } catch (Exception e) {
             System.err.println("error"+e);
         }
+        return redir();
+    }
+    public String redir() {
+        capacity = null;
+        type = null;
         return "index?faces-redirect=true";
     }
-    
     public List<Plane> allPlanes(){
         return planeDAO.findAll();
     }

@@ -28,44 +28,46 @@ public class CityBean {
     @Setter
     @Pattern(regexp = "[A-Za-zÅÄÖåäö]+", message = "{required.letters}")
     @NotNull(message = "{required.field}")
-    private String cityNameAdd, cityNameEdit, cityNameDel;
+    private String name;
     
     @Getter
     @Setter
     @Pattern(regexp = "\\d+", message = "{required.numbers}")
     @NotNull(message = "{required.field}")
-    private String cityIdEdit, cityIdDel;
+    private String id;
     
     
     
     
     public String addCity() {
         City city = new City();
-        city.setName(cityNameAdd);
+        city.setName(name);
         cityDAO.create(city);
-        cityNameAdd=""; // make it empty again
-        return "index?faces-redirect=true";
+        return redir();
     }
     public String editCity() {
         try {
-            Long id = Long.parseLong(cityIdEdit);
-            City city = cityDAO.findById(id);
-            city.setName(cityNameEdit);
+            Long parsedId = Long.parseLong(id);
+            City city = cityDAO.findById(parsedId);
+            city.setName(name);
             cityDAO.update(city);
-            return "index?faces-redirect=true";
         } catch (Exception e) {
-            System.out.println("failed to parse id @citybean:editCity");
-            return "/admin/index?faces-redirect=true";
+            System.out.println("error"+e);
         }
+        return redir();
         
     }
     public String deleteCity() {
         try {
-            Long id = Long.parseLong(cityIdDel);
-            cityDAO.delete(id);
+            Long parsedId = Long.parseLong(id);
+            cityDAO.delete(parsedId);
         } catch (Exception e) {
-            System.out.println("failed to parse id @citybean:deleteCity");
+            System.out.println("error"+e);
         }
+        return redir();
+    }
+    public String redir() {
+        name = null;
         return "index?faces-redirect=true";
     }
     

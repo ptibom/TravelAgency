@@ -8,8 +8,8 @@
       xmlns:b="http://bootsfaces.net/ui">
     
     <f:metadata>
-        <f:viewParam name="id" value="#{cityBean.cityIdEdit}"  />
-        <f:viewParam name="name" value="#{cityBean.cityNameEdit}"  />
+        <f:viewParam name="id" value="#{cityBean.id}"  />
+        <f:viewParam name="name" value="#{cityBean.name}"  />
     </f:metadata>
     
     <ui:composition template="/WEB-INF/template.xhtml" rendered="#{request.isUserInRole('adminRole')}">
@@ -18,15 +18,15 @@
                 <h3>Edit city</h3>
                 <h:panelGrid columns="1">
                     <h:outputLabel for="id" value="City id"/>
-                    <h:inputText value="#{cityBean.cityIdEdit}" id="editId" disabled="true"/>
+                    <h:inputText value="#{cityBean.id}" id="editId" disabled="true"/>
                     <h:message for="id" />                  
 
                     <h:outputLabel for="city" value="City name"/>
-                    <h:inputText value="#{cityBean.cityNameEdit}" id="editName"/>
+                    <h:inputText value="#{cityBean.name}" id="editName"/>
                     <h:message for="city" />
                 </h:panelGrid> 
                 
-                <h:commandButton value="Cancel" immediate="true" class="btn btn-default" action="index?faces-redirect=true" />
+                <h:commandButton value="Cancel" immediate="true" class="btn btn-default" action="#{cityBean.redir()}" />
                 <h:commandButton value="Save" action="#{cityBean.editCity()}" class="btn btn-default"/>
             </h:form>    
         </ui:define>

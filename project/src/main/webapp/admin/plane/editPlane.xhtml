@@ -8,9 +8,9 @@
       xmlns:b="http://bootsfaces.net/ui">
     
     <f:metadata>
-        <f:viewParam name="id" value="#{planeBean.planeIdEdit}"  />
-        <f:viewParam name="type" value="#{planeBean.planeTypeEdit}"  />
-        <f:viewParam name="capacity" value="#{planeBean.planeCapacityEdit}"  />
+        <f:viewParam name="id" value="#{planeBean.pid}"  />
+        <f:viewParam name="type" value="#{planeBean.type}"  />
+        <f:viewParam name="capacity" value="#{planeBean.capacity}"  />
     </f:metadata>
     
     <ui:composition template="/WEB-INF/template.xhtml" rendered="#{request.isUserInRole('adminRole')}">
@@ -19,18 +19,18 @@
                 <h3>Edit Plane</h3>
                 <h:panelGrid columns="1">
                     <h:outputLabel for="id" value="Plane id"/>
-                    <h:inputText value="#{planeBean.planeIdEdit}" id="editId" disabled="true"/>
+                    <h:inputText value="#{planeBean.pid}" id="editId" disabled="true"/>
                     <h:message for="id" />                  
 
                     <h:outputLabel for="type" value="Plane type"/>
-                    <h:inputText value="#{planeBean.planeTypeEdit}" id="editType"/>
+                    <h:inputText value="#{planeBean.type}" id="editType"/>
                     <h:message for="type" />
                     
                     <h:outputLabel for="cap" value="Plane capacity"/>
-                    <h:inputText value="#{planeBean.planeCapacityEdit}" id="editCap"/>
+                    <h:inputText value="#{planeBean.capacity}" id="editCap"/>
                     <h:message for="cap" />
                 </h:panelGrid> 
-                <h:commandButton value="Cancel" immediate="true" class="btn btn-default" action="index?faces-redirect=true" />
+                <h:commandButton value="Cancel" immediate="true" class="btn btn-default" action="#{planeBean.addPlane()}" />
                 <h:commandButton value="Save" action="#{planeBean.editPlane()}" class="btn btn-default"/>
             </h:form>    
         </ui:define>

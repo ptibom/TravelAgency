@@ -13,15 +13,15 @@
                 <h3>Add Plane</h3>
                 <h:panelGrid columns="1">
                     <h:outputLabel for="plane" value="Plane type"/>
-                    <h:inputText value="#{planeBean.planeTypeAdd}" id="addType"/>
+                    <h:inputText value="#{planeBean.type}" id="addType"/>
                     <h:message for="plane" />
                     
                     <h:outputLabel for="plane" value="Plane capacity"/>
-                    <h:inputText value="#{planeBean.planeCapacityAdd}" id="addCap"/>
+                    <h:inputText value="#{planeBean.capacity}" id="addCap"/>
                     <h:message for="plane" />
                 </h:panelGrid> 
                 
-                <h:commandButton value="Cancel" immediate="true" class="btn btn-default" action="index?faces-redirect=true" />
+                <h:commandButton value="Cancel" immediate="true" class="btn btn-default" action="#{planeBean.addPlane()}" />
                 <h:commandButton value="Add plane" action="#{planeBean.addPlane()}" class="btn btn-default"/>
             </h:form>    
         </ui:define>

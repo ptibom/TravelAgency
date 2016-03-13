@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -52,12 +53,13 @@ public class Hotel implements Serializable, Comparable<Hotel>{
     @Getter
     @Setter
     @Size(max = 255)
+    @Column(nullable = false)
     private String decsription;
     
     @Getter
     @Setter
     @Column(nullable = false)
-    private Double price;
+    private int price;
     
     @ManyToOne
     @Setter
@@ -72,6 +74,10 @@ public class Hotel implements Serializable, Comparable<Hotel>{
     @Override
     public int compareTo(Hotel hotel) {
         return Comparators.NAME.compare(this, hotel);
+    }
+    
+    public Long getCityId(){
+        return city.getId();
     }
     
     
@@ -94,7 +100,7 @@ public class Hotel implements Serializable, Comparable<Hotel>{
         public static Comparator<Hotel> PRICE = new Comparator<Hotel>() {
             @Override
             public int compare(Hotel h1, Hotel h2) {
-                return h1.getPrice().compareTo(h2.getPrice());
+                return h1.getPrice()-(h2.getPrice());
             }
         };
         

@@ -15,6 +15,7 @@
                 <h:column><h:outputText value="Name: #{hotel.name}"/></h:column>
                 <h:column><h:outputText value="Rooms: #{hotel.numberOfRooms}"/></h:column>
                 <h:column><h:outputText value="Price: #{hotel.price}"/></h:column>
+                <h:column><h:outputText value="City ID: #{hotel.cityId}"/></h:column>
                 <h:column><h:outputText value="Rating: #{hotel.rating}"/></h:column>
                 <h:column>
                      <h:link value="Edit" outcome="editHotel.xhtml" >
@@ -22,8 +23,9 @@
                         <f:param name="name" value="#{hotel.name}" />
                         <f:param name="rooms" value="#{hotel.numberOfRooms}" />
                         <f:param name="price" value="#{hotel.price}" />
-                        <f:param name="rooms" value="#{hotel.rating}" />
-                        <f:param name="description" value="#{hotel.decsription}" />
+                        <f:param name="rating" value="#{hotel.rating}" />
+                        <f:param name="cityid" value="#{hotel.cityId}"  />
+                        <f:param name="desc" value="#{hotel.decsription}" />
                     </h:link>
                 </h:column>
                 <h:column>
@@ -32,8 +34,9 @@
                         <f:param name="name" value="#{hotel.name}" />
                         <f:param name="rooms" value="#{hotel.numberOfRooms}" />
                         <f:param name="price" value="#{hotel.price}" />
-                        <f:param name="rooms" value="#{hotel.rating}" />
-                        <f:param name="description" value="#{hotel.decsription}" />
+                        <f:param name="rating" value="#{hotel.rating}" />
+                        <f:param name="cityid" value="#{hotel.cityId}"  />
+                        <f:param name="desc" value="#{hotel.decsription}" />
                     </h:link>
                 </h:column>
             </h:dataTable>    

@@ -13,11 +13,11 @@
                 <h3>Add city</h3>
                 <h:panelGrid columns="1">
                     <h:outputLabel for="city" value="City name"/>
-                    <h:inputText value="#{cityBean.cityNameAdd}" id="addName"/>
+                    <h:inputText value="#{cityBean.name}" id="addName"/>
                     <h:message for="city" />
                 </h:panelGrid> 
                 
-                <h:commandButton value="Cancel" immediate="true" class="btn btn-default" action="index?faces-redirect=true" />
+                <h:commandButton value="Cancel" immediate="true" class="btn btn-default" action="#{cityBean.redir()}" />
                 <h:commandButton value="Add city" action="#{cityBean.addCity()}" class="btn btn-default"/>
             </h:form>    
         </ui:define>

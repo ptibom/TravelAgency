@@ -21,7 +21,12 @@ public abstract class GeneralDAO<T> implements IDAO<T> {
     
     @Override
     public void create(T t) {
-        em.persist(t);
+        try {
+            em.persist(t);
+        } catch (Exception e) {
+            System.err.println("error" +e);
+        }
+        
     }
 
     @Override
