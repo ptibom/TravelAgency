@@ -30,8 +30,8 @@
                     <h:inputText value="#{planeBean.capacity}" id="editCap"/>
                     <h:message for="cap" />
                 </h:panelGrid> 
-                <h:commandButton value="Cancel" immediate="true" class="btn btn-default" action="#{planeBean.addPlane()}" />
-                <h:commandButton value="Save" action="#{planeBean.editPlane()}" class="btn btn-default"/>
+                <h:commandButton value="Cancel" immediate="true" class="btn btn-default" action="#{adminCtrl.addPlane()}" />
+                <h:commandButton value="Save" action="#{adminCtrl.editPlane()}" class="btn btn-default"/>
             </h:form>    
         </ui:define>
     </ui:composition>

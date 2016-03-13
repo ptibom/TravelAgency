@@ -2,8 +2,7 @@ package se.computerscience.travelagency.view.admin;
 
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -17,8 +16,7 @@ import se.computerscience.travelagency.model.persistence.Plane;
  * @author Hossein
  */
 @Named(value = "planeBean")
-@ManagedBean
-@SessionScoped
+@RequestScoped
 public class PlaneBean {
     
     @EJB
@@ -42,51 +40,6 @@ public class PlaneBean {
     @NotNull(message = "{required.field}")
     private String capacity;
     
-    
-    
-    
-    
-    
-    public String addPlane() {
-        try {
-            Plane plane = new Plane();
-            int cap = Integer.parseInt(capacity);
-            plane.setCapacity(cap);
-            plane.setType(type);
-            planeDAO.create(plane);
-        } catch (Exception e) {
-            System.err.println("error"+e);
-        }
-        
-        return redir();
-    }
-    public String editPlane() {
-        try {
-            Long id = Long.parseLong(pid);
-            int cap = Integer.parseInt(capacity);
-            Plane plane = planeDAO.findById(id);
-            plane.setCapacity(cap);
-            plane.setType(type);
-            planeDAO.update(plane);
-        } catch (Exception e) {
-            System.err.println("error"+e);
-        }
-        return redir();       
-    }
-    public String deletePlane() {
-        try {
-            Long id = Long.parseLong(pid);
-            planeDAO.delete(id);
-        } catch (Exception e) {
-            System.err.println("error"+e);
-        }
-        return redir();
-    }
-    public String redir() {
-        capacity = null;
-        type = null;
-        return "index?faces-redirect=true";
-    }
     public List<Plane> allPlanes(){
         return planeDAO.findAll();
     }
