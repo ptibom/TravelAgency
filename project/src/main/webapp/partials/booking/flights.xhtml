@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <f:metadata>
+        <f:viewParam name="fromCity" value="#{searchBean.fromCity}" />
+        <f:viewParam name="toCity" value="#{searchBean.toCity}" />
+        <f:viewParam name="numPassengers" value="#{searchBean.numPassengers}" />
+        <f:viewParam name="hotelId" value="#{searchBean.hotelId}" />
+        <f:viewParam name="fromDate" value="#{searchBean.fromDate}" converter="javax.faces.DateTime" />
+        <f:viewParam name="toDate" value="#{searchBean.toDate}" converter="javax.faces.DateTime" />
+    </f:metadata>
+
+    <ui:composition template="/WEB-INF/template.xhtml">
+        <ui:define name="content">
+            <b:row>
+                <b:column span="4" style="text-align: right">
+                    <strong>Sort by</strong>
+                </b:column>
+                <b:column span="8">
+                    <h:form>
+                        <p:selectOneButton id="numPersons" value="#{searchBean.sortBy}" style="margin-top: -5px">
+                            <f:selectItem itemLabel="Price" itemValue="1" />
+                            <f:selectItem itemLabel="Time" itemValue="2" />
+                            <f:selectItem itemLabel="Name" itemValue="3" />
+                            <p:ajax update="jumbo" event="change" />
+                        </p:selectOneButton>
+                    </h:form>
+                </b:column>
+            </b:row>
+            <b:row>
+                <b:jumbotron id="jumbo" >
+                    <ui:repeat value="#{searchBean.availableFlights}" var="flight">
+                        <b:panel title="#{searchBean.direction}" collapsible="false">
+                            <b:row>
+                                <b:column span="9">
+                                    <b:row style="margin-top: 2px; margin-bottom: 2px">
+                                        <b:column span="2">
+                                            <h:graphicImage library="images" name="flights/sas.png" />
+                                        </b:column>
+                                        <b:column span="4">
+                                            <h:outputText value="12:30 - 11:10"/><br />
+                                            <span style="color: #999999"><h:outputText value="SAS"/></span>
+                                        </b:column>
+                                        <b:column span="3">
+                                            <h:outputText value="5h 20m"/><br />
+                                            <span style="color: #999999"><h:outputText value="#{flight.depCity.name.substring(0, 3).toUpperCase()}"/> - <h:outputText value="#{flight.desCity.name.substring(0, 3).toUpperCase()}" /></span>
+                                        </b:column>
+                                        <b:column span="3">
+                                            <h:outputText value="No stops"/>
+                                        </b:column>
+                                    </b:row>
+                                </b:column>
+                                <b:column span="3" style="text-align: right">
+                                    <h3 style="margin: 0px"><h:outputText value="$#{flight.price}" /></h3>
+                                        <span style="color: #999999">roundtrip</span><br />
+                                        <h:form>
+                                            <b:commandButton update="jumbo" action="#{searchBean.setOutboundFlightId(flight.id)}" class="btn btn-primary" value="Select" style="margin-top: 5px" rendered="#{searchBean.outboundFlightId == null}" />
+                                            <h:link outcome="/partials/booking/formContact.xhtml" includeViewParams="true" class="btn btn-primary" value="Select" style="margin-top: 5px" rendered="#{searchBean.outboundFlightId != null}">
+                                                <f:param name="outFlight" value="#{searchBean.outboundFlightId}" />
+                                                <f:param name="returnFlight" value="#{searchBean.returnFlightId}" />
+                                            </h:link>
+                                        </h:form>
+                                </b:column>
+                            </b:row>
+                        </b:panel>
+                    </ui:repeat>
+                 </b:jumbotron>
+            </b:row>
+        </ui:define>
+    </ui:composition>
+</html>
