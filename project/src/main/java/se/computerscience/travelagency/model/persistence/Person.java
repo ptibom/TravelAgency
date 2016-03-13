@@ -46,14 +46,14 @@ public class Person implements Serializable {
     @Getter
     @Setter
     @NotNull(message = "{required.field}")
-    @Pattern(regexp="[a-z]*")
+    @Pattern(regexp="[A-Za-zÅÄÖåäö]+")
     @Size(max = 255)
     @Column(nullable = false)
     private String firstName;
     
     @Getter
     @Setter
-    @Pattern(regexp="[a-z]*")
+    @Pattern(regexp="[A-Za-zÅÄÖåäö]+")
     @NotNull(message = "{required.field}")
     @Size(max = 255)
     @Column(nullable = false)
@@ -85,7 +85,7 @@ public class Person implements Serializable {
     
     @Getter
     @Setter
-    @Email
+    @Pattern(regexp = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}", message = "{required.email}")
     @NotNull(message = "{required.field}")
     @Size(max = 255)
     @Column(nullable = false)
