@@ -64,9 +64,15 @@ public class BookingBean implements Serializable {
         return passengerList;
 
     }
-    public String clear(){
-       FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-       return "/index.xhtml?faces-redirect=true";
+
+    public String toStartAndClear() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "/index.xhtml?faces-redirect=true";
     }
 
+    public String toFormContactAndClear() {
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("SessionBean1");
+        return "/partials/formContact.xhtml?faces-redirect=true&amp;includeViewParams=true";
+    }
+ 
 }
