@@ -60,6 +60,8 @@ public class Hotel implements Serializable, Comparable<Hotel>{
     private Double price;
     
     @ManyToOne
+    @Setter
+    @Getter
     private City city;
         
     @OneToMany(mappedBy = "hotel")

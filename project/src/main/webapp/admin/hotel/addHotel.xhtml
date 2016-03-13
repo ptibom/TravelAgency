@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    
+    <ui:composition template="/WEB-INF/template.xhtml" rendered="#{request.isUserInRole('adminRole')}">
+        <ui:define name="content">          
+            <h:form>
+                <h3>Add Hotel</h3>
+                <h:panelGrid columns="1">
+                    <h:outputLabel for="name" value="Name"/>
+                    <h:inputText value="#{hotelBean.hotelNameAdd}" id="addName"/>
+                    <h:message for="name" />
+                    
+                    <h:outputLabel for="price" value="Price"/>
+                    <h:inputText value="#{hotelBean.hotelPriceAdd}" id="addPrice"/>
+                    <h:message for="price" />
+                    
+                    <h:outputLabel for="rooms" value="Rooms"/>
+                    <h:inputText value="#{hotelBean.hotelRoomsAdd}" id="addRooms"/>
+                    <h:message for="rooms" />
+                    
+                    <h:outputLabel for="rating" value="Rating"/>
+                    <h:inputText value="#{hotelBean.hotelRatingAdd}" id="addRating"/>
+                    <h:message for="rating" />
+                    
+                    <h:outputLabel for="cityId" value="City ID"/>
+                    <h:inputText value="#{hotelBean.cityIdAdd}" id="addcity"/>
+                    <h:message for="city" />
+                    
+                    <h:outputLabel for="desc" value="Description"/>
+                    <h:inputTextarea value="#{hotelBean.hotelDescriptionAdd}" id="addDesc"/>
+                    <h:message for="desc" />
+                </h:panelGrid> 
+                
+                <h:commandButton value="Cancel" immediate="true" class="btn btn-default" action="index?faces-redirect=true" />
+                <h:commandButton value="Add Hotel" action="#{hotelBean.addHotel()}" class="btn btn-default"/>
+            </h:form>    
+        </ui:define>
+    </ui:composition>
+</html>
