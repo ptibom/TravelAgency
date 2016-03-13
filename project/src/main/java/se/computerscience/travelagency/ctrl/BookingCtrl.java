@@ -7,74 +7,68 @@ package se.computerscience.travelagency.ctrl;
 
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.inject.Model;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.RequestScoped;
+
+
 import javax.inject.Inject;
 import javax.inject.Named;
 import se.computerscience.travelagency.model.persistence.Booking;
-import se.computerscience.travelagency.model.persistence.City;
 import se.computerscience.travelagency.model.persistence.IBookingDAO;
 import se.computerscience.travelagency.model.persistence.ICityDAO;
 import se.computerscience.travelagency.model.persistence.IFlightDAO;
 import se.computerscience.travelagency.model.persistence.IHotelDAO;
 import se.computerscience.travelagency.model.persistence.Person;
-import se.computerscience.travelagency.view.BookingBean;
-import se.computerscience.travelagency.view.SearchBean;
+import se.computerscience.travelagency.view.PaymentBB;
 
 
+@Named(value = "bookingCtrl")
+@RequestScoped
 public class BookingCtrl {
+    /*
     
     public void save() {}
     public List<Person> getPassengers(String query) {return null;}
-/*
+*/
    
     @EJB
-    IBookingDAO bookingDAO;
+    private IBookingDAO bookingDAO;
 
     @EJB
-    IHotelDAO hotelDAO;
+    private IHotelDAO hotelDAO;
 
     @EJB
-    ICityDAO cityDAO;
+    private ICityDAO cityDAO;
 
     @EJB
-    IFlightDAO flightDAO;
+    private IFlightDAO flightDAO;
 
     @Inject
-    BookingBean bookingBean;
-    @Inject
-    SearchBean searchBean;
-
+    private PaymentBB paymentBB;
+    
     public void save() {
         Booking booked = new Booking();
-        booked.setFlyBackDate(searchBean.getFromDate());
-        booked.setFlyToDate(searchBean.getToDate());
-        booked.setPrice(1000.0);
-        booked.setDepCity(cityDAO.findById(1L));
-        booked.setDesCity(cityDAO.findById(2L));
-        booked.setFlyBack(flightDAO.findById(1L));
-        booked.setFlyTo(flightDAO.findById(2L));
-        booked.setHotel(hotelDAO.findById(1L));
-        for (Person passenger : bookingBean.getPassengerList()) {
-            passenger.AddBooking(booked);
+
+        booked.setDepCity(cityDAO.cityByName(paymentBB.getFromCity()));
+        booked.setDesCity(cityDAO.cityByName(paymentBB.getToCity()));
+        booked.setFlyBack(flightDAO.findById(Long.parseLong(paymentBB.getReturnFlight())));
+        booked.setFlyTo(flightDAO.findById(Long.parseLong(paymentBB.getOutFlight())));
+        booked.setHotel(hotelDAO.findById(Long.parseLong(paymentBB.getHotelId())));
+        booked.setFlyBackDate(paymentBB.getFromDate());
+        booked.setFlyToDate(paymentBB.getToDate());
+        
+        for (Person passenger : paymentBB.getPassengerList()) {
+            passenger.addBooking(booked);
         }
         bookingDAO.insertBooking(booked);
     }
 
     @Inject
-    public void setBookingBean(BookingBean bookingBean) {
-        this.bookingBean = bookingBean;
+    public void setBookingBean(PaymentBB paymentBB) {
+        this.paymentBB = paymentBB;
     }
-
-    @Inject
-    public void setSearchBean(SearchBean searchBean) {
-        this.searchBean = searchBean;
-    }
-
+    
     public List<Person> getPassengers(String query) {
         return bookingDAO.getPassengers();
     }
-*/
+
 }

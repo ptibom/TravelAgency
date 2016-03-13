@@ -63,7 +63,7 @@
                                             <b:commandButton update="jumbo" action="#{searchBean.setOutboundFlightId(flight.id)}" class="btn btn-primary" value="Select" style="margin-top: 5px" rendered="#{searchBean.outboundFlightId == null}" />
                                             <h:link outcome="/partials/booking/formContact.xhtml" includeViewParams="true" class="btn btn-primary" value="Select" style="margin-top: 5px" rendered="#{searchBean.outboundFlightId != null}">
                                                 <f:param name="outFlight" value="#{searchBean.outboundFlightId}" />
-                                                <f:param name="returnFlight" value="#{searchBean.returnFlightId}" />
+                                                <f:param name="returnFlight" value="#{flight.id}" />
                                             </h:link>
                                         </h:form>
                                 </b:column>

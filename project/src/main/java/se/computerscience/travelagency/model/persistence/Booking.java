@@ -36,14 +36,13 @@ public class Booking implements Serializable {
     //@Column(nullable = false)
     private Double price;
    
+   @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name="PERSON_BOOKING", joinColumns=@JoinColumn(name="BOOKING_ID", referencedColumnName ="ID"),
+            inverseJoinColumns=@JoinColumn(name="PERSON_ID", referencedColumnName="ID"))
     @Setter
     @Getter
-    @ManyToMany
-    @JoinTable(
-          name="BOOKING_PERSON",
-          joinColumns=@JoinColumn(name="BOOKING_ID", referencedColumnName="ID"),
-          inverseJoinColumns=@JoinColumn(name="PERSON_ID", referencedColumnName="ID"))
-    private List<Person> persons;
+    //@Column(nullable = false)
+    private List<Person> person;
 
     
     @ManyToOne

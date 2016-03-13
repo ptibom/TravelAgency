@@ -91,7 +91,7 @@ public class Person implements Serializable {
     @Column(nullable = false)
     private String emailAdress;
     
-    @ManyToMany(mappedBy = "persons")
+    @ManyToMany(mappedBy = "person")
     private List<Booking> bookings;
     
     public Person() {

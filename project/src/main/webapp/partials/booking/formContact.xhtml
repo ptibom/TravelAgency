@@ -11,31 +11,44 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui">
+    
+    
     <f:metadata>
-        <f:viewParam name="fromCity" value="#{searchBean.fromCity}" />
-        <f:viewParam name="toCity" value="#{searchBean.toCity}" />
-        <f:viewParam name="numPassengers" value="#{bookingBean.numPassengers}" />
-        <f:viewParam name="fromDate" value="#{searchBean.fromDate}" converter="javax.faces.DateTime" />
-        <f:viewParam name="toDate" value="#{searchBean.toDate}" converter="javax.faces.DateTime" />
+        <f:viewParam name="fromCity" value="#{contactBB.fromCity}" />
+        <f:viewParam name="toCity" value="#{contactBB.toCity}" />
+        <f:viewParam name="numPassengers" value="#{contactBB.numPassengers}" />
+        <f:viewParam name="hotelId" value="#{contactBB.hotelId}" />
+        <f:viewParam name="outFlight" value="#{contactBB.outFlight}" />
+        <f:viewParam name="returnFlight" value="#{contactBB.returnFlight}" />
+        <f:viewParam name="fromDate" value="#{contactBB.fromDate}" converter="javax.faces.DateTime" />
+        <f:viewParam name="toDate" value="#{contactBB.toDate}" converter="javax.faces.DateTime" />
     </f:metadata>
+   
     <ui:composition template="/WEB-INF/template.xhtml">
         <ui:define name="content">
-            <br></br>
-            <h:form >
+            <h:form>
                 <b:row>
                     <b:column span="1">
                     </b:column>
                     <b:column span="2">
-                        <h:button outcome="/index.xhtml?faces-redirect=true" value="Back" class="btn btn-default"/>
+                        <h:button outcome="/partials/booking/flights.xhtml" value="Back" class="btn btn-default"/>
                     </b:column>
                     <b:column span="5">
                     </b:column>
                     <b:column span="2">
-                        <h:commandButton action="/partials/formPayment.xhtml?faces-redirect=true" value="Next" class="btn btn-default"/>
+                        <h:inputHidden  value="#{paymentBB.fromCity}" />
+                        <h:inputHidden value="#{paymentBB.toCity}" />
+                        <h:inputHidden value="#{paymentBB.hotelId}" />
+                        <h:inputHidden value="#{paymentBB.outFlight}" />
+                        <h:inputHidden value="#{paymentBB.returnFlight}" />
+                        <h:inputHidden value="#{paymentBB.passengerList}" />
+                        <h:inputHidden value="#{paymentBB.fromDate}" />
+                        <h:inputHidden value="#{paymentBB.toDate}" />
+                        <h:commandButton action="/partials/booking/formPayment.xhtml?faces-redirect=true" class="btn btn-primary" value="Select" />
                     </b:column>
                 </b:row>
                 <b:panel id="panel2" title="Passenger information" style="margin-bottom:10px;">
-                    <ui:repeat value="#{bookingBean.intializePassengerList()}" var="passenger" varStatus="varStat">
+                    <ui:repeat value="#{contactBB.intializePassengerList()}" var="passenger" varStatus="varStat">
                         <b:panel title="Passenger #{varStat.index+1} ">
                             <b:row>
                                 <b:column span ="5">  
@@ -115,7 +128,6 @@ and open the template in the editor.
                                 </b:column>
                             </b:row>
                         </b:panel>
-                        <br></br>
                     </ui:repeat>
                 </b:panel>     
             </h:form>

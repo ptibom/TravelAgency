@@ -5,13 +5,12 @@
  */
 package se.computerscience.travelagency.view;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import javax.faces.bean.ManagedBean;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -19,12 +18,15 @@ import lombok.Getter;
 import lombok.Setter;
 import se.computerscience.travelagency.model.persistence.Person;
 
-@Named(value = "bookingBean")
-@ManagedBean
-@SessionScoped
-public class BookingBean implements Serializable {
-
-    @Getter
+/**
+ *
+ * @author MonoMan
+ */
+@Named(value = "contactBB")
+@RequestScoped
+public class ContactBB {
+  @Getter
+    @Setter
     List<Person> passengerList;
 
     @Getter
@@ -47,8 +49,45 @@ public class BookingBean implements Serializable {
     @Setter
     @NotNull(message = "{required.field}")
     private String expirationDate;
-
-    // We initialize the passenger list to be filled out
+    
+    @Getter
+    @Setter
+    private String toCity;
+    
+    @Getter
+    @Setter
+    private String hotelId;
+    
+    @Getter
+    @Setter
+    private String fromCity;
+    
+    @Getter
+    @Setter
+    private String flyTo;
+     
+    @Getter
+    @Setter
+    private String outFlight;
+    
+    @Getter
+    @Setter
+    private String returnFlight;
+    
+    @Getter
+    @Setter
+    @Future
+    private Date  fromDate;
+    
+    @Getter
+    @Setter
+    @Future
+    private Date  toDate;
+   
+    
+    public ContactBB() {   
+    }
+        // We initialize the passenger list to be filled out
     public List<Person> intializePassengerList() {
         System.out.println(numPassengers);
         passengerList = new ArrayList<>();
@@ -64,15 +103,4 @@ public class BookingBean implements Serializable {
 
         return passengerList;
     }
-
-    public String toStartAndClear() {
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "/index.xhtml?faces-redirect=true";
-    }
-
-    public String toFormContactAndClear() {
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("SessionBean1");
-        return "/partials/formContact.xhtml?faces-redirect=true&amp;includeViewParams=true";
-    }
- 
 }
