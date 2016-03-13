@@ -1,4 +1,4 @@
-package se.computerscience.travelagency.view;
+package se.computerscience.travelagency.view.admin;
 
 import java.util.List;
 import javax.ejb.EJB;
