@@ -9,7 +9,9 @@
     <ui:composition template="/WEB-INF/template.xhtml" rendered="#{request.isUserInRole('adminRole')}">
         <ui:define name="content">
             <!-- Logg in to access the admin page -->      
-            <h:link value="Add Booking" outcome="addBooking.xhtml" />
+            <h:link value="Add Booking" outcome="addBooking.xhtml" /> <br />
+            <h:link value="Back to admin menu" outcome="/admin/index.xhtml" /> 
+            
             <h:dataTable var="booking" value="#{bookingBean.allBookings()}"  class="table table-striped">
                 <h:column><h:outputText value="Id: #{booking.id}"/></h:column>
                 <h:column><h:outputText value="dscId: #{booking.desCityId}"/></h:column>

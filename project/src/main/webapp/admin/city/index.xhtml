@@ -8,8 +8,11 @@
       xmlns:b="http://bootsfaces.net/ui">
     <ui:composition template="/WEB-INF/template.xhtml" rendered="#{request.isUserInRole('adminRole')}">
         <ui:define name="content">
-            <!-- Logg in to access the admin page -->      
-            <h:link value="Add city" outcome="addCity.xhtml" />
+            <!-- Logg in to access the admin page -->  
+            
+            <h:link value="Add city" outcome="addCity.xhtml" /><br />
+            <h:link value="Back to admin menu" outcome="/admin/index.xhtml" /> 
+            
             <h:dataTable var="city" value="#{cityBean.allCities()}"  class="table table-striped">
                 <h:column><h:outputText value="#{city.id}"/></h:column>
                 <h:column><h:outputText value="#{city.name}"/></h:column>

@@ -9,7 +9,8 @@
     <ui:composition template="/WEB-INF/template.xhtml" rendered="#{request.isUserInRole('adminRole')}">
         <ui:define name="content">
             <!-- Logg in to access the admin page -->      
-            <h:link value="Add Plane" outcome="addPlane.xhtml" />
+            <h:link value="Add Plane" outcome="addPlane.xhtml" /><br/>
+            <h:link value="Back to admin menu" outcome="/admin/index.xhtml" /> 
             <h:dataTable var="plane" value="#{planeBean.allPlanes()}"  class="table table-striped">
                 <h:column><h:outputText value="#{plane.id}"/></h:column>
                 <h:column><h:outputText value="#{plane.type}"/></h:column>
