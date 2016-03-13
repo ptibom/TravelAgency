@@ -287,7 +287,7 @@ public class AdminCtrl {
             parsedId = Long.parseLong(bookingBean.getPersonId());
             Person person = personDAO.findById(parsedId);
 
-            int parsedPrice = Integer.parseInt(bookingBean.getPersonId());
+            int parsedPrice = Integer.parseInt(bookingBean.getPrice());
 
             // check if any of the above is invalid, then return
             if (depCity == null || desCity == null || flyBack == null || flyTo == null || hotel == null || person == null || booking == null) {
