@@ -13,6 +13,6 @@ public class ValidatorFirstName implements Validator {
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
          ValidatorUtility.updateField(context, "firstName");
           String firstName = (String)value;
-       if(firstName == null){ ValidatorUtility.sendMessage("Input is empty");System.out.println("RONG");}
+       if(firstName == null){ ValidatorUtility.sendMessage("Input is empty");}
     }
 }

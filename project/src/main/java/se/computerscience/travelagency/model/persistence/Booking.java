@@ -46,17 +46,20 @@ public class Booking implements Serializable {
 
     
     @ManyToOne
+    @Setter
     @Getter
     //@Column(nullable = false)
     private Flight flyTo;
     
     @ManyToOne
+    @Setter
     @Getter
     //@Column(nullable = false)
     private Flight flyBack;
     
     @ManyToOne
     @Getter
+    @Setter
     //@Column(nullable = false)
     private Hotel hotel;
     

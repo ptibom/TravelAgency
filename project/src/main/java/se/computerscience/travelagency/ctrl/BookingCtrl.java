@@ -16,62 +16,64 @@ import javax.inject.Named;
 import se.computerscience.travelagency.model.persistence.Booking;
 import se.computerscience.travelagency.model.persistence.City;
 import se.computerscience.travelagency.model.persistence.IBookingDAO;
+import se.computerscience.travelagency.model.persistence.ICityDAO;
+import se.computerscience.travelagency.model.persistence.IFlightDAO;
+import se.computerscience.travelagency.model.persistence.IHotelDAO;
 import se.computerscience.travelagency.model.persistence.Person;
 import se.computerscience.travelagency.view.BookingBean;
 import se.computerscience.travelagency.view.SearchBean;
 
+@Model
+@ManagedBean
+@SessionScoped
+public class BookingCtrl {
 
-
-   @Model
-   @ManagedBean
-   @SessionScoped
-   public class BookingCtrl{
-    
     @EJB
     IBookingDAO bookingDAO;
 
+    @EJB
+    IHotelDAO hotelDAO;
+
+    @EJB
+    ICityDAO cityDAO;
+
+    @EJB
+    IFlightDAO flightDAO;
+
     @Inject
-     BookingBean bookingBean;
+    BookingBean bookingBean;
     @Inject
-     SearchBean searchBean;
-    
-    public void save(){     
-    Booking booked = new Booking();
-    booked.setFlyBackDate(searchBean.getFromDate());
-    booked.setFlyToDate(searchBean.getToDate());
-    booked.setPrice(1000.0);
-    // Booking need a city
-  //  City fromCity = new City();
-  //  fromCity.setName(searchBean.getFromCity());
-  //  City toCity = new City();
-  //  toCity.setName(searchBean.getToCity());
-  //  booked.setDepCity(fromCity);
-  //  booked.setDesCity(toCity);
-    
-    // Create relationship
-    booked.setPerson(bookingBean.getPassengerList());
-    for(Person passenger : bookingBean.getPassengerList()){
-       passenger.AddBooking(booked);
-    } 
-     bookingDAO.insertBooking(booked);
+    SearchBean searchBean;
+
+    public void save() {
+        Booking booked = new Booking();
+        booked.setFlyBackDate(searchBean.getFromDate());
+        booked.setFlyToDate(searchBean.getToDate());
+        booked.setPrice(1000.0);
+        booked.setDepCity(cityDAO.findById(1L));
+        booked.setDesCity(cityDAO.findById(2L));
+        booked.setFlyBack(flightDAO.findById(1L));
+        booked.setFlyTo(flightDAO.findById(2L));
+        booked.setHotel(hotelDAO.findById(1L));
+        booked.setPerson(bookingBean.getPassengerList());
+        for (Person passenger : bookingBean.getPassengerList()) {
+            passenger.AddBooking(booked);
+        }
+        bookingDAO.insertBooking(booked);
     }
-    
+
     @Inject
     public void setBookingBean(BookingBean bookingBean) {
         this.bookingBean = bookingBean;
     }
-    
+
     @Inject
     public void setSearchBean(SearchBean searchBean) {
         this.searchBean = searchBean;
     }
-    
+
     public List<Person> getPassengers(String query) {
         return bookingDAO.getPassengers();
     }
-    
-    
+
 }
-    
-    
-   

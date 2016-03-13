@@ -48,6 +48,7 @@ public class BookingBean implements Serializable {
     @NotNull(message = "{required.field}")
     private String expirationDate;
 
+    // We initialize the passenger list to be filled out
     public List<Person> intializePassengerList() {
         System.out.println(numPassengers);
         passengerList = new ArrayList<>();
@@ -62,7 +63,6 @@ public class BookingBean implements Serializable {
         }
 
         return passengerList;
-
     }
 
     public String toStartAndClear() {

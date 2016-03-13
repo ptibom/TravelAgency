@@ -14,7 +14,7 @@ public class ValidatorGender implements Validator {
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
        ValidatorUtility.updateField(context, "gender");
        String gender = (String)value;
-       if(gender == null) {ValidatorUtility.sendMessage("Input is empty");System.out.println("RONG");}
+       if(gender == null) {ValidatorUtility.sendMessage("Input is empty");}
       
     }
 }
