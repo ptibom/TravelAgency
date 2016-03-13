@@ -1,8 +1,10 @@
 package se.computerscience.travelagency.model.persistence;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import javax.persistence.Column;
@@ -14,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,14 +41,14 @@ public class Flight implements Serializable{
     @Setter
     @Size(max = 255)
     @Column(nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date depature; 
     
     @Getter
     @Setter
     @Size(max = 255)
     @Column(nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date arrival;
     
     @Getter
@@ -77,14 +80,18 @@ public class Flight implements Serializable{
     
     public String getDuration(){
         String time = "";
-        long duration  = arrival.getTime() - depature.getTime();
-        long diffInMin = TimeUnit.MILLISECONDS.toMinutes(duration);
-        long diffInHours = TimeUnit.MILLISECONDS.toHours(duration);
-        if (diffInHours != 0) {
-            time += diffInHours+" h ";
+        long duration  = depature.getTime() - arrival.getTime();
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTimeInMillis(duration);
+
+        int hours = calendar.get(Calendar.HOUR_OF_DAY);
+        int minutes = calendar.get(Calendar.MINUTE);
+        
+        if (hours != 0) {
+            time += hours+" h ";
         } 
-        if (diffInMin != 0){
-            time += diffInMin+" m";
+        if (minutes != 0){
+            time += minutes+" m";
         }
         return time;
     }
@@ -107,6 +114,7 @@ public class Flight implements Serializable{
                 return (int) ((f1A.getTime() - f1D.getTime()) - (f2A.getTime() - f2D.getTime()));
             }
         };
+        
         public static Comparator<Flight> PRICEandTIME = new Comparator<Flight>() {
             @Override
             public int compare(Flight f1, Flight f2) {
@@ -117,5 +125,20 @@ public class Flight implements Serializable{
                 return i ;
             }
         };
+        
+        public static Comparator<Flight> EARLIEST = new Comparator<Flight>() {
+            @Override
+            public int compare(Flight f1, Flight f2) {
+                return f1.depature.compareTo(f2.depature);
+            }
+        };
+        
+        public static Comparator<Flight> LATEST = new Comparator<Flight>() {
+            @Override
+            public int compare(Flight f1, Flight f2) {
+                return f2.depature.compareTo(f1.depature);
+            }
+        };
+        
     }
 }
