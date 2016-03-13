@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,28 +31,33 @@ public class Person implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull(message = "{required.field}")
     @Getter
     private Long id;
     
     @Getter
     @Setter
+    @NotNull(message = "{required.field}")
     @Column(nullable = false)
     private String gender;
     
     @Getter
     @Setter
+    @NotNull(message = "{required.field}")
     @Size(max = 255)
     @Column(nullable = false)
     private String firstName;
     
     @Getter
     @Setter
+    @NotNull(message = "{required.field}")
     @Size(max = 255)
     @Column(nullable = false)
     private String lastName;
    
     @Getter
     @Setter
+    @NotNull(message = "{required.field}")
     @Size(max = 255)
     @Column(nullable = false)
     private String address;
@@ -59,18 +65,21 @@ public class Person implements Serializable {
      
     @Getter
     @Setter
+    @NotNull(message = "{required.field}")
     @Size(max = 255)
     @Column(nullable = false)
     private String postalCode;
     
     @Getter
     @Setter
+    @NotNull(message = "{required.field}")
     @Size(max = 255)
     @Column(nullable = false)
     private String phoneNumber;   
     
     @Getter
     @Setter
+    @NotNull(message = "{required.field}")
     @Size(max = 255)
     @Column(nullable = false)
     private String emailAdress;

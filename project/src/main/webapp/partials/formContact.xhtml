@@ -45,7 +45,6 @@ and open the template in the editor.
                                     <f:selectItem itemLabel="Male" itemValue="Male" />
                                     <f:selectItem itemLabel="Female" itemValue="Female" />
                                     <p:ajax update="msgGender" event="change" />
-                                    <f:validator validatorId="gender" /> 
                                 </p:selectOneButton>
                                 <div style="width: 200px"><p:message for="gender" id="msgGender" /></div>
                             </b:row>
@@ -55,7 +54,6 @@ and open the template in the editor.
                                 </b:column>
                                 <b:column span = "4">  
                                     <h:inputText id ="address" value="#{passenger.address}" size="60">
-                                        <f:validator validatorId="address" /> 
                                         <p:ajax update="msgAddress" event="blur" />
                                     </h:inputText>
                                     <div style="width: 200px"><p:message for="address" id="msgAddress" /></div>
@@ -67,7 +65,6 @@ and open the template in the editor.
                                 </b:column>
                                 <b:column span = "3">  
                                     <h:inputText id="postalCode" value="#{passenger.postalCode}" size="60">
-                                        <f:validator validatorId="postalCode" /> 
                                         <p:ajax update="msgPostalCode" event="blur" />                                   
                                     </h:inputText>
                                     <div style="width: 200px"><p:message for="postalCode" id="msgPostalCode" /></div>
@@ -79,7 +76,6 @@ and open the template in the editor.
                                 </b:column>
                                 <b:column span = "4">  
                                     <h:inputText id="phoneNumber" value="#{passenger.phoneNumber}" size="60">
-                                        <f:validator validatorId="phoneNumber" /> 
                                         <p:ajax update="msgPhoneNumber" event="blur" />    
                                     </h:inputText>
                                     <div style="width: 200px"><p:message for="phoneNumber" id="msgPhoneNumber" /></div>
@@ -91,7 +87,6 @@ and open the template in the editor.
                                 </b:column>
                                 <b:column span = "3">  
                                     <h:inputText id="emailAddress" value="#{passenger.emailAdress}" size="60">
-                                        <f:validator validatorId="emailAddress" /> 
                                         <p:ajax update="msgEmailAddress" event="blur" />                                    
                                     </h:inputText>
                                     <div style="width: 200px"><p:message for="emailAddress" id="msgEmailAddress" /></div>
@@ -103,7 +98,6 @@ and open the template in the editor.
                                 </b:column>
                                 <b:column span = "2">  
                                     <h:inputText id="firstName" value="#{passenger.firstName}" size="60">
-                                        <f:validator validatorId="firstName" /> 
                                         <p:ajax update="msgFirstName" event="blur" />  
                                     </h:inputText>
                                     <div style="width: 200px"><p:message for="firstName" id="msgFirstName" /></div>
@@ -115,7 +109,6 @@ and open the template in the editor.
                                 </b:column>
                                 <b:column span = "2">  
                                     <h:inputText id="lastName" value="#{passenger.lastName}" size="60">
-                                        <f:validator validatorId="lastName" /> 
                                         <p:ajax update="msgLastName" event="blur" />  
                                     </h:inputText>
                                     <div style="width: 200px"><p:message for="lastName" id="msgLastName" /></div>
