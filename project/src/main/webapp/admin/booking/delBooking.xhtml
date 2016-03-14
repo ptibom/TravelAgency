@@ -13,7 +13,6 @@
         <f:viewParam name="dpcId" value="#{bookingAdminBean.depCityId}" />
         <f:viewParam name="FTid" value="#{bookingAdminBean.flightToId}" />
         <f:viewParam name="flyBId" value="#{bookingAdminBean.flightBackId}" />
-        <f:viewParam name="personId" value="#{bookingAdminBean.personId}" />
         <f:viewParam name="hotelId" value="#{bookingAdminBean.hotelId}" />
         <f:viewParam name="price" value="#{bookingAdminBean.price}" />
     </f:metadata>
@@ -47,11 +46,7 @@
                     <h:outputLabel for="name" value="hotelId"/>
                     <h:inputText value="#{bookingAdminBean.hotelId}" id="hotelId" disabled="true"/>
                     <h:message for="name" />
-                    
-                    <h:outputLabel for="name" value="personId"/>
-                    <h:inputText value="#{bookingAdminBean.personId}" id="personId" disabled="true"/>
-                    <h:message for="name" />
-                    
+                                       
                     <h:outputLabel for="name" value="price"/>
                     <h:inputText value="#{bookingAdminBean.price}" id="price" disabled="true"/>
                     <h:message for="name" />

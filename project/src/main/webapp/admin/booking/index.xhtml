@@ -20,7 +20,6 @@
                 <h:column><h:outputText value="backDate: #{booking.flyBackDate}"/></h:column>
                 <h:column><h:outputText value="FTid #{booking.flyToId}"/></h:column>
                 <h:column><h:outputText value="FBid #{booking.flyBackId}"/></h:column>
-                <h:column><h:outputText value="Pid #{booking.personId}"/></h:column>
                 <h:column><h:outputText value="Hid #{booking.hotelId}"/></h:column>
                 <h:column><h:outputText value="Price #{booking.price}"/></h:column>
                 
@@ -31,7 +30,6 @@
                         <f:param name="dpcId" value="#{booking.depCityId}" />
                         <f:param name="FTid" value="#{booking.flyToId}" />
                         <f:param name="flyBId" value="#{booking.flyBackId}" />
-                        <f:param name="personId" value="#{booking.personId}" />
                         <f:param name="hotelId" value="#{booking.hotelId}" />
                         <f:param name="price" value="#{booking.price}" />
                     </h:link>
@@ -43,7 +41,6 @@
                         <f:param name="dpcId" value="#{booking.depCityId}" />
                         <f:param name="FTid" value="#{booking.flyToId}" />
                         <f:param name="flyBId" value="#{booking.flyBackId}" />
-                        <f:param name="personId" value="#{booking.personId}" />
                         <f:param name="hotelId" value="#{booking.hotelId}" />
                         <f:param name="price" value="#{booking.price}" />
                     </h:link>

@@ -241,13 +241,11 @@ public class AdminCtrl {
         parsedId = Long.parseLong(bookingBean.getHotelId());
         Hotel hotel = hotelDAO.findById(parsedId);
         
-        parsedId = Long.parseLong(bookingBean.getPersonId());
-        Person person = personDAO.findById(parsedId);
         
         int parsedPrice = Integer.parseInt(bookingBean.getPrice());
         
         // check if any of the above is invalid, then return
-        if (depCity == null || desCity == null || flyBack == null || flyTo == null || hotel == null || person == null) {
+        if (depCity == null || desCity == null || flyBack == null || flyTo == null || hotel == null) {
             System.err.println("failed check for not null @bookingBean");
             return redir();
         }
@@ -259,7 +257,6 @@ public class AdminCtrl {
         booking.setFlyToDate(bookingBean.getDepatureToDate());
         booking.setHotel(hotel);
         booking.setPrice(parsedPrice);
-        booking.setPerson(person);
         bookingDAO.create(booking);
         return redir();
     }
@@ -284,13 +281,10 @@ public class AdminCtrl {
             parsedId = Long.parseLong(bookingBean.getHotelId());
             Hotel hotel = hotelDAO.findById(parsedId);
 
-            parsedId = Long.parseLong(bookingBean.getPersonId());
-            Person person = personDAO.findById(parsedId);
-
             int parsedPrice = Integer.parseInt(bookingBean.getPrice());
 
             // check if any of the above is invalid, then return
-            if (depCity == null || desCity == null || flyBack == null || flyTo == null || hotel == null || person == null || booking == null) {
+            if (depCity == null || desCity == null || flyBack == null || flyTo == null || hotel == null|| booking == null) {
                 System.err.println("failed check for not null @bookingBean");
                 return redir();
             }
@@ -302,7 +296,6 @@ public class AdminCtrl {
             booking.setFlyToDate(bookingBean.getDepatureToDate());
             booking.setHotel(hotel);
             booking.setPrice(parsedPrice);
-            booking.setPerson(person);
 
             bookingDAO.update(booking);
             return redir();
