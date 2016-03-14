@@ -109,5 +109,23 @@ public class Booking implements Serializable {
         return hash;
     }
     
+    public long getDesCityId() {
+        return desCity.getId();
+    }
     
+    public long getDepCityId() {
+        return depCity.getId();
+    }
+    
+    public long getFlyToId() {
+        return flyTo.getId();
+    }
+    
+    public long getFlyBackId() {
+        return flyBack.getId();
+    }
+    
+    public long getHotelId() {
+        return hotel.getId();
+    }
 }
