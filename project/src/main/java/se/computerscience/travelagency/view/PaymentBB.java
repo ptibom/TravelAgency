@@ -4,9 +4,11 @@ package se.computerscience.travelagency.view;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.faces.bean.RequestScoped;
+
 import javax.inject.Named;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -45,48 +47,38 @@ public class PaymentBB implements Serializable {
     
     @Getter
     @Setter
+    @Pattern(regexp = "[A-Za-zÅÄÖåäö]+", message = "{required.letters}")
     private String toCity;
     
     @Getter
     @Setter
+    @Pattern(regexp = "[A-Za-zÅÄÖåäö]+", message = "{required.letters}")
     private String fromCity;
-    
-    @Getter
-    @Setter
-    private String flyTo;
      
     @Getter
     @Setter
+    @Pattern(regexp = "\\d+", message = "{required.letters}")
     private String outFlight;
     
     @Getter
     @Setter
+    @Pattern(regexp = "\\d+", message = "{required.letters}")
     private String returnFlight;
     
     @Getter
     @Setter
+    @Pattern(regexp = "\\d+", message = "{required.letters}")
     private String hotelId;
     
     @Getter
     @Setter
-    @Future
-    private Date  fromDate;
+    @NotNull(message = "{required.field}")
+    private String fromDate;
     
     @Getter
     @Setter
-    @Future
-    private Date  toDate;
+    @NotNull(message = "{required.field}")
+    private String toDate;
    
-    
-    public PaymentBB() {
-    }
-        public String toStartAndClear() {
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "/index.xhtml?faces-redirect=true";
-    }
 
-    public String toFormContactAndClear() {
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("SessionBean1");
-        return "/partials/booking/formContact.xhtml?faces-redirect=true&amp;includeViewParams=true";
-    }
 }

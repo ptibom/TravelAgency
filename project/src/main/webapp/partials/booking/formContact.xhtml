@@ -11,8 +11,8 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui">
-    
-    
+
+
     <f:metadata>
         <f:viewParam name="fromCity" value="#{contactBB.fromCity}" />
         <f:viewParam name="toCity" value="#{contactBB.toCity}" />
@@ -20,10 +20,10 @@ and open the template in the editor.
         <f:viewParam name="hotelId" value="#{contactBB.hotelId}" />
         <f:viewParam name="outFlight" value="#{contactBB.outFlight}" />
         <f:viewParam name="returnFlight" value="#{contactBB.returnFlight}" />
-        <f:viewParam name="fromDate" value="#{contactBB.fromDate}" converter="javax.faces.DateTime" />
-        <f:viewParam name="toDate" value="#{contactBB.toDate}" converter="javax.faces.DateTime" />
+        <f:viewParam name="fromDate" value="#{contactBB.fromDate}"  />
+        <f:viewParam name="toDate" value="#{contactBB.toDate}"  />
     </f:metadata>
-   
+
     <ui:composition template="/WEB-INF/template.xhtml">
         <ui:define name="content">
             <h:form>
@@ -31,19 +31,18 @@ and open the template in the editor.
                     <b:column span="1">
                     </b:column>
                     <b:column span="2">
-                        <h:button outcome="/partials/booking/flights.xhtml" value="Back" class="btn btn-default"/>
                     </b:column>
                     <b:column span="5">
                     </b:column>
                     <b:column span="2">
-                        <h:inputHidden  value="#{paymentBB.fromCity}" />
-                        <h:inputHidden value="#{paymentBB.toCity}" />
-                        <h:inputHidden value="#{paymentBB.hotelId}" />
-                        <h:inputHidden value="#{paymentBB.outFlight}" />
-                        <h:inputHidden value="#{paymentBB.returnFlight}" />
-                        <h:inputHidden value="#{paymentBB.passengerList}" />
-                        <h:inputHidden value="#{paymentBB.fromDate}" />
-                        <h:inputHidden value="#{paymentBB.toDate}" />
+                        <f:param name="fromCity" value="#{contactBB.fromCity}" />
+                        <f:param name="toCity" value="#{contactBB.toCity}" />
+                        <f:param name="numPassengers" value="#{contactBB.numPassengers}" />
+                        <f:param name="hotelId" value="#{contactBB.hotelId}" />
+                        <f:param name="outFlight" value="#{contactBB.outFlight}" />
+                        <f:param name="returnFlight" value="#{contactBB.returnFlight}" />
+                        <f:param name="fromDate" value="#{contactBB.fromDate}"  />
+                        <f:param name="toDate" value="#{contactBB.toDate}"  />
                         <h:commandButton action="/partials/booking/formPayment.xhtml?faces-redirect=true" class="btn btn-primary" value="Select" />
                     </b:column>
                 </b:row>

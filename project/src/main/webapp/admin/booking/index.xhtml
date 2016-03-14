@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    <ui:composition template="/WEB-INF/template.xhtml" rendered="#{request.isUserInRole('adminRole')}">
+        <ui:define name="content">
+            <!-- Logg in to access the admin page -->      
+            <h:link value="Add Booking" outcome="addBooking.xhtml" /> <br />
+            <h:link value="Back to admin menu" outcome="/admin/index.xhtml" /> 
+            
+            <h:dataTable var="booking" value="#{bookingBean.allBookings()}"  class="table table-striped">
+                <h:column><h:outputText value="Id: #{booking.id}"/></h:column>
+                <h:column><h:outputText value="dscId: #{booking.desCityId}"/></h:column>
+                <h:column><h:outputText value="dpcId: #{booking.depCityId}"/></h:column>
+                <h:column><h:outputText value="toDate: #{booking.flyToDate}"/></h:column>
+                <h:column><h:outputText value="backDate: #{booking.flyBackDate}"/></h:column>
+                <h:column><h:outputText value="FTid #{booking.flyToId}"/></h:column>
+                <h:column><h:outputText value="FBid #{booking.flyBackId}"/></h:column>
+                <h:column><h:outputText value="Pid #{booking.personId}"/></h:column>
+                <h:column><h:outputText value="Hid #{booking.hotelId}"/></h:column>
+                <h:column><h:outputText value="Price #{booking.price}"/></h:column>
+                
+                <h:column>
+                     <h:link value="Edit" outcome="editBooking.xhtml" >
+                        <f:param name="id" value="#{booking.id}" />
+                        <f:param name="dscId" value="#{booking.desCityId}" />
+                        <f:param name="dpcId" value="#{booking.depCityId}" />
+                        <f:param name="FTid" value="#{booking.flyToId}" />
+                        <f:param name="flyBId" value="#{booking.flyBackId}" />
+                        <f:param name="personId" value="#{booking.personId}" />
+                        <f:param name="hotelId" value="#{booking.hotelId}" />
+                        <f:param name="price" value="#{booking.price}" />
+                    </h:link>
+                </h:column>
+                <h:column>
+                     <h:link value="Del" outcome="delBooking.xhtml" >
+                        <f:param name="id" value="#{booking.id}" />
+                        <f:param name="dscId" value="#{booking.desCityId}" />
+                        <f:param name="dpcId" value="#{booking.depCityId}" />
+                        <f:param name="FTid" value="#{booking.flyToId}" />
+                        <f:param name="flyBId" value="#{booking.flyBackId}" />
+                        <f:param name="personId" value="#{booking.personId}" />
+                        <f:param name="hotelId" value="#{booking.hotelId}" />
+                        <f:param name="price" value="#{booking.price}" />
+                    </h:link>
+                </h:column>
+                
+            </h:dataTable>    
+        </ui:define>
+    </ui:composition>
+</html>

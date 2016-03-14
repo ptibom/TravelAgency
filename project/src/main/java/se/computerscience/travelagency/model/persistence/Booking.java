@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
+
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +17,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,57 +35,79 @@ public class Booking implements Serializable {
     
     @Getter
     @Setter
-    //@Column(nullable = false)
-    private Double price;
+    private int price;
    
-   @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name="PERSON_BOOKING", joinColumns=@JoinColumn(name="BOOKING_ID", referencedColumnName ="ID"),
-            inverseJoinColumns=@JoinColumn(name="PERSON_ID", referencedColumnName="ID"))
     @Setter
     @Getter
-    //@Column(nullable = false)
-    private List<Person> person;
+    @ManyToMany
+    @JoinTable(name="PERSON_BOOKING", joinColumns=@JoinColumn(name="BOOKING_ID", referencedColumnName ="ID"),
+               inverseJoinColumns=@JoinColumn(name="PERSON_ID", referencedColumnName="ID"))
+    private List<Person> persons;
 
     
-    @ManyToOne
+    
     @Setter
     @Getter
-    //@Column(nullable = false)
+    @ManyToOne
     private Flight flyTo;
     
-    @ManyToOne
     @Setter
     @Getter
-    //@Column(nullable = false)
+    @ManyToOne
     private Flight flyBack;
     
-    @ManyToOne
     @Getter
     @Setter
-    //@Column(nullable = false)
+    @ManyToOne
     private Hotel hotel;
     
-    @ManyToOne
     @Getter
     @Setter
-    //@Column(nullable = false)
+    @ManyToOne
     private City desCity;
     
-    @ManyToOne
     @Setter
     @Getter
-    //@Column(nullable = false)
+    @ManyToOne
     private City depCity;
     
     @Getter
     @Setter
-    //@Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date flyToDate;
     
     @Getter
     @Setter
-    //@Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date flyBackDate;
+    
+    public long getPersonId() {
+        return persons.get(0).getId();
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" + "id=" + id + ", price=" + price + ", persons=" + persons + ", flyTo=" + flyTo + ", flyBack=" + flyBack + ", hotel=" + hotel + ", desCity=" + desCity + ", depCity=" + depCity + ", flyToDate=" + flyToDate + ", flyBackDate=" + flyBackDate + '}';
+    }
+    
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Booking)) {
+            return false;
+        }
+        Booking other = (Booking) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+    
+    
 }

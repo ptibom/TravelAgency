@@ -18,7 +18,6 @@ import se.computerscience.travelagency.model.persistence.Hotel;
 import se.computerscience.travelagency.model.persistence.ICityDAO;
 import se.computerscience.travelagency.model.persistence.IFlightDAO;
 import se.computerscience.travelagency.model.persistence.IHotelDAO;
-import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 /**
  *

@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.validation.constraints.Future;
@@ -24,7 +26,7 @@ import se.computerscience.travelagency.model.persistence.Person;
  * @author MonoMan
  */
 @Named(value = "contactBB")
-@ViewScoped
+@SessionScoped
 public class ContactBB implements Serializable {
   @Getter
     @Setter
@@ -32,6 +34,8 @@ public class ContactBB implements Serializable {
 
     @Getter
     @Setter
+    @Pattern(regexp = "\\d+", message = "{required.letters}")
+    @NotNull(message = "{required.field}")
     private String numPassengers;
 
     @Getter
@@ -44,6 +48,7 @@ public class ContactBB implements Serializable {
     @Getter
     @Setter
     @NotNull(message = "{required.field}")
+    @Pattern(regexp = "[A-Za-zÅÄÖåäö]+", message = "{required.letters}")
     private String cardHolderName;
 
     @Getter
@@ -53,37 +58,43 @@ public class ContactBB implements Serializable {
     
     @Getter
     @Setter
+    @Pattern(regexp = "[A-Za-zÅÄÖåäö]+", message = "{required.letters}")
+    @NotNull(message = "{required.field}")
     private String toCity;
     
     @Getter
     @Setter
-    private String hotelId;
-    
-    @Getter
-    @Setter
+    @Pattern(regexp = "[A-Za-zÅÄÖåäö]+", message = "{required.letters}")
+    @NotNull(message = "{required.field}")
     private String fromCity;
     
     @Getter
     @Setter
-    private String flyTo;
+    @Pattern(regexp = "\\d+", message = "{required.letters}")
+    @NotNull(message = "{required.field}")
+    private String hotelId;
      
     @Getter
     @Setter
+    @Pattern(regexp = "\\d+", message = "{required.letters}")
+    @NotNull(message = "{required.field}")
     private String outFlight;
     
     @Getter
     @Setter
+    @Pattern(regexp = "\\d+", message = "{required.letters}")
+    @NotNull(message = "{required.field}")
     private String returnFlight;
     
     @Getter
     @Setter
-    @Future
-    private Date  fromDate;
+    @NotNull(message = "{required.field}")
+    private String fromDate;
     
     @Getter
     @Setter
-    @Future
-    private Date  toDate;
+    @NotNull(message = "{required.field}")
+    private String toDate;
    
     
     public ContactBB() {   
@@ -104,4 +115,11 @@ public class ContactBB implements Serializable {
 
         return passengerList;
     }
+    
+
+    public String toFormContactAndClear() {
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("SessionBean1");
+        return "/partials/booking/formContact.xhtml?faces-redirect=true&amp;includeViewParams=true";
+    }
+    
 }

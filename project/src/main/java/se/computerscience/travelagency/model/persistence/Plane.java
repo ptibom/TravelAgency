@@ -2,6 +2,7 @@ package se.computerscience.travelagency.model.persistence;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -51,4 +52,30 @@ public class Plane implements Serializable {
 
     public Plane() {
     }
+
+    @Override
+    public String toString() {
+        return "Plane{" + "id=" + id + ", type=" + type + ", capacity=" + capacity + ", flightList=" + flightList + '}';
+    }
+    
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Plane)) {
+            return false;
+        }
+        Plane other = (Plane) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+    
+    
 }

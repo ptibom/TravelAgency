@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    
+    <f:metadata>
+        <f:viewParam name="id" value="#{hotelBean.hid}" />
+        <f:viewParam name="name" value="#{hotelBean.name}" />
+        <f:viewParam name="rooms" value="#{hotelBean.rooms}" />
+        <f:viewParam name="price" value="#{hotelBean.price}" />
+        <f:viewParam name="rating" value="#{hotelBean.rating}" />
+        <f:viewParam name="cityid" value="#{hotelBean.cityId}"  />
+        <f:viewParam name="desc" value="#{hotelBean.description}" />
+    </f:metadata>
+    
+    <ui:composition template="/WEB-INF/template.xhtml" rendered="#{request.isUserInRole('adminRole')}">
+        <ui:define name="content">          
+            <h:form>
+                <h3>Edit Hotel</h3>
+                <h:panelGrid columns="1">
+                    <h:outputLabel for="hid" value="Hotel id"/>
+                    <h:inputText value="#{hotelBean.hid}" id="hotelId" disabled="true"/>
+                    <h:message for="hid" />
+                    
+                    <h:outputLabel for="name" value="Name"/>
+                    <h:inputText value="#{hotelBean.name}" id="addName"/>
+                    <h:message for="name" />
+                    
+                    <h:outputLabel for="price" value="Price"/>
+                    <h:inputText value="#{hotelBean.price}" id="addPrice"/>
+                    <h:message for="price" />
+                    
+                    <h:outputLabel for="rooms" value="Rooms"/>
+                    <h:inputText value="#{hotelBean.rooms}" id="addRooms"/>
+                    <h:message for="rooms" />
+                    
+                    <h:outputLabel for="rating" value="Rating"/>
+                    <h:inputText value="#{hotelBean.rating}" id="addRating"/>
+                    <h:message for="rating" />
+                    
+                    <h:outputLabel for="cityId" value="City ID"/>
+                    <h:inputText value="#{hotelBean.cityId}" id="addcity"/>
+                    <h:message for="city" />
+                    
+                    <h:outputLabel for="desc" value="Description"/>
+                    <h:inputTextarea value="#{hotelBean.description}" id="addDesc"/>
+                    <h:message for="desc" />
+                </h:panelGrid> 
+                
+                <h:commandButton value="Cancel" immediate="true" class="btn btn-default" action="#{adminCtrl.redir()}" />
+                <h:commandButton value="Edit Hotel" action="#{adminCtrl.editHotel()}" class="btn btn-default"/>
+            </h:form>    
+        </ui:define>
+    </ui:composition>
+</html>

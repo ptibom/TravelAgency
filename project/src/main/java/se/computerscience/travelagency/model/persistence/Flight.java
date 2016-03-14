@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -141,4 +142,30 @@ public class Flight implements Serializable{
         };
         
     }
+
+    @Override
+    public String toString() {
+        return "Flight{" + "id=" + id + ", depature=" + depature + ", arrival=" + arrival + ", price=" + price + ", plane=" + plane + ", depCity=" + depCity + ", desCity=" + desCity + ", bookingFlyToList=" + bookingFlyToList + ", bookingFlyBackList=" + bookingFlyBackList + '}';
+    }
+    
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Flight)) {
+            return false;
+        }
+        Flight other = (Flight) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+    
+    
 }

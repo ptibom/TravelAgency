@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    
+    <ui:composition template="/WEB-INF/template.xhtml" rendered="#{request.isUserInRole('adminRole')}">
+        <ui:define name="content">          
+            <h:form>
+                <h3>Add booking</h3>
+                <h:panelGrid columns="1">
+                    <h:outputLabel for="name" value="desCityId"/>
+                    <h:inputText value="#{bookingBean.desCityId}" id="addDes" />
+                    <h:message for="name" />
+                    
+                    <h:outputLabel for="name" value="depCityId"/>
+                    <h:inputText value="#{bookingBean.depCityId}" id="addDep"/>
+                    <h:message for="name" />
+                    
+                    <h:outputLabel for="name" value="flightToId"/>
+                    <h:inputText value="#{bookingBean.flightToId}" id="addFto"/>
+                    <h:message for="name" />
+                    
+                    <h:outputLabel for="name" value="flightBackId"/>
+                    <h:inputText value="#{bookingBean.flightBackId}" id="addFbk"/>
+                    <h:message for="name" />
+                    
+                    <h:outputLabel for="name" value="fly to date"/>
+                    <p:calendar value="#{bookingBean.depatureToDate}" id="fDate" pages="1" mindate="#{now}" />
+                    <h:message for="name" />
+                    
+                    <h:outputLabel for="name" value="fly to date"/>
+                    <p:calendar value="#{bookingBean.depatureBackDate}" id="bDate" pages="1" mindate="#{now}"/>
+                    <h:message for="name" />
+                    
+                    <h:outputLabel for="name" value="hotelId"/>
+                    <h:inputText value="#{bookingBean.hotelId}" id="hotelId"/>
+                    <h:message for="name" />
+                    
+                    <h:outputLabel for="name" value="personId"/>
+                    <h:inputText value="#{bookingBean.personId}" id="personId"/>
+                    <h:message for="name" />
+                    
+                    <h:outputLabel for="name" value="price"/>
+                    <h:inputText value="#{bookingBean.price}" id="price"/>
+                    <h:message for="name" />
+                    
+                </h:panelGrid> 
+                
+                <h:commandButton value="Cancel" immediate="true" class="btn btn-default" action="#{adminCtrl.redir()}" />
+                <h:commandButton value="Add Booking" action="#{adminCtrl.addBooking()}" class="btn btn-default"/>
+            </h:form>    
+        </ui:define>
+    </ui:composition>
+</html>

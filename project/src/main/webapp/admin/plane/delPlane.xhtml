@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    
+    <f:metadata>
+        <f:viewParam name="id" value="#{planeBean.pid}"  />
+        <f:viewParam name="type" value="#{planeBean.type}"  />
+        <f:viewParam name="capacity" value="#{planeBean.capacity}"  />
+    </f:metadata>
+    
+    <ui:composition template="/WEB-INF/template.xhtml" rendered="#{request.isUserInRole('adminRole')}">
+        <ui:define name="content">          
+            <h:form>
+                <h3>Delete Plane</h3>
+                <h:panelGrid columns="1">
+                    <h:outputLabel for="id" value="Plane id"/>
+                    <h:inputText value="#{planeBean.pid}" id="removeId" disabled="true" />
+                    <h:message for="id" />
+
+                    <h:outputLabel for="type" value="plane Type"/>
+                    <h:inputText value="#{planeBean.type}" id="removeType" disabled="true" />
+                    <h:message for="type" />
+
+                    <h:outputLabel for="capacity" value="plane capacity"/>
+                    <h:inputText value="#{planeBean.capacity}" id="removeCap" disabled="true" />
+                    <h:message for="capacity" />
+                </h:panelGrid> 
+                <h:commandButton value="Cancel" immediate="true" class="btn btn-default" action="#{adminCtrl.addPlane()}" />
+                <h:commandButton value="Delete" action="#{adminCtrl.deletePlane()}" class="btn btn-default"/>
+            </h:form>    
+        </ui:define>
+    </ui:composition>
+</html>

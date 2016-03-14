@@ -3,8 +3,12 @@ package se.computerscience.travelagency.model.persistence;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import static javax.persistence.CascadeType.PERSIST;
+
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -91,7 +95,7 @@ public class Person implements Serializable {
     @Column(nullable = false)
     private String emailAdress;
     
-    @ManyToMany(mappedBy = "person")
+    @ManyToMany(mappedBy = "persons")
     private List<Booking> bookings;
     
     public Person() {
@@ -103,5 +107,29 @@ public class Person implements Serializable {
         }
         bookings.add(b);
     }
-     
+
+    @Override
+    public String toString() {
+        return "Person{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", bookingList=" + bookings + '}';
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Person)) {
+            return false;
+        }
+        Person other = (Person) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
 }
