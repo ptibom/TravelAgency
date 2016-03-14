@@ -20,16 +20,16 @@ import org.junit.runner.RunWith;
 
 /**
  *
- * @author Philip Tibom
+ * @author Hossein
  */
 @RunWith(Arquillian.class)
-public class PlaneTest {
+public class CityTest {
     
     @Inject
     UserTransaction utx;
 
     @EJB
-    private IPlaneDAO planeDAO;
+    private ICityDAO cityDAO;
     
     @Deployment
     public static Archive<?> createDeployment() {
@@ -50,25 +50,27 @@ public class PlaneTest {
     }
 
     @Test
-    public void testPersistPlane() throws Exception {
-        Plane p = new Plane("Boeing", 200, null);
+    public void testPersistCity() throws Exception {
+        City c = new City();
+        c.setName("cityName");
         utx.begin();
-        planeDAO.create(p);
-        Plane p2 = planeDAO.findById(p.getId());
+        cityDAO.create(c);
+        City c2 = cityDAO.findById(c.getId());
         utx.commit();
-        assertTrue(p.getType().equals(p2.getType()));
+        assertTrue(c.getName().equals(c2.getName()));
     }
     
     @Test
-    public void testUpdatePlane() throws Exception {
-        Plane p = new Plane("Boeing", 200, null);
-        int cap = 100;
+    public void testUpdateCity() throws Exception {
+        City c = new City();
+        c.setName("cityName");
         utx.begin();
-        planeDAO.create(p);
-        p.setCapacity(cap);
-        planeDAO.update(p);
+        cityDAO.create(c);
+        String cname = "newName";
+        c.setName(cname);
+        cityDAO.update(c);
         utx.commit();
-        assertTrue(p.getCapacity() == cap);
+        assertTrue(c.getName().equals(cname));
     }
     
     @PersistenceContext(unitName = "travel_test_pu")
@@ -79,7 +81,7 @@ public class PlaneTest {
     private void clearAll() throws Exception {  
         utx.begin();  
         em.joinTransaction();
-        em.createQuery("DELETE FROM Plane").executeUpdate();
+        em.createQuery("DELETE FROM City").executeUpdate();
         utx.commit();
     }
 

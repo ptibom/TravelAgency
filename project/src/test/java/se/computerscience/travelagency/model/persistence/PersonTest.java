@@ -20,16 +20,16 @@ import org.junit.runner.RunWith;
 
 /**
  *
- * @author Philip Tibom
+ * @author Hossein
  */
 @RunWith(Arquillian.class)
-public class PlaneTest {
+public class PersonTest {
     
     @Inject
     UserTransaction utx;
 
     @EJB
-    private IPlaneDAO planeDAO;
+    private IPersonDAO personDAO;
     
     @Deployment
     public static Archive<?> createDeployment() {
@@ -50,25 +50,29 @@ public class PlaneTest {
     }
 
     @Test
-    public void testPersistPlane() throws Exception {
-        Plane p = new Plane("Boeing", 200, null);
+    public void testPersistPerson() throws Exception {
+        Person p = new Person();
+        p.setFirstName("testa");
+        p.setLastName("testb");
         utx.begin();
-        planeDAO.create(p);
-        Plane p2 = planeDAO.findById(p.getId());
+        personDAO.create(p);
+        Person p2 = personDAO.findById(p.getId());
         utx.commit();
-        assertTrue(p.getType().equals(p2.getType()));
+        assertTrue(p.getFirstName().equals(p2.getFirstName()));
     }
     
     @Test
-    public void testUpdatePlane() throws Exception {
-        Plane p = new Plane("Boeing", 200, null);
-        int cap = 100;
+    public void testUpdatePerson() throws Exception {
+        Person p = new Person();
+        String name = "testc";
+        p.setFirstName("testa");
+        p.setLastName("testb");
         utx.begin();
-        planeDAO.create(p);
-        p.setCapacity(cap);
-        planeDAO.update(p);
+        personDAO.create(p);
+        p.setFirstName(name);
+        personDAO.update(p);
         utx.commit();
-        assertTrue(p.getCapacity() == cap);
+        assertTrue(p.getFirstName().equals(name));
     }
     
     @PersistenceContext(unitName = "travel_test_pu")
@@ -79,7 +83,7 @@ public class PlaneTest {
     private void clearAll() throws Exception {  
         utx.begin();  
         em.joinTransaction();
-        em.createQuery("DELETE FROM Plane").executeUpdate();
+        em.createQuery("DELETE FROM Person").executeUpdate();
         utx.commit();
     }
 

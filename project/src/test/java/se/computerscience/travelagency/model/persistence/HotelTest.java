@@ -20,16 +20,16 @@ import org.junit.runner.RunWith;
 
 /**
  *
- * @author Philip Tibom
+ * @author Hossein
  */
 @RunWith(Arquillian.class)
-public class PlaneTest {
+public class HotelTest {
     
     @Inject
     UserTransaction utx;
 
     @EJB
-    private IPlaneDAO planeDAO;
+    private IHotelDAO hotelDAO;
     
     @Deployment
     public static Archive<?> createDeployment() {
@@ -50,25 +50,37 @@ public class PlaneTest {
     }
 
     @Test
-    public void testPersistPlane() throws Exception {
-        Plane p = new Plane("Boeing", 200, null);
+    public void testPersistHotel() throws Exception {
+        Hotel c = new Hotel();
+        c.setName("hotelName");
+        c.setCity(null);
+        c.setDecsription("");
+        c.setNumberOfRooms(0);
+        c.setPrice(0);
+        c.setRating(0);
         utx.begin();
-        planeDAO.create(p);
-        Plane p2 = planeDAO.findById(p.getId());
+        hotelDAO.create(c);
+        Hotel c2 = hotelDAO.findById(c.getId());
         utx.commit();
-        assertTrue(p.getType().equals(p2.getType()));
+        assertTrue(c.getName().equals(c2.getName()));
     }
     
     @Test
-    public void testUpdatePlane() throws Exception {
-        Plane p = new Plane("Boeing", 200, null);
-        int cap = 100;
+    public void testUpdateHotel() throws Exception {
+        Hotel c = new Hotel();
+        c.setName("hotelName");
+        c.setCity(null);
+        c.setDecsription("");
+        c.setNumberOfRooms(0);
+        c.setPrice(0);
+        c.setRating(0);
         utx.begin();
-        planeDAO.create(p);
-        p.setCapacity(cap);
-        planeDAO.update(p);
+        hotelDAO.create(c);
+        String name = "newName";
+        c.setName(name);
+        hotelDAO.update(c);
         utx.commit();
-        assertTrue(p.getCapacity() == cap);
+        assertTrue(c.getName().equals(name));
     }
     
     @PersistenceContext(unitName = "travel_test_pu")
@@ -79,7 +91,7 @@ public class PlaneTest {
     private void clearAll() throws Exception {  
         utx.begin();  
         em.joinTransaction();
-        em.createQuery("DELETE FROM Plane").executeUpdate();
+        em.createQuery("DELETE FROM Hotel").executeUpdate();
         utx.commit();
     }
 
