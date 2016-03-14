@@ -31,11 +31,6 @@ import se.computerscience.travelagency.view.PaymentBB;
 @Named(value = "bookingCtrl")
 @SessionScoped
 public class BookingCtrl implements Serializable{
-    /*
-    
-    public void save() {}
-    public List<Person> getPassengers(String query) {return null;}
-*/
    
     @EJB
     private IBookingDAO bookingDAO;
@@ -51,7 +46,6 @@ public class BookingCtrl implements Serializable{
 
     private ContactBB contactBB;
     
-     
     public void save() {
         Booking booked = new Booking();
         Date fromDate;
@@ -72,18 +66,14 @@ public class BookingCtrl implements Serializable{
         booked.setFlyBackDate(fromDate);
         booked.setFlyToDate(toDate);
        
+        booked.setPerson(contactBB.getPassengerList());
         for (Person passenger : contactBB.getPassengerList()) {
             passenger.addBooking(booked);
-        }
-        bookingDAO.insertBooking(booked);
-        
-        System.out.println("NO PASSANGERS: " +contactBB.getPassengerList().size() );
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        
+        } 
+        bookingDAO.insertBooking(booked);  
+         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
 
-
-    
      @Inject
     public void setContactBB(ContactBB contactBB) {
         this.contactBB = contactBB;
@@ -92,5 +82,4 @@ public class BookingCtrl implements Serializable{
     public List<Person> getPassengers(String query) {
         return bookingDAO.getPassengers();
     }
-
 }

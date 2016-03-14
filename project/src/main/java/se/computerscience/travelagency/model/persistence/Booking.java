@@ -39,12 +39,10 @@ public class Booking implements Serializable {
    
     @Setter
     @Getter
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="PERSON_BOOKING", joinColumns=@JoinColumn(name="BOOKING_ID", referencedColumnName ="ID"),
                inverseJoinColumns=@JoinColumn(name="PERSON_ID", referencedColumnName="ID"))
-    private List<Person> persons;
-
-    
+    private List<Person> person;
     
     @Setter
     @Getter
@@ -82,12 +80,12 @@ public class Booking implements Serializable {
     private Date flyBackDate;
     
     public long getPersonId() {
-        return persons.get(0).getId();
+        return person.get(0).getId();
     }
 
     @Override
     public String toString() {
-        return "Booking{" + "id=" + id + ", price=" + price + ", persons=" + persons + ", flyTo=" + flyTo + ", flyBack=" + flyBack + ", hotel=" + hotel + ", desCity=" + desCity + ", depCity=" + depCity + ", flyToDate=" + flyToDate + ", flyBackDate=" + flyBackDate + '}';
+        return "Booking{" + "id=" + id + ", price=" + price + ", persons=" + person + ", flyTo=" + flyTo + ", flyBack=" + flyBack + ", hotel=" + hotel + ", desCity=" + desCity + ", depCity=" + depCity + ", flyToDate=" + flyToDate + ", flyBackDate=" + flyBackDate + '}';
     }
     
     @Override
