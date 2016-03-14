@@ -5,11 +5,12 @@
  */
 package se.computerscience.travelagency.view;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -23,8 +24,8 @@ import se.computerscience.travelagency.model.persistence.Person;
  * @author MonoMan
  */
 @Named(value = "contactBB")
-@RequestScoped
-public class ContactBB {
+@ViewScoped
+public class ContactBB implements Serializable {
   @Getter
     @Setter
     List<Person> passengerList;

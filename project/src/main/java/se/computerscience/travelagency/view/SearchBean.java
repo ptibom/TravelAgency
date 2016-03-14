@@ -1,5 +1,6 @@
 package se.computerscience.travelagency.view;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -25,7 +26,7 @@ import javax.faces.view.ViewScoped;
  */
 @Named(value = "searchBean")
 @ViewScoped
-public class SearchBean {
+public class SearchBean implements Serializable{
     
     @EJB
     ICityDAO cityDAO;
