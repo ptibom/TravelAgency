@@ -3,7 +3,7 @@ package se.computerscience.travelagency.view.admin;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -19,7 +19,7 @@ import se.computerscience.travelagency.model.persistence.IAdminUserDAO;
  * @author Hossein
  */
 @Named(value = "loginBean")
-@RequestScoped
+@SessionScoped
 public class LoginBean implements Serializable {
 
     @EJB
@@ -64,8 +64,8 @@ public class LoginBean implements Serializable {
         }
     }
 
-    public void logout() {
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        externalContext.invalidateSession();
+    public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "/login.xhtml?faces-redirect=true";
     }
 }

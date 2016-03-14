@@ -21,7 +21,7 @@ import se.computerscience.travelagency.model.persistence.IPersonDAO;
  *
  * @author Hossein
  */
-@Named(value = "bookingBean")
+@Named(value = "bookingAdminBean")
 @RequestScoped
 public class BookingBean {
     
