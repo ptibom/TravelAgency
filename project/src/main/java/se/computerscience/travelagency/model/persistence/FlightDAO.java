@@ -53,4 +53,6 @@ public class FlightDAO extends GeneralDAO<Flight> implements IFlightDAO{
         Collections.sort(flightList, Flight.Comparators.LATEST);
         return flightList;
     }
+
+    
 }

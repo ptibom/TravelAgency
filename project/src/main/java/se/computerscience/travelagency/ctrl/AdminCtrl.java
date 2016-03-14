@@ -257,6 +257,7 @@ public class AdminCtrl {
         booking.setFlyToDate(bookingBean.getDepatureToDate());
         booking.setHotel(hotel);
         booking.setPrice(parsedPrice);
+
         bookingDAO.create(booking);
         return redir();
     }
@@ -292,8 +293,8 @@ public class AdminCtrl {
             booking.setDesCity(desCity);
             booking.setFlyBack(flyBack);
             booking.setFlyTo(flyTo);
-            booking.setFlyBackDate(bookingBean.getDepatureBackDate());
-            booking.setFlyToDate(bookingBean.getDepatureToDate());
+            //booking.setFlyBackDate(bookingBean.getDepatureBackDate());
+            //booking.setFlyToDate(bookingBean.getDepatureToDate());
             booking.setHotel(hotel);
             booking.setPrice(parsedPrice);
 

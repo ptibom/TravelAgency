@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+
+    <f:metadata>
+        <f:viewParam name="fromCity" value="#{contactBB.fromCity}" />
+        <f:viewParam name="toCity" value="#{contactBB.toCity}" />
+        <f:viewParam name="numPassengers" value="#{contactBB.numPassengers}" />
+        <f:viewParam name="hotelId" value="#{contactBB.hotelId}" />
+        <f:viewParam name="outFlight" value="#{contactBB.outFlight}" />
+        <f:viewParam name="returnFlight" value="#{contactBB.returnFlight}" />
+        <f:viewParam name="fromDate" value="#{contactBB.fromDate}"  />
+        <f:viewParam name="toDate" value="#{contactBB.toDate}"  />
+    </f:metadata>
+
+    <ui:composition template="/WEB-INF/template.xhtml">
+        <ui:define name="content">
+            <h:form>
+                <b:row>
+                    <b:column span="1">
+                    </b:column>
+                    <b:column span="2">
+                    </b:column>
+                    <b:column span="5">
+                    </b:column>
+                    <b:column span="2">
+                        <f:param name="fromCity" value="#{contactBB.fromCity}" />
+                        <f:param name="toCity" value="#{contactBB.toCity}" />
+                        <f:param name="numPassengers" value="#{contactBB.numPassengers}" />
+                        <f:param name="hotelId" value="#{contactBB.hotelId}" />
+                        <f:param name="outFlight" value="#{contactBB.outFlight}" />
+                        <f:param name="returnFlight" value="#{contactBB.returnFlight}" />
+                        <f:param name="fromDate" value="#{contactBB.fromDate}"  />
+                        <f:param name="toDate" value="#{contactBB.toDate}"  />
+                        <h:commandButton action="/partials/booking/formPayment.xhtml?faces-redirect=true" class="btn btn-primary" value="Select" />
+                    </b:column>
+                </b:row>
+                <b:panel id="panel2" title="Passenger information" style="margin-bottom:10px;">
+                    <ui:repeat value="#{contactBB.intializePassengerList()}" var="passenger" varStatus="varStat">
+                        <b:panel title="Passenger #{varStat.index+1} ">
+                            <b:row>
+                                <b:column span ="5">  
+                                    <h:outputText value="Gender: " />
+                                </b:column>
+                                <p:selectOneButton id="gender" value="#{passenger.gender}" class="genderButton">
+                                    <f:selectItem itemLabel="Male" itemValue="Male" />
+                                    <f:selectItem itemLabel="Female" itemValue="Female" />
+                                    <p:ajax update="msgGender" event="change" />
+                                </p:selectOneButton>
+                                <div style="width: 200px"><p:message for="gender" id="msgGender" /></div>
+                            </b:row>
+                            <b:row>
+                                <b:column span = "3">
+                                    <h:outputText id ="addressID" value="Address:"/>
+                                </b:column>
+                                <b:column span = "4">  
+                                    <h:inputText id ="address" value="#{passenger.address}" size="60">
+                                        <p:ajax update="msgAddress" event="blur" />
+                                    </h:inputText>
+                                    <div style="width: 200px"><p:message for="address" id="msgAddress" /></div>
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column span = "3">
+                                    <h:outputText value="Postal Code"/>
+                                </b:column>
+                                <b:column span = "3">  
+                                    <h:inputText id="postalCode" value="#{passenger.postalCode}" size="60">
+                                        <p:ajax update="msgPostalCode" event="blur" />                                   
+                                    </h:inputText>
+                                    <div style="width: 200px"><p:message for="postalCode" id="msgPostalCode" /></div>
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column span = "3">
+                                    <h:outputText value="Phone number"/>
+                                </b:column>
+                                <b:column span = "4">  
+                                    <h:inputText id="phoneNumber" value="#{passenger.phoneNumber}" size="60">
+                                        <p:ajax update="msgPhoneNumber" event="blur" />    
+                                    </h:inputText>
+                                    <div style="width: 200px"><p:message for="phoneNumber" id="msgPhoneNumber" /></div>
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column span = "3">
+                                    <h:outputText value="Email Adress"/>
+                                </b:column>
+                                <b:column span = "3">  
+                                    <h:inputText id="emailAddress" value="#{passenger.emailAdress}" size="60">
+                                        <p:ajax update="msgEmailAddress" event="blur" />                                    
+                                    </h:inputText>
+                                    <div style="width: 200px"><p:message for="emailAddress" id="msgEmailAddress" /></div>
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column span = "3">
+                                    <h:outputText value="First name:"/>
+                                </b:column>
+                                <b:column span = "2">  
+                                    <h:inputText id="firstName" value="#{passenger.firstName}" size="60">
+                                        <p:ajax update="msgFirstName" event="blur" />  
+                                    </h:inputText>
+                                    <div style="width: 200px"><p:message for="firstName" id="msgFirstName" /></div>
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column span = "3">
+                                    <h:outputText  value="Last name:"/>   
+                                </b:column>
+                                <b:column span = "2">  
+                                    <h:inputText id="lastName" value="#{passenger.lastName}" size="60">
+                                        <p:ajax update="msgLastName" event="blur" />  
+                                    </h:inputText>
+                                    <div style="width: 200px"><p:message for="lastName" id="msgLastName" /></div>
+                                </b:column>
+                            </b:row>
+                        </b:panel>
+                    </ui:repeat>
+                </b:panel>     
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

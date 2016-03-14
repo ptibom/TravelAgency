@@ -2,12 +2,19 @@ package se.computerscience.travelagency.model.persistence;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
+
 import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import lombok.Getter;
@@ -30,34 +37,38 @@ public class Booking implements Serializable {
     @Setter
     private int price;
    
-    @ManyToOne
-    @Getter
     @Setter
-    private Person person;
+    @Getter
+    @ManyToMany
+    @JoinTable(name="PERSON_BOOKING", joinColumns=@JoinColumn(name="BOOKING_ID", referencedColumnName ="ID"),
+               inverseJoinColumns=@JoinColumn(name="PERSON_ID", referencedColumnName="ID"))
+    private List<Person> persons;
+
     
-    @ManyToOne
-    @Getter
+    
     @Setter
+    @Getter
+    @ManyToOne
     private Flight flyTo;
     
-    @ManyToOne
-    @Getter
     @Setter
+    @Getter
+    @ManyToOne
     private Flight flyBack;
     
-    @ManyToOne
     @Getter
     @Setter
+    @ManyToOne
     private Hotel hotel;
     
-    @ManyToOne
     @Getter
     @Setter
+    @ManyToOne
     private City desCity;
     
-    @ManyToOne
-    @Getter
     @Setter
+    @Getter
+    @ManyToOne
     private City depCity;
     
     @Getter
@@ -70,33 +81,13 @@ public class Booking implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date flyBackDate;
     
-    public long getDesCityId() {
-        return desCity.getId();
-    }
-    
-    public long getDepCityId() {
-        return depCity.getId();
-    }
-    
-    public long getHotelId() {
-        return hotel.getId();
-    }
-    
-    public long getFlyToId() {
-        return flyTo.getId();
-    }
-    
-    public long getFlyBackId() {
-        return flyBack.getId();
-    }
-    
     public long getPersonId() {
-        return person.getId();
+        return persons.get(0).getId();
     }
 
     @Override
     public String toString() {
-        return "Booking{" + "id=" + id + ", price=" + price + ", person=" + person + ", flyTo=" + flyTo + ", flyBack=" + flyBack + ", hotel=" + hotel + ", desCity=" + desCity + ", depCity=" + depCity + ", flyToDate=" + flyToDate + ", flyBackDate=" + flyBackDate + '}';
+        return "Booking{" + "id=" + id + ", price=" + price + ", persons=" + persons + ", flyTo=" + flyTo + ", flyBack=" + flyBack + ", hotel=" + hotel + ", desCity=" + desCity + ", depCity=" + depCity + ", flyToDate=" + flyToDate + ", flyBackDate=" + flyBackDate + '}';
     }
     
     @Override
@@ -118,5 +109,23 @@ public class Booking implements Serializable {
         return hash;
     }
     
+    public long getDesCityId() {
+        return desCity.getId();
+    }
     
+    public long getDepCityId() {
+        return depCity.getId();
+    }
+    
+    public long getFlyToId() {
+        return flyTo.getId();
+    }
+    
+    public long getFlyBackId() {
+        return flyBack.getId();
+    }
+    
+    public long getHotelId() {
+        return hotel.getId();
+    }
 }
